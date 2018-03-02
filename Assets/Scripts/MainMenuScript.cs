@@ -11,6 +11,15 @@ public class MainMenuScript : MonoBehaviour {
     private Button settings;
 
 	void Start () {
+        Scene[] scenes = SceneManager.GetAllScenes();
+        
+
+        if (scenes[0].name.Equals("SettingsMenu"))
+            SceneManager.UnloadScene("SettingsMenu");
+
+        else if (scenes[0].name.Equals("LevelSelectionMenu"))
+            SceneManager.UnloadScene("LevelSelectionMenu");
+
         levelSelection = GameObject.Find("LevelSelectionMenu").GetComponent<Button>();
         settings = GameObject.Find("Settings").GetComponent<Button>();
 	}
