@@ -8,6 +8,8 @@ public class CharacterScript : MonoBehaviour {
     private Rigidbody2D rdbd;
     public float hight;
     public float speed;
+    public float forceMultiplier;
+    public int lives;
 	// Use this for initialization
 	void Start () {
         rdbd = GetComponent<Rigidbody2D>();
@@ -40,6 +42,15 @@ public class CharacterScript : MonoBehaviour {
             groundIsTouching = true;
         }
         
+        if(collision.gameObject.tag == "Damage1")
+        {
+            lives--;
+            Vector2 knockbackVelocity = new Vector2((transform.position.x - collision.gameObject.transform.position.x) * forceMultiplier,
+                (transform.position.y - collision.gameObject.transform.position.y) * forceMultiplier);
+            Debug.Log(knockbackVelocity);
+            rdbd.velocity = -knockbackVelocity;
+            Debug.Log(lives);
+        }        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
