@@ -53,7 +53,11 @@ public class CharacterScript : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        groundIsTouching = false;
+        if (collision.gameObject.tag == "Ground")
+        {
+            groundIsTouching = false;
+        }
+
     }
 
     private void FixedUpdate()
