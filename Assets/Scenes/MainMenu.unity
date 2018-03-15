@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 849980166}
   - component: {fileID: 849980165}
   m_Layer: 5
-  m_Name: settingsWheal
+  m_Name: SettingsWheal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

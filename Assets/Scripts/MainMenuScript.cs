@@ -18,14 +18,6 @@ public class MainMenuScript : MonoBehaviour {
     private GameObject informationPopUp;
 
 	void Start () {
-        Scene[] scenes = SceneManager.GetAllScenes();
-
-        if (scenes[0].name.Equals("SettingsMenu"))
-            SceneManager.UnloadScene("SettingsMenu");
-
-        else if (scenes[0].name.Equals("LevelSelectionMenu"))
-            SceneManager.UnloadScene("LevelSelectionMenu");
-
         settingsPopUp = GameObject.Find("SettingsPopUp");
         settingsPopUp.active = false;
 
@@ -62,7 +54,7 @@ public class MainMenuScript : MonoBehaviour {
 
     void TaskOnLevelSelectionClick()
     {
-        SceneManager.LoadScene("LevelSelectionMenu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("LevelSelectionMenu");
     }
 
     void TaskOnSettingsClick()

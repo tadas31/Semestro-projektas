@@ -12,10 +12,6 @@ public class LevelSelectionMenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Scene[] scenes = SceneManager.GetAllScenes();
-        if (scenes[0].name.Equals("MainMenu"))
-            SceneManager.UnloadScene("MainMenu");
-
         back = GameObject.Find("Back").GetComponent<Button>();
         level_1 = GameObject.Find("Level1").GetComponent<Button>();
 
@@ -32,12 +28,12 @@ public class LevelSelectionMenuScript : MonoBehaviour {
 
     void TaskOnBackClick()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MainMenu");
         
     }
 
     void TaskOnLevel1Click()
     {
-        SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level1");
     }
 }
