@@ -67,6 +67,12 @@ public class CharacterScript : MonoBehaviour {
         if (collision.gameObject.tag == "Damage_fatal")
             Die();
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        transform.parent = collision.transform;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Candy")
@@ -83,6 +89,7 @@ public class CharacterScript : MonoBehaviour {
         if (collision.gameObject.tag == "Ground")
         {
             groundIsTouching = false;
+            transform.parent = null;
         }
 
     }
