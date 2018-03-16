@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterScript : MonoBehaviour {
 
@@ -10,9 +11,14 @@ public class CharacterScript : MonoBehaviour {
     public float speed;
     public float forceMultiplier;
     public int lives;
+
+    private Text candyCount;
+    private int counter = 0;
 	// Use this for initialization
 	void Start () {
         rdbd = GetComponent<Rigidbody2D>();
+
+        candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -56,8 +62,9 @@ public class CharacterScript : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Candy")
         {
-            GameObject candy = GameObject.FindGameObjectWithTag("Candy");
-            candy.active = false;
+            collision.gameObject.active = false;
+            counter++;
+            candyCount.text = counter.ToString();
         }
     }
 
