@@ -10,16 +10,19 @@ public class CharacterScript : MonoBehaviour {
     public float hight;
     public float speed;
     public float forceMultiplier;
-    public int lives;
 
     private Text candyCount;
     private int counter = 0;
-	// Use this for initialization
-	void Start () {
-        rdbd = GetComponent<Rigidbody2D>();
 
+    // STATS
+    public int lives;
+
+
+    // Use this for initialization
+    void Start () {
+        rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -55,8 +58,14 @@ public class CharacterScript : MonoBehaviour {
                 (transform.position.y - collision.gameObject.transform.position.y) * forceMultiplier);
             Debug.Log(knockbackVelocity);
             rdbd.velocity = -knockbackVelocity;
+
+            if (lives == 0) //When lives = 0, die (restart level for now)
+                Die();
+
             Debug.Log(lives);
-        }        
+        }
+        if (collision.gameObject.tag == "Damage_fatal")
+            Die();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -97,5 +106,11 @@ public class CharacterScript : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void Die()
+    {
+        // Restart
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

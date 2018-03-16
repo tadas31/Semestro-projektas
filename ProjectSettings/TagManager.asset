@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Obstacle
   - Damage1
+  - Damage_fatal
   layers:
   - Default
   - TransparentFX
