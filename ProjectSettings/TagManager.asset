@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Damage1
   - Damage_fatal
+  - FadingGround
   layers:
   - Default
   - TransparentFX
