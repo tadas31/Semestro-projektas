@@ -26,23 +26,23 @@ public class CharacterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+
 	}
 
-    private void Jump()
-    {
-        rdbd.velocity += new Vector2(0, hight);
-    }
+    //private void Jump()
+    //{
+    //    rdbd.velocity += new Vector2(0, hight);
+    //}
 
-    private void MoveRight()
-    {
-        rdbd.velocity += new Vector2(speed, 0);
-    }
+    //private void MoveRight()
+    //{
+    //    rdbd.velocity += new Vector2(speed, 0);
+    //}
 
-    private void MoveLeft()
-    {
-        rdbd.velocity += new Vector2(-speed, 0);
-    }
+    //private void MoveLeft()
+    //{
+    //    rdbd.velocity += new Vector2(-speed, 0);
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -87,26 +87,26 @@ public class CharacterScript : MonoBehaviour {
 
     }
 
-    private void FixedUpdate()
-    {
-        if (groundIsTouching && Input.GetMouseButton(0))
-        {
-            if (Input.mousePosition.y > (Screen.height * 3 / 4))
-            {
-                Jump();
-            }
-            else {
-                if (Input.mousePosition.x >(Screen.height /2))
-                {
-                    MoveRight();
-                }
-                if (Input.mousePosition.x < (Screen.height / 2))
-                {
-                    MoveLeft();
-                }
-            }
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    if (groundIsTouching && Input.GetMouseButton(0))
+    //    {
+    //        if (Input.mousePosition.y > (Screen.height * 3 / 4))
+    //        {
+    //            Jump();
+    //        }
+    //        else {
+    //            if (Input.mousePosition.x >(Screen.height /2))
+    //            {
+    //                MoveRight();
+    //            }
+    //            if (Input.mousePosition.x < (Screen.height / 2))
+    //            {
+    //                MoveLeft();
+    //            }
+    //        }
+    //    }
+    //}
 
     void Die()
     {
