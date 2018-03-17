@@ -16,13 +16,13 @@ public class PlatformScript : MonoBehaviour
     float x;
     float y;
 
-    Collider2D fadingPlatform;
+    GameObject[] fadingPlatform;
     float disapear;
     // Use this for initialization
     void Start()
     {
-        fadingPlatform = GameObject.FindGameObjectWithTag("FadingGround").GetComponent<Collider2D>();
-        disapear = 3.0f;
+        fadingPlatform = GameObject.FindGameObjectsWithTag("FadingGround");
+        disapear = 2.9f;
         x = transform.position.x;
         y = transform.position.y;
     }
@@ -37,17 +37,18 @@ public class PlatformScript : MonoBehaviour
         if (disapear <= 0.0f)
         {
             StartCoroutine(ShowAndHide());
-            disapear = 3.0f;
+            disapear = 2.9f;
         }
     }
 
     IEnumerator ShowAndHide()
     {
-        fadingPlatform.enabled = false;
-        Debug.Log(fadingPlatform.name);
-        yield return new WaitForSeconds(2.0f);
-        fadingPlatform.enabled = true;
-        disapear = 3.0f;
+        foreach (var platform in fadingPlatform)
+            platform.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(2.05f);
+        foreach (var platform in fadingPlatform)
+            platform.GetComponent<Collider2D>().enabled = true;
+        disapear = 2.9f;
     }
 
 private void Movement()
