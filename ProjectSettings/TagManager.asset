@@ -10,6 +10,7 @@ TagManager:
   - Damage1
   - Damage_fatal
   - FadingGround
+  - Trampoline
   layers:
   - Default
   - TransparentFX

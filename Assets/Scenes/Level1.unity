@@ -744,6 +744,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 183592633}
+--- !u!1001 &312967219
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140048723184956, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 89bd022560581ec4fa5a8ec12b8bd5c2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &421485315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1211,7 @@ MonoBehaviour:
   hight: 3
   speed: 0.2
   forceMultiplier: 0
+  trampolineJumpHeight: 5
   lives: 3
 --- !u!50 &865830294
 Rigidbody2D:
