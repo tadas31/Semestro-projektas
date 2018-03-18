@@ -8,11 +8,13 @@ public class CharacterScript : MonoBehaviour
 
     private bool groundIsTouching;// Tells if the character is touching the ground
     private bool isFalling;//Tells if the character is falling
+    private bool canClimb;
     private Rigidbody2D rdbd;
     public float hight;
     public float speed;
     public float forceMultiplier;
     public float trampolineJumpHeight;
+    public float speedOfClimb;
 
     private Text candyCount;
     private int counter = 0;
@@ -59,6 +61,29 @@ public class CharacterScript : MonoBehaviour
     {
         rdbd.velocity += new Vector2(-speed, 0);
     }
+
+    private void ClimbUp()
+    {
+        rdbd.velocity = Vector2.zero;
+        rdbd.transform.Translate(Vector2.up * Time.deltaTime * speedOfClimb);
+    }
+    private void ClimbDown()
+    {
+        rdbd.velocity = Vector2.zero;
+        rdbd.transform.Translate(Vector2.down * Time.deltaTime * speedOfClimb);
+    }
+
+    private void MoveRightByTranslate()
+    {
+        rdbd.transform.Translate(Vector2.right * Time.deltaTime * speedOfClimb);
+    }
+
+    private void MoveLeftByTranslate()
+    {
+        rdbd.transform.Translate(Vector2.left * Time.deltaTime * speedOfClimb);
+    }
+
+
     private void TrampolineBounce()
     {
         rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
@@ -87,6 +112,8 @@ public class CharacterScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "Damage_fatal")
             Die();
+
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -108,6 +135,23 @@ public class CharacterScript : MonoBehaviour
             counter++;
             candyCount.text = counter.ToString();
         }
+
+        if (collision.gameObject.tag == "Ladder")
+        {
+            canClimb = true;
+            collision.gameObject.GetComponent<LadderScript>().CanGoThrow();
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            canClimb = false;
+            collision.gameObject.GetComponent<LadderScript>().CannotGoThrow();
+            rdbd.gravityScale = 1;
+        }
     }
 
 
@@ -119,11 +163,13 @@ public class CharacterScript : MonoBehaviour
             transform.parent = null;
         }
 
+        
+
     }
 
-    private void FixedUpdate()
+    private void MovementOnTheGround()
     {
-        if (groundIsTouching && Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && groundIsTouching)
         {
             if (Input.mousePosition.y > (Screen.height * 3 / 4))
             {
@@ -141,6 +187,46 @@ public class CharacterScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void MovementOnTheLadded()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            rdbd.gravityScale = 0;
+
+            if (Input.mousePosition.y > (Screen.height * 3 / 4))
+            {
+
+                ClimbUp();
+            }
+            else
+            if (Input.mousePosition.y < (Screen.height * 1 / 4))
+            {
+                ClimbDown();
+            }
+            else
+            {
+                if (Input.mousePosition.x > (Screen.width / 2))
+                {
+                    MoveRightByTranslate();
+                }
+                if (Input.mousePosition.x < (Screen.width / 2))
+                {
+                    MoveLeftByTranslate();
+                }
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (canClimb)
+        {
+            MovementOnTheLadded();
+        }
+        else
+            MovementOnTheGround();
     }
 
     void Die()

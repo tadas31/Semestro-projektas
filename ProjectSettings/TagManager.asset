@@ -11,6 +11,7 @@ TagManager:
   - Damage_fatal
   - FadingGround
   - Trampoline
+  - Ladder
   layers:
   - Default
   - TransparentFX
