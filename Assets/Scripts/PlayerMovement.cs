@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpHeight;
     public JoystickMovement jsMovement;
     private bool groundIsTouching;
+    private bool canClimb;
 
     public bool kj;
 
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour {
     public Transform groundCheck;
     float groundRadius = 0.2f;
     public LayerMask whatIsGround;
-    public LayerMask whatIsGroundTramp;
 
     private bool isFalling;
     public float trampolineJumpHeight;
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             jump.onClick.AddListener(Jump);
         }
+
         CheckIfFalling();
 
     }
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
             // Joystick movement
             
             rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-           // Debug.Log(rdbd.velocity);
+            // Debug.Log(rdbd.velocity);
 
             //if (kj == true)
             //{
@@ -86,7 +87,12 @@ public class PlayerMovement : MonoBehaviour {
             //    rdbd.velocity = new Vector2(h * moveSpeed, rdbd.velocity.y);
             //}
         }
-        if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGroundTramp) && isFalling)
+        if (dir.y > 0 && canClimb)
+        {
+            MovementOnTheLadder();
+        }
+        
+        if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, 1 << LayerMask.NameToLayer("trampoline")) && isFalling)
         {
             Debug.Log("asff");
             TrampolineBounce();
@@ -108,5 +114,43 @@ public class PlayerMovement : MonoBehaviour {
     {
         rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
         rdbd.velocity += Vector2.up * trampolineJumpHeight;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "LadderTop" && (dir.y < 0))
+        {
+            Debug.Log("Gey");
+            collision.gameObject.GetComponentInParent<LadderScript>().CanGoThrow();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            canClimb = true;
+            rdbd.gravityScale = 0;
+            collision.gameObject.GetComponent<LadderScript>().CanGoThrow();
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            canClimb = false;
+            collision.gameObject.GetComponent<LadderScript>().CannotGoThrow();
+            rdbd.gravityScale = 1;
+        }
+    }
+
+    private void MovementOnTheLadder()
+    {
+       
+        rdbd.velocity = Vector2.zero;
+        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeed);
+        
     }
 }

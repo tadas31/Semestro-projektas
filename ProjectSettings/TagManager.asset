@@ -12,6 +12,7 @@ TagManager:
   - FadingGround
   - Trampoline
   - Ladder
+  - LadderTop
   layers:
   - Default
   - TransparentFX
