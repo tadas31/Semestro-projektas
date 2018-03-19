@@ -7,7 +7,7 @@ public class CharacterScript : MonoBehaviour
 {
 
     private bool groundIsTouching;// Tells if the character is touching the ground
-    private bool isFalling;//Tells if the character is falling
+    public bool isFalling;//Tells if the character is falling
     private bool canClimb;
     private Rigidbody2D rdbd;
     public float hight;
@@ -92,10 +92,11 @@ public class CharacterScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Trampoline" && isFalling)
-        {
-            TrampolineBounce();
-        }
+
+        //if (collision.gameObject.tag == "Trampoline" && isFalling)
+        //{
+        //    TrampolineBounce();
+        //}
 
         if (collision.gameObject.tag == "Damage1")
         {
@@ -118,7 +119,7 @@ public class CharacterScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        transform.parent = collision.transform;
+        //transform.parent = collision.transform;
 
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "FadingGround" || collision.gameObject.tag == "Trampoline")
         {
@@ -168,55 +169,55 @@ public class CharacterScript : MonoBehaviour
     }
 
     private void MovementOnTheGround()
-    //{
-        if (Input.GetMouseButton(0) && groundIsTouching)
-    //    {
-    //        if (Input.mousePosition.y > (Screen.height * 3 / 4))
-    //        {
-    //            Jump();
-    //        }
-            else
-            {
-                if (Input.mousePosition.x > (Screen.height / 2))
-    //                MoveRight();
-    //            }
-    //            if (Input.mousePosition.x < (Screen.height / 2))
-    //            {
-    //                MoveLeft();
-    //            }
-    //        }
-    //    }
-    //}
+   {
+//        if (Input.GetMouseButton(0) && groundIsTouching)
+//        {
+//            if (Input.mousePosition.y > (Screen.height * 3 / 4))
+//            {
+//                Jump();
+//            }
+//            else
+//            {
+//                if (Input.mousePosition.x > (Screen.height / 2))
+//                    MoveRight();
+//            }
+//            if (Input.mousePosition.x < (Screen.height / 2))
+//            {
+//                MoveLeft();
+//            }
+//        }
+//    }
+//}
     }
 
     private void MovementOnTheLadded()
     {
-        if (Input.GetMouseButton(0))
-        {
-            rdbd.gravityScale = 0;
+        //if (Input.GetMouseButton(0))
+        //{
+        //    rdbd.gravityScale = 0;
 
-            if (Input.mousePosition.y > (Screen.height * 3 / 4))
-            {
+        //    if (Input.mousePosition.y > (Screen.height * 3 / 4))
+        //    {
 
-                ClimbUp();
-            }
-            else
-            if (Input.mousePosition.y < (Screen.height * 1 / 4))
-            {
-                ClimbDown();
-            }
-            else
-            {
-                if (Input.mousePosition.x > (Screen.width / 2))
-                {
-                    MoveRightByTranslate();
-                }
-                if (Input.mousePosition.x < (Screen.width / 2))
-                {
-                    MoveLeftByTranslate();
-                }
-            }
-        }
+        //        ClimbUp();
+        //    }
+        //    else
+        //    if (Input.mousePosition.y < (Screen.height * 1 / 4))
+        //    {
+        //        ClimbDown();
+        //    }
+        //    else
+        //    {
+        //        if (Input.mousePosition.x > (Screen.width / 2))
+        //        {
+        //            MoveRightByTranslate();
+        //        }
+        //        if (Input.mousePosition.x < (Screen.width / 2))
+        //        {
+        //            MoveLeftByTranslate();
+        //        }
+        //    }
+        //}
     }
 
     private void FixedUpdate()
@@ -225,8 +226,8 @@ public class CharacterScript : MonoBehaviour
         {
             MovementOnTheLadded();
         }
-        else
-            MovementOnTheGround();
+        //else
+        //    MovementOnTheGround();
     }
 
     void Die()

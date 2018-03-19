@@ -24,15 +24,20 @@ public class PlayerMovement : MonoBehaviour {
     public Transform groundCheck;
     float groundRadius = 0.2f;
     public LayerMask whatIsGround;
+    public LayerMask whatIsGroundTramp;
 
-	// Use this for initialization
-	void Start () {
+    private bool isFalling;
+    public float trampolineJumpHeight;
+    // Use this for initialization
+    void Start () {
         rdbd = GetComponent<Rigidbody2D>();
         jump = GameObject.Find("Jump").GetComponent<Button>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+
+
+    // Update is called once per frame
+    void Update () {
 
 
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Keyboard
@@ -45,23 +50,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             jump.onClick.AddListener(Jump);
         }
-    }
+        CheckIfFalling();
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            groundIsTouching = true;
-        }
-        
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            groundIsTouching = false;
-        }
     }
 
     void Jump()
@@ -96,5 +86,27 @@ public class PlayerMovement : MonoBehaviour {
             //    rdbd.velocity = new Vector2(h * moveSpeed, rdbd.velocity.y);
             //}
         }
+        if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGroundTramp) && isFalling)
+        {
+            Debug.Log("asff");
+            TrampolineBounce();
+        }
+    }
+    private void CheckIfFalling()
+    {
+        if (rdbd.velocity.y < -0.1)
+        {
+            isFalling = true;
+        }
+        else
+        {
+            isFalling = false;
+        }
+    }
+
+    private void TrampolineBounce()
+    {
+        rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
+        rdbd.velocity += Vector2.up * trampolineJumpHeight;
     }
 }
