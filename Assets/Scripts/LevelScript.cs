@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour {
-
     private Button restart;
 
     private Button pause;
@@ -38,7 +37,7 @@ public class LevelScript : MonoBehaviour {
             home.onClick.RemoveAllListeners();
             home.onClick.AddListener(TaskOnHomeClick);
         }
-        
+
     }
 
     void TaskOnRestartClick()

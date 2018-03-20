@@ -1257,91 +1257,43 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.68
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1.19
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4719426347422602, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
+    - target: {fileID: 4054264085966880, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
+    - target: {fileID: 114901954402938356, guid: 72d042fa84c65e94d9a2b133504373a7,
         type: 2}
       propertyPath: jsMovement
       value: 
       objectReference: {fileID: 185161552}
-    - target: {fileID: 1274113796077666, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1493426243835468, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: whatIsGround.m_Bits
-      value: 4294967039
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: moveSpeedJ
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: jumpHeight
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: kj
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: trampolineJumpHeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 50120591619742998, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114029591500143576, guid: 72d042fa84c65e94d9a2b133504373a7,
-        type: 2}
-      propertyPath: whatIsGroundTramp.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72d042fa84c65e94d9a2b133504373a7, type: 2}
   m_IsPrefabParent: 0
@@ -1446,7 +1398,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865830292 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1274113796077666, guid: 72d042fa84c65e94d9a2b133504373a7,
+  m_PrefabParentObject: {fileID: 1188203397299776, guid: 72d042fa84c65e94d9a2b133504373a7,
     type: 2}
   m_PrefabInternal: {fileID: 836097399}
 --- !u!1001 &1033526180

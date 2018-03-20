@@ -39,6 +39,14 @@ public class PlatformScript : MonoBehaviour
             StartCoroutine(ShowAndHide());
             disapear = 2.9f;
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("spaudziu");
+            StopPlatform();
+
+        }
+
     }
 
     IEnumerator ShowAndHide()
@@ -51,14 +59,12 @@ public class PlatformScript : MonoBehaviour
         disapear = 2.9f;
     }
 
-private void Movement()
+    private void Movement()
     {
         if (!stop)
         {
             if (moveByX)
             {
-
-
                 if (byX)
                     transform.Translate(Vector2.right * speed * Time.deltaTime);
                 else
@@ -95,6 +101,19 @@ private void Movement()
 
         }
 
+    }
+
+    private void StopPlatform()
+    {
+        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
+        if (hit)
+        {
+            //hit.transform.gameObject.
+            moveByX = false;
+            moveByY = false;
+            Debug.Log(hit.transform.gameObject.name);
+        }
     }
 
     private void Stop()
