@@ -49,6 +49,7 @@ public class PlatformScript : MonoBehaviour
 
     }
 
+
     IEnumerator ShowAndHide()
     {
         foreach (var platform in fadingPlatform)
@@ -109,14 +110,11 @@ public class PlatformScript : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
         if (hit)
         {
-            //hit.transform.gameObject.
-            moveByX = false;
-            moveByY = false;
-            Debug.Log(hit.transform.gameObject.name);
+            hit.collider.GetComponent<PlatformScript>().Stop();
         }
     }
 
-    private void Stop()
+    public void Stop()
     {
         stop = true;
     }
