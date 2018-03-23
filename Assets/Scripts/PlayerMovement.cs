@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
         jump.onClick.RemoveAllListeners();
-        if (isGrounded())                                    // Player jumps when screen button is pressed
+        if (isGrounded() && !camera.moveCamera)              // Player jumps when screen button is pressed
         {
             jump.onClick.AddListener(Jump);
         }
