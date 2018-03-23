@@ -5,21 +5,22 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
+    public cameraMovement camera;
 
     private Button jump;
 
     private Rigidbody2D rdbd;
 
-    public float moveSpeed;
-    public float moveSpeedJ;
-    public float jumpHeight;
-    public JoystickMovement jsMovement;
+    public float maxSpeed;   // Max player movement speed, used to limit its velocity
+    public float moveSpeedJ; // Player movement speed
+    public float jumpHeight; 
+    public float drag;
+    
     private bool groundIsTouching;
     private bool canClimb;
 
-    public bool kj;
-
-    private Vector3 dir;
+    public JoystickMovement jsMovement;
+    private Vector3 dir;    // Joystick direction
 
     bool grounded = false;
     public Transform groundCheck;
@@ -28,38 +29,39 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool isFalling;
     public float trampolineJumpHeight;
+
     // Use this for initialization
     void Start () {
         rdbd = GetComponent<Rigidbody2D>();
         jump = GameObject.Find("Jump").GetComponent<Button>();
     }
 
-
-
     // Update is called once per frame
     void Update () {
-
-
-        if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Keyboard
+        if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
         {
             Debug.Log("Space");
             Jump();
         }
         jump.onClick.RemoveAllListeners();
-        if (isGrounded())                                    // Button
+        if (isGrounded())                                    // Player jumps when screen button is pressed
         {
             jump.onClick.AddListener(Jump);
         }
 
-        CheckIfFalling();
-
+        CheckIfFalling();                                    // Checking if player is falling
+      
+        if(rdbd.velocity.magnitude > maxSpeed)               // Limiting player movements speed
+        {
+            rdbd.velocity = Vector2.ClampMagnitude(rdbd.velocity, maxSpeed);
+            
+        }
+        
     }
 
     void Jump()
     {
-       // Debug.Log(isGrounded());
-        rdbd.AddForce(new Vector2(0, jumpHeight));
-        
+        rdbd.AddForce(new Vector2(0, jumpHeight));       
     }
 
     bool isGrounded()
@@ -72,21 +74,13 @@ public class PlayerMovement : MonoBehaviour {
         
         dir = jsMovement.InputDirection;
         
-        if (isGrounded())
+        if (isGrounded() && !camera.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
         {
-            // Joystick movement
-            
             rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-            // Debug.Log(rdbd.velocity);
-
-            //if (kj == true)
-            //{
-            //    // Keyboard movement
-            //    float h = Input.GetAxis("Horizontal");
-            //    float v = Input.GetAxis("Vertical");
-            //    rdbd.velocity = new Vector2(h * moveSpeed, rdbd.velocity.y);
-            //}
+            rdbd.drag = drag;                    // To reduce sliding
         }
+        else rdbd.drag = 0;
+
         if (dir.y > 0 && canClimb)
         {
             MovementOnTheLadder();
@@ -98,6 +92,10 @@ public class PlayerMovement : MonoBehaviour {
             TrampolineBounce();
         }
     }
+
+    /// <summary>
+    /// Checking if player is currently falling
+    /// </summary>
     private void CheckIfFalling()
     {
         if (rdbd.velocity.y < -0.1)
@@ -110,6 +108,9 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Player bounces when it jumps on a trampoline
+    /// </summary>
     private void TrampolineBounce()
     {
         rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
@@ -146,11 +147,12 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Player moves on a ladder
+    /// </summary>
     private void MovementOnTheLadder()
-    {
-       
+    {      
         rdbd.velocity = Vector2.zero;
-        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeed);
-        
+        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);       
     }
 }

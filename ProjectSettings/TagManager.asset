@@ -13,6 +13,8 @@ TagManager:
   - Trampoline
   - Ladder
   - LadderTop
+  - MovingPlatform
+  - PressedPlatform
   layers:
   - Default
   - TransparentFX

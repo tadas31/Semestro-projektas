@@ -15,6 +15,7 @@ public class PlatformScript : MonoBehaviour
     bool stop = false;
     float x;
     float y;
+    public static int stoppedCount;
 
     GameObject[] fadingPlatform;
     float disapear;
@@ -25,6 +26,7 @@ public class PlatformScript : MonoBehaviour
         disapear = 2.9f;
         x = transform.position.x;
         y = transform.position.y;
+        stoppedCount = 0;
     }
 
     // Update is called once per frame
@@ -40,11 +42,10 @@ public class PlatformScript : MonoBehaviour
             disapear = 2.9f;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("spaudziu");
             StopPlatform();
-
         }
 
     }
@@ -108,15 +109,18 @@ public class PlatformScript : MonoBehaviour
     {
         Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
-        if (hit)
+        if (hit && hit.collider.tag == "MovingPlatform")
         {
             hit.collider.GetComponent<PlatformScript>().Stop();
+            hit.collider.tag = "PressedPlatform";
         }
+        Debug.Log("------------ " + stoppedCount);
     }
 
     public void Stop()
     {
         stop = true;
+        stoppedCount++;
     }
 
 }
