@@ -12,6 +12,14 @@ public class LevelScript : MonoBehaviour {
 
     private Button home;
 
+    private Button done;
+
+    public cameraMovement camera;
+
+    public GameObject jumButton;
+
+
+    int MovingCount = 2;
     // Use this for initialization
     void Start () {
         Time.timeScale = 1;
@@ -21,10 +29,17 @@ public class LevelScript : MonoBehaviour {
         pause = GameObject.Find("Pause").GetComponent<Button>();
         pausePopup = GameObject.Find("PausePopup");
         pausePopup.SetActive(false);
+
+        done = GameObject.Find("Done").GetComponent<Button>();
+
+        jumButton = GameObject.Find("Jump");
+        
+        jumButton.active = false;
+        done.gameObject.active = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+        void Update () {
 
         restart.onClick.RemoveAllListeners();
         restart.onClick.AddListener(TaskOnRestartClick);
@@ -37,6 +52,14 @@ public class LevelScript : MonoBehaviour {
             home.onClick.RemoveAllListeners();
             home.onClick.AddListener(TaskOnHomeClick);
         }
+
+        done.onClick.RemoveAllListeners();
+        done.onClick.AddListener(TaskOnDoneClick);
+
+        if (PlatformScript.stoppedCount == MovingCount && cameraMovement.moveCamera)  // Checks if all the stoppable platforms are stopped
+            done.gameObject.active = true;
+
+
 
     }
 
@@ -63,5 +86,17 @@ public class LevelScript : MonoBehaviour {
     void TaskOnHomeClick()
     {
         SceneManager.LoadScene("LevelSelectionMenu");
+    }
+
+    void TaskOnDoneClick()
+    {
+        if (PlatformScript.stoppedCount == MovingCount)  // Checks if all the stoppable platforms are stopped
+        {
+            cameraMovement.moveCamera = false;
+            done.gameObject.active = false;
+            jumButton.active = true;
+        }
+
+
     }
 }

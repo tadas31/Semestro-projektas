@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
-    public cameraMovement camera;
 
     private Button jump;
 
@@ -44,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
         jump.onClick.RemoveAllListeners();
-        if (isGrounded() && !camera.moveCamera)              // Player jumps when screen button is pressed
+        if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
         {
             jump.onClick.AddListener(Jump);
         }
@@ -74,7 +73,7 @@ public class PlayerMovement : MonoBehaviour {
         
         dir = jsMovement.InputDirection;
         
-        if (isGrounded() && !camera.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
+        if (isGrounded() && !cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
         {
             rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
             rdbd.drag = drag;                    // To reduce sliding
