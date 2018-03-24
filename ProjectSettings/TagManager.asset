@@ -15,6 +15,7 @@ TagManager:
   - LadderTop
   - MovingPlatform
   - PressedPlatform
+  - Heart
   layers:
   - Default
   - TransparentFX

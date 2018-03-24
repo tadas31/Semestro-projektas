@@ -11,8 +11,10 @@ public class CharacterScript : MonoBehaviour
     private Text candyCount;
     private int counter = 0;
 
+    Vector2 startPos;
+
     // STATS
-    public int lives;
+    public static int lives = 3;
 
 
     // Use this for initialization
@@ -20,6 +22,7 @@ public class CharacterScript : MonoBehaviour
     {
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
+        startPos = rdbd.position;
     }
 
     // Update is called once per frame
@@ -43,8 +46,9 @@ public class CharacterScript : MonoBehaviour
             if (lives == 0) //When lives = 0, die (restart level for now)
                 Die();
 
-            Debug.Log(lives);
+            Debug.Log("--------------- " + lives);
         }
+        Debug.Log("character script " + lives);
         if (collision.gameObject.tag == "Damage_fatal")
             Die();
 
@@ -66,6 +70,8 @@ public class CharacterScript : MonoBehaviour
     void Die()
     {
         // Restart
-        Application.LoadLevel(Application.loadedLevel);
+        rdbd.transform.position = startPos;
+        lives = 3;
+        //Application.LoadLevel(Application.loadedLevel);
     }
 }
