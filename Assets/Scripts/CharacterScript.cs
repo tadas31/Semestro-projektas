@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class CharacterScript : MonoBehaviour
 {
-    private Rigidbody2D rdbd;
+    public static Rigidbody2D rdbd;
     public float forceMultiplier;
 
     private Text candyCount;
     private int counter = 0;
 
-    Vector2 startPos;
-
     // STATS
-    public static int lives = 3;
+    public static int lives;
 
 
     // Use this for initialization
@@ -22,7 +20,7 @@ public class CharacterScript : MonoBehaviour
     {
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
-        startPos = rdbd.position;
+        lives = 3;
     }
 
     // Update is called once per frame
@@ -45,13 +43,13 @@ public class CharacterScript : MonoBehaviour
             rdbd.velocity = -knockbackVelocity;
 
             if (lives == 0) //When lives = 0, die (restart level for now)
-                Die();
+                LevelScript.OnDeath();
 
             Debug.Log("--------------- " + lives);
         }
         Debug.Log("character script " + lives);
         if (collision.gameObject.tag == "Damage_fatal")
-            Die();
+            LevelScript.OnDeath();
 
 
     }
@@ -68,11 +66,11 @@ public class CharacterScript : MonoBehaviour
 
     }
 
-    void Die()
-    {
-        // Restart
-        rdbd.transform.position = startPos;
-        lives = 3;
-        //Application.LoadLevel(Application.loadedLevel);
-    }
+    //void Die()
+    //{
+    //    // Restart
+    //    //rdbd.transform.position = startPos;
+    //    //lives = 3;
+    //    //Application.LoadLevel(Application.loadedLevel);
+    //}
 }
