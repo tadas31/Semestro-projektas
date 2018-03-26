@@ -15,11 +15,12 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpHeight; 
     public float drag;
     
-    private bool groundIsTouching;
+    public bool groundIsTouching;
     private bool canClimb;
 
     public JoystickMovement jsMovement;
     private Vector3 dir;    // Joystick direction
+    private Vector3 dirAir;
 
     bool grounded = false;
     public Transform groundCheck;
@@ -29,10 +30,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool isFalling;
     public float trampolineJumpHeight;
 
+    public Animator Animator;
+    bool facingRight = true;
     // Use this for initialization
     void Start () {
         rdbd = GetComponent<Rigidbody2D>();
         jump = GameObject.Find("Jump").GetComponent<Button>();
+        Animator.SetBool("IsGrounded", true);
     }
 
     // Update is called once per frame
@@ -55,7 +59,32 @@ public class PlayerMovement : MonoBehaviour {
             rdbd.velocity = Vector2.ClampMagnitude(rdbd.velocity, maxSpeed);
             
         }
-        
+
+        if (!cameraMovement.moveCamera)
+        {
+            if (!isGrounded()) // Sets direction to 0, so when jumping jumping animation activates
+                dirAir.x = 0;
+            if (dir.x < 0 && facingRight)
+                Flip();
+            else if (dir.x > 0 && !facingRight)
+                Flip();
+
+            Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
+            Debug.Log("isGrounded " + isGrounded());
+            Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
+            Debug.Log("Direction " + Mathf.Abs(dirAir.x));
+        }
+    }
+
+    /// <summary>
+    /// Flips the player according to joystick position
+    /// </summary>
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        rdbd.transform.localScale = theScale;
     }
 
     void Jump()
@@ -65,6 +94,7 @@ public class PlayerMovement : MonoBehaviour {
 
     bool isGrounded()
     {
+        
         return grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
@@ -72,6 +102,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         
         dir = jsMovement.InputDirection;
+        dirAir = dir;
         
         if (isGrounded() && !cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
         {
