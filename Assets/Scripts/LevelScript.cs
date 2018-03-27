@@ -25,6 +25,7 @@ public class LevelScript : MonoBehaviour {
     private static Button backToMenuWithText;
     public static bool canMove;
 
+    private static GameObject finishPopup;
 
     int MovingCount = 2;
     // Use this for initialization
@@ -47,6 +48,9 @@ public class LevelScript : MonoBehaviour {
         jumButton = GameObject.Find("Jump").GetComponent<Button>();
         jumButton.gameObject.active = false;
         done.interactable = false;
+
+        finishPopup = GameObject.Find("FinishPopup");
+        finishPopup.gameObject.active = false;
     }
 
     // Update is called once per frame
@@ -167,4 +171,17 @@ public class LevelScript : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    /// <summary>
+    /// Tasks if player finishes
+    /// </summary>
+    public static void OnFinish()
+    {
+        finishPopup.SetActive(true);
+        backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+        //back to menu
+        backToMenuWithText.onClick.RemoveAllListeners();
+        backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+    }
+
 }
