@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else rdbd.drag = 0;
 
-        if (dir.y > 0 && canClimb)
+        if (canClimb)
         {
             MovementOnTheLadder();
         }
@@ -183,7 +183,8 @@ public class PlayerMovement : MonoBehaviour {
     private void MovementOnTheLadder()
     {      
         rdbd.velocity = Vector2.zero;
-        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);       
+        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);
+        //rdbd.velocity += new Vector2(dir.x / moveSpeedJ, dir.y / moveSpeedJ);
     }
 
 }

@@ -44,10 +44,11 @@ public class LevelScript : MonoBehaviour {
         canMove = true;
 
         done = GameObject.Find("Done").GetComponent<Button>();
+        done.interactable = false;
 
         jumButton = GameObject.Find("Jump").GetComponent<Button>();
         jumButton.gameObject.active = false;
-        done.interactable = false;
+        
 
         finishPopup = GameObject.Find("FinishPopup");
         finishPopup.gameObject.active = false;
@@ -161,6 +162,7 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     static void TaskOnBackToMenuWithTextClick()
     {
+        finishPopup.gameObject.active = false;
         Application.LoadLevel("MainMenu");
     }
 
@@ -177,8 +179,12 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnFinish()
     {
-        finishPopup.SetActive(true);
+        finishPopup.gameObject.active = true;
         backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+        restart.interactable = false;
+        pause.interactable = false;
+        jumButton.interactable = false;
+        canMove = false;
         //back to menu
         backToMenuWithText.onClick.RemoveAllListeners();
         backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
