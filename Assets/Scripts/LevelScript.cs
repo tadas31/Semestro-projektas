@@ -67,7 +67,7 @@ public class LevelScript : MonoBehaviour {
         done.onClick.RemoveAllListeners();
         done.onClick.AddListener(TaskOnDoneClick);
 
-        if (PlatformScript.stoppedCount == MovingCount && cameraMovement.moveCamera)  // Checks if all the stoppable platforms are stopped
+        if (PlatformScript.stoppedCount == PlatformScript.stoppableCount && cameraMovement.moveCamera)  // Checks if all the stoppable platforms are stopped
             done.interactable = true;
     }
 
@@ -130,7 +130,7 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     void TaskOnDoneClick()
     {
-        if (PlatformScript.stoppedCount == MovingCount)  // Checks if all the stoppable platforms are stopped
+        if (PlatformScript.stoppedCount == PlatformScript.stoppableCount)  // Checks if all the stoppable platforms are stopped
         {
             cameraMovement.moveCamera = false;
             done.gameObject.active = false;

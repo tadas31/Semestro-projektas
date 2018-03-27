@@ -16,8 +16,10 @@ public class PlatformScript : MonoBehaviour
     float x;
     float y;
     public static int stoppedCount;
+    public static int stoppableCount;
 
     GameObject[] fadingPlatform;
+    GameObject[] stoppablePlat;
     float disapear;
     // Use this for initialization
     void Start()
@@ -27,6 +29,8 @@ public class PlatformScript : MonoBehaviour
         x = transform.position.x;
         y = transform.position.y;
         stoppedCount = 0;
+        stoppablePlat = GameObject.FindGameObjectsWithTag("MovingPlatform");
+        stoppableCount = stoppablePlat.Length;
     }
 
     // Update is called once per frame

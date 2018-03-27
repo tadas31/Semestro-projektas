@@ -185,4 +185,5 @@ public class PlayerMovement : MonoBehaviour {
         rdbd.velocity = Vector2.zero;
         rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);       
     }
+
 }
