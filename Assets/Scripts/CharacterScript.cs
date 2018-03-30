@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CharacterScript : MonoBehaviour
 {
     public static Rigidbody2D rdbd;
+
+
     public float forceMultiplier;
 
     private Text candyCount;

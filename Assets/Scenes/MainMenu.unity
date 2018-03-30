@@ -335,6 +335,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 193107229}
+--- !u!1 &428149592 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1009809768536826, guid: ff2cf63a51430e0429524d3f25833d2a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1474145003}
+--- !u!61 &428149593
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 428149592}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.1256104, y: 62.244232}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 589.1941, y: 830.836}
+  m_EdgeRadius: 0
 --- !u!224 &572855092 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224845485582963096, guid: ff2cf63a51430e0429524d3f25833d2a,
@@ -787,6 +817,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133305573568198, guid: c42e78478f5148349bccd895e8896677, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c42e78478f5148349bccd895e8896677, type: 2}

@@ -26,7 +26,7 @@ public class MainMenuScript : MonoBehaviour {
 
         Information = GameObject.Find("Information").GetComponent<Button>();
         informationPopUp = GameObject.Find("InformationPopUp");
-        informationPopUp.active = false;
+        informationPopUp.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,29 +34,46 @@ public class MainMenuScript : MonoBehaviour {
         levelSelection.onClick.RemoveAllListeners();
         levelSelection.onClick.AddListener(TaskOnLevelSelectionClick);
 
+        //onepn settings
         settings.onClick.AddListener(TaskOnSettingsClick);
+
+        //close settings
         if (settingsPopUp.active == true)
         {
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            int id = Input.GetTouch(0).fingerId;
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id))
                 TaskOnSettingsExitClick();
+            settingsExit.onClick.RemoveAllListeners();
             settingsExit.onClick.AddListener(TaskOnSettingsExitClick);
         }
 
+        //open information
         Information.onClick.AddListener(TaskOnInformationClicl);
+
+        //close information
         if (informationPopUp.active == true)
         {
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            int id = Input.GetTouch(0).fingerId;
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id))
                 TaskOnInfromationExitClick();
+
+            Information.onClick.RemoveAllListeners();
             Information.onClick.AddListener(TaskOnInfromationExitClick);
         }
 
     }
 
+    /// <summary>
+    /// takes user to level selection menu
+    /// </summary>
     void TaskOnLevelSelectionClick()
     {
         SceneManager.LoadScene("LevelSelectionMenu");
     }
 
+    /// <summary>
+    /// opens settings popup
+    /// </summary>
     void TaskOnSettingsClick()
     {
         levelSelection.gameObject.SetActive(false);
@@ -65,6 +82,9 @@ public class MainMenuScript : MonoBehaviour {
         settingsExit = GameObject.Find("settingsExit").GetComponent<Button>();
     }
 
+    /// <summary>
+    /// closes settings popup
+    /// </summary>
     void TaskOnSettingsExitClick()
     {
         settingsPopUp.active = false;
@@ -72,6 +92,9 @@ public class MainMenuScript : MonoBehaviour {
         settings.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// opens information popup
+    /// </summary>
     void TaskOnInformationClicl()
     {
         if (settingsPopUp.active == true)
@@ -79,13 +102,16 @@ public class MainMenuScript : MonoBehaviour {
 
         levelSelection.gameObject.SetActive(false);
         settings.gameObject.SetActive(false);
-        informationPopUp.active = true;
+        informationPopUp.SetActive(true);
     }
 
+    /// <summary>
+    /// closes information popup
+    /// </summary>
     void TaskOnInfromationExitClick()
     {
         levelSelection.gameObject.SetActive(true);
         settings.gameObject.SetActive(true);
-        informationPopUp.active = false;
+        informationPopUp.SetActive(false);
     }
 }

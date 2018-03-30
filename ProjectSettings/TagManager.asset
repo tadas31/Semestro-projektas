@@ -16,6 +16,8 @@ TagManager:
   - MovingPlatform
   - PressedPlatform
   - Heart
+  - Rope
+  - Background
   layers:
   - Default
   - TransparentFX

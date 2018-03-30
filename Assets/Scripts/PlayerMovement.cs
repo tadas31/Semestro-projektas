@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
-    private Button jump;
-
     private Rigidbody2D rdbd;
 
     public float maxSpeed;   // Max player movement speed, used to limit its velocity
@@ -35,7 +33,6 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rdbd = GetComponent<Rigidbody2D>();
-        jump = GameObject.Find("Jump").GetComponent<Button>();
         Animator.SetBool("IsGrounded", true);
     }
 
@@ -46,10 +43,10 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Space");
             Jump();
         }
-        jump.onClick.RemoveAllListeners();
+        LevelScript.jumButton.onClick.RemoveAllListeners();
         if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
         {
-            jump.onClick.AddListener(Jump);
+            LevelScript.jumButton.onClick.AddListener(Jump);
         }
 
         CheckIfFalling();                                    // Checking if player is falling

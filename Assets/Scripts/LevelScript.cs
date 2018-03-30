@@ -30,28 +30,29 @@ public class LevelScript : MonoBehaviour {
     int MovingCount = 2;
     // Use this for initialization
     void Start () {
-        Time.timeScale = 1;
-
         restart = GameObject.Find("Restart").GetComponent<Button>();
+
+        done = GameObject.Find("Done").GetComponent<Button>();
+        done.interactable = false;
+
+        finishPopup = GameObject.Find("FinishPopup");
+        finishPopup.gameObject.active = false;
 
         pause = GameObject.Find("Pause").GetComponent<Button>();
         pausePopup = GameObject.Find("PausePopup");
         pausePopup.SetActive(false);
 
+
         gameOverPopup = GameObject.Find("GameOverPopup");
         gameOverPopup.SetActive(false);
-        startPos = CharacterScript.rdbd.position;
         canMove = true;
-
-        done = GameObject.Find("Done").GetComponent<Button>();
-        done.interactable = false;
+        startPos = GameObject.Find("player").transform.position;
 
         jumButton = GameObject.Find("Jump").GetComponent<Button>();
         jumButton.gameObject.active = false;
-        
 
-        finishPopup = GameObject.Find("FinishPopup");
-        finishPopup.gameObject.active = false;
+        Time.timeScale = 1;
+
     }
 
     // Update is called once per frame
@@ -185,6 +186,7 @@ public class LevelScript : MonoBehaviour {
         pause.interactable = false;
         jumButton.interactable = false;
         canMove = false;
+
         //back to menu
         backToMenuWithText.onClick.RemoveAllListeners();
         backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
