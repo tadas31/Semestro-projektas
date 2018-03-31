@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpHeight; 
     public float drag;
     
-    public bool groundIsTouching;
     private bool canClimb;
+    private bool isClimbing;
 
     public JoystickMovement jsMovement;
     private Vector3 dir;    // Joystick direction
@@ -67,10 +67,12 @@ public class PlayerMovement : MonoBehaviour {
                 Flip();
 
             Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
-            Debug.Log("isGrounded " + isGrounded());
+            //Debug.Log("isGrounded " + isGrounded());
             Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
-            Debug.Log("Direction " + Mathf.Abs(dirAir.x));
+            //Debug.Log("Direction " + Mathf.Abs(dirAir.x));
+
         }
+        Debug.Log(rdbd.velocity.y);
     }
 
     /// <summary>
@@ -108,16 +110,21 @@ public class PlayerMovement : MonoBehaviour {
         }
         else rdbd.drag = 0;
 
-        if (canClimb)
+        if (canClimb && dir.y > 0.3f)
+        {
+            isClimbing = true;
+        }
+
+        if (isClimbing)
         {
             MovementOnTheLadder();
         }
+
         
-        if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, 1 << LayerMask.NameToLayer("trampoline")) && isFalling)
-        {
-            Debug.Log("asff");
-            TrampolineBounce();
-        }
+        //if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, 1 << LayerMask.NameToLayer("trampoline")) && isFalling)
+        //{
+        //    TrampolineBounce();
+        //}
     }
 
     /// <summary>
@@ -138,18 +145,29 @@ public class PlayerMovement : MonoBehaviour {
     /// <summary>
     /// Player bounces when it jumps on a trampoline
     /// </summary>
-    private void TrampolineBounce()
+    private void TrampolineBounce(float height)
     {
+        Debug.Log("Heigth " + height);
+        Debug.Log(rdbd.velocity.y);
         rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
-        rdbd.velocity += Vector2.up * trampolineJumpHeight;
+        rdbd.AddForce(new Vector2(0, height));
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "LadderTop" && (dir.y < 0))
         {
-            Debug.Log("Gey");
             collision.gameObject.GetComponentInParent<LadderScript>().CanGoThrow();
+            canClimb = true;
+            isClimbing = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Trampoline" && isFalling)
+        {
+            TrampolineBounce(collision.gameObject.GetComponent<TrampolineScript>().height);
         }
     }
 
@@ -166,13 +184,15 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ladder")
+        if (collision.gameObject.tag == "Ladder" || (collision.gameObject.tag == "LadderTop" && dir.y > 0))
         {
             canClimb = false;
+            isClimbing = false;
             collision.gameObject.GetComponent<LadderScript>().CannotGoThrow();
             rdbd.gravityScale = 1;
         }
     }
+
 
     /// <summary>
     /// Player moves on a ladder
