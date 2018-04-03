@@ -18,6 +18,7 @@ TagManager:
   - Heart
   - Rope
   - Background
+  - EnergyBar
   layers:
   - Default
   - TransparentFX

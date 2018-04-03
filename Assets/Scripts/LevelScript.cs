@@ -27,6 +27,8 @@ public class LevelScript : MonoBehaviour {
 
     private static GameObject finishPopup;
 
+    public static Button energyBar;
+
     int MovingCount = 2;
     // Use this for initialization
     void Start () {
@@ -36,7 +38,7 @@ public class LevelScript : MonoBehaviour {
         done.interactable = false;
 
         finishPopup = GameObject.Find("FinishPopup");
-        finishPopup.gameObject.active = false;
+        finishPopup.gameObject.SetActive(false);
 
         pause = GameObject.Find("Pause").GetComponent<Button>();
         pausePopup = GameObject.Find("PausePopup");
@@ -49,10 +51,12 @@ public class LevelScript : MonoBehaviour {
         startPos = GameObject.Find("player").transform.position;
 
         jumButton = GameObject.Find("Jump").GetComponent<Button>();
-        jumButton.gameObject.active = false;
+        jumButton.gameObject.SetActive(false);
 
         Time.timeScale = 1;
 
+        energyBar = GameObject.Find("EnergyBar").GetComponent<Button>();
+        energyBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -139,8 +143,8 @@ public class LevelScript : MonoBehaviour {
         if (PlatformScript.stoppedCount == PlatformScript.stoppableCount)  // Checks if all the stoppable platforms are stopped
         {
             cameraMovement.moveCamera = false;
-            done.gameObject.active = false;
-            jumButton.gameObject.active = true;
+            done.gameObject.SetActive(false);
+            jumButton.gameObject.SetActive(true);
         }
     }
 
@@ -163,7 +167,7 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     static void TaskOnBackToMenuWithTextClick()
     {
-        finishPopup.gameObject.active = false;
+        finishPopup.gameObject.SetActive(false);
         Application.LoadLevel("MainMenu");
     }
 
@@ -180,7 +184,7 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnFinish()
     {
-        finishPopup.gameObject.active = true;
+        finishPopup.gameObject.SetActive(true);
         backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
         restart.interactable = false;
         pause.interactable = false;

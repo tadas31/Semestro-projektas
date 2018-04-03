@@ -56,11 +56,15 @@ public class CharacterScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Candy")
         {
-            collision.gameObject.active = false;
+            collision.gameObject.SetActive(false);
             counter++;
             candyCount.text = counter.ToString();
         }
-
+        else if (collision.gameObject.tag == "EnergyBar")
+        {
+            collision.gameObject.SetActive(false);
+            LevelScript.energyBar.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>

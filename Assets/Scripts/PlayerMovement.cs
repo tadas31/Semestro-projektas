@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D rdbd;
 
     public float maxSpeed;   // Max player movement speed, used to limit its velocity
-    public float moveSpeedJ; // Player movement speed
-    public float jumpHeight; 
+    public static float moveSpeedJ; // Player movement speed
+    public static float jumpHeight; 
     public float drag;
     
     private bool canClimb;
@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour {
     bool facingRight = true;
     // Use this for initialization
     void Start () {
+        moveSpeedJ = 1.5f;
+        jumpHeight = 300.0f;
+
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);
     }
