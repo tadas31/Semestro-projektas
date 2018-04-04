@@ -19,6 +19,7 @@ TagManager:
   - Rope
   - Background
   - EnergyBar
+  - Gum
   layers:
   - Default
   - TransparentFX

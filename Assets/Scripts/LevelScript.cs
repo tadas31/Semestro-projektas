@@ -5,19 +5,26 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour {
+    //restart
     private static Button restart;
 
+    //pause
     private static Button pause;
     private GameObject pausePopup;
 
+    //home
     private Button home;
 
+    //done
     private Button done;
 
+    //camera
     public cameraMovement camera;
 
+    //jump
     public static Button jumButton;
 
+    //game over
     private static GameObject gameOverPopup;
     private static Vector2 startPos;
     private static Button respawn;
@@ -25,38 +32,77 @@ public class LevelScript : MonoBehaviour {
     private static Button backToMenuWithText;
     public static bool canMove;
 
+    //finish
     private static GameObject finishPopup;
 
-    public static Button energyBar;
+    //energy bar
+    public static Button energyBarButton;
+    public static Slider energyBarTimer;
 
-    int MovingCount = 2;
+    //gum
+    public static Button gumButton;
+    public static Slider gumTimer;
+
+    //inventory
+    public static bool firstSlot;
+    public static bool secondSlot;
+    public static bool thirdSlot;
+    public static GameObject pos1;
+    public static GameObject pos2;
+    public static GameObject pos3;
+
     // Use this for initialization
     void Start () {
+        //restart
         restart = GameObject.Find("Restart").GetComponent<Button>();
 
+        //done
         done = GameObject.Find("Done").GetComponent<Button>();
         done.interactable = false;
 
+        //finish
         finishPopup = GameObject.Find("FinishPopup");
         finishPopup.gameObject.SetActive(false);
 
+        //pause
         pause = GameObject.Find("Pause").GetComponent<Button>();
         pausePopup = GameObject.Find("PausePopup");
         pausePopup.SetActive(false);
+        Time.timeScale = 1;
 
-
+        //game over
         gameOverPopup = GameObject.Find("GameOverPopup");
         gameOverPopup.SetActive(false);
         canMove = true;
         startPos = GameObject.Find("player").transform.position;
 
+        //jump
         jumButton = GameObject.Find("Jump").GetComponent<Button>();
         jumButton.gameObject.SetActive(false);
 
-        Time.timeScale = 1;
 
-        energyBar = GameObject.Find("EnergyBar").GetComponent<Button>();
-        energyBar.gameObject.SetActive(false);
+        //energy bar
+        energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
+        energyBarTimer = GameObject.Find("EnergyBarTime").GetComponent<Slider>();
+        energyBarButton.gameObject.SetActive(false);
+        energyBarTimer.gameObject.SetActive(false);
+
+        //gum
+        gumButton = GameObject.Find("GumButton").GetComponent<Button>();
+        gumTimer = GameObject.Find("GumTime").GetComponent<Slider>();
+        gumButton.gameObject.SetActive(false);
+        gumTimer.gameObject.SetActive(false);
+
+        //inventory
+        firstSlot = false;
+        secondSlot = false;
+        thirdSlot = false;
+        pos1 = GameObject.Find("pos1");
+        pos2 = GameObject.Find("pos2");
+        pos3 = GameObject.Find("pos3");
+        pos1.SetActive(false);
+        pos2.SetActive(false);
+        pos3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -194,6 +240,30 @@ public class LevelScript : MonoBehaviour {
         //back to menu
         backToMenuWithText.onClick.RemoveAllListeners();
         backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+    }
+
+    public static void Position(out Vector2 pos, out int slot)
+    {
+        pos = Vector2.zero;
+        slot = 0;
+        if (!firstSlot)
+        {
+            firstSlot = true;
+            pos = pos1.transform.position;
+            slot = 1;
+        }
+        else if (!secondSlot)
+        {
+            secondSlot = true;
+            pos = pos2.transform.position;
+            slot = 2;
+        }
+        else if (!thirdSlot)
+        {
+            thirdSlot = true;
+            pos = pos3.transform.position;
+            slot = 3;
+        }
     }
 
 }
