@@ -16,7 +16,7 @@ public class CharacterScript : MonoBehaviour
     // STATS
     public static int lives;
 
-
+    
     // Use this for initialization
     void Start()
     {
@@ -38,17 +38,14 @@ public class CharacterScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Damage1")
         {
+            //doDamage();     // Reduces lives and adds knockback to the player            
             lives--;
+            StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
             if (lives == 0) //When lives = 0, die (restart level for now)
                 LevelScript.OnDeath();
-            StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
-            Debug.Log("--------------- " + lives);
         }
-        Debug.Log("character script " + lives);
         if (collision.gameObject.tag == "Damage_fatal")
             LevelScript.OnDeath();
-
-
     }
 
 
@@ -73,12 +70,18 @@ public class CharacterScript : MonoBehaviour
     public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
     {
         float timer = 0;
-
+        rdbd.velocity = new Vector2(rdbd.velocity.x, 0);
         while (knockDur > timer)
         {
             timer += Time.deltaTime;
             rdbd.AddForce(new Vector3(knockbackDir.x * -20, knockbackDir.y * knockbackPwr, rdbd.transform.position.z));
         }
         yield return 0;
+    }
+
+    public void doDamage()
+    {
+        lives--;
+        StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
     }
 }

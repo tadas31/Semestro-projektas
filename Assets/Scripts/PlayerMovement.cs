@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 dir;    // Joystick direction
     private Vector3 dirAir;
 
-    bool grounded = false;
+    public bool grounded = false;
     public Transform groundCheck;
     float groundRadius = 0.2f;
     public LayerMask whatIsGround;
@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public Animator Animator;
     bool facingRight = true;
+
+    
+
     // Use this for initialization
     void Start () {
         rdbd = GetComponent<Rigidbody2D>();
@@ -67,12 +70,8 @@ public class PlayerMovement : MonoBehaviour {
                 Flip();
 
             Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
-            //Debug.Log("isGrounded " + isGrounded());
             Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
-            //Debug.Log("Direction " + Mathf.Abs(dirAir.x));
-
         }
-        Debug.Log(rdbd.velocity.y);
     }
 
     /// <summary>
@@ -93,7 +92,6 @@ public class PlayerMovement : MonoBehaviour {
 
     bool isGrounded()
     {
-        
         return grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 

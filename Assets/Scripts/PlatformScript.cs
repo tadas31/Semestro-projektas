@@ -48,7 +48,6 @@ public class PlatformScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("spaudziu");
             StopPlatform();
         }
 
@@ -118,7 +117,6 @@ public class PlatformScript : MonoBehaviour
             hit.collider.GetComponent<PlatformScript>().Stop();
             hit.collider.tag = "PressedPlatform";
         }
-        Debug.Log("------------ " + stoppedCount);
     }
 
     public void Stop()
