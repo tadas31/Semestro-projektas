@@ -16,6 +16,11 @@ public class CharacterScript : MonoBehaviour
     // STATS
     public static int lives;
 
+    //slots
+    public static int energyBar;
+    public static int gum;
+    public static int shield;
+
     
     // Use this for initialization
     void Start()
@@ -38,11 +43,11 @@ public class CharacterScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Damage1")
         {
-            //doDamage();     // Reduces lives and adds knockback to the player            
             lives--;
-            StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
             if (lives == 0) //When lives = 0, die (restart level for now)
                 LevelScript.OnDeath();
+            StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
+            Debug.Log("--------------- " + lives);
         }
         if (collision.gameObject.tag == "Damage_fatal")
             LevelScript.OnDeath();
@@ -57,10 +62,38 @@ public class CharacterScript : MonoBehaviour
             counter++;
             candyCount.text = counter.ToString();
         }
+
+        //energy bat pick up
         else if (collision.gameObject.tag == "EnergyBar")
         {
             collision.gameObject.SetActive(false);
-            LevelScript.energyBar.gameObject.SetActive(true);
+            if (!LevelScript.energyBarButton.IsActive())
+            {
+                Vector2 pos;
+                LevelScript.Position(out pos, out energyBar);
+                if (energyBar != 0)
+                {
+                    LevelScript.energyBarButton.transform.position = pos;
+                    LevelScript.energyBarButton.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        //gum pick up
+        else if (collision.gameObject.tag == "Gum")
+        {
+            collision.gameObject.SetActive(false);
+            if (!LevelScript.gumButton.IsActive() )
+            {
+                Vector2 pos;
+                LevelScript.Position(out pos, out gum);
+                if (gum != 0)
+                {
+                    LevelScript.gumButton.transform.position = pos;
+                    LevelScript.gumButton.gameObject.SetActive(true);
+                }
+                
+            }
         }
     }
 

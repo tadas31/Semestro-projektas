@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
-    private Rigidbody2D rdbd;
+    public static Rigidbody2D rdbd;
 
     public float maxSpeed;   // Max player movement speed, used to limit its velocity
     public static float moveSpeedJ; // Player movement speed
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool isClimbing;
 
     public JoystickMovement jsMovement;
-    private Vector3 dir;    // Joystick direction
+    public static Vector3 dir;    // Joystick direction
     private Vector3 dirAir;
 
     public bool grounded = false;
@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour {
     /// <summary>
     /// Player moves on a ladder
     /// </summary>
-    private void MovementOnTheLadder()
+    public static void MovementOnTheLadder()
     {      
         rdbd.velocity = Vector2.zero;
         rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);

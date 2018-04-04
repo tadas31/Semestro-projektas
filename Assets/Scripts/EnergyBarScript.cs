@@ -5,43 +5,58 @@ using UnityEngine.UI;
 
 public class EnergyBarScript : MonoBehaviour {
 
-    private Slider timer;
+    
     private float time;
 
 	// Use this for initialization
 	void Start () {
         time = 5.0f;
-        timer = GameObject.Find("Time").GetComponent<Slider>();
-        timer.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        LevelScript.energyBar.onClick.RemoveAllListeners();
-        LevelScript.energyBar.onClick.AddListener(TaskOnEnergyBarClick);
+        LevelScript.energyBarButton.onClick.RemoveAllListeners();
+        LevelScript.energyBarButton.onClick.AddListener(TaskOnEnergyBarClick);
         
-        if (timer.IsActive())
+        if (LevelScript.energyBarTimer.IsActive())
         {
             time -= Time.deltaTime;
-            timer.value = time;
+            LevelScript.energyBarTimer.value = time;
         }
 
+        //deactivates energy bar
         if (time <= 0f)
         {
-            timer.gameObject.SetActive(false);
+            LevelScript.energyBarTimer.gameObject.SetActive(false);
             PlayerMovement.moveSpeedJ = 1.5f;
             PlayerMovement.jumpHeight = 300.0f;
+            time = 5.0f;
         }
 
     }
 
+    /// <summary>
+    /// activates energy bar
+    /// </summary>
     void TaskOnEnergyBarClick()
     {
         PlayerMovement.moveSpeedJ = 1.0f;
         PlayerMovement.jumpHeight = 400.0f;
-        LevelScript.energyBar.gameObject.SetActive(false);
-        timer.gameObject.SetActive(true);
+        LevelScript.energyBarButton.gameObject.SetActive(false);
+        LevelScript.energyBarTimer.gameObject.SetActive(true);
+        ClearOutSlot();
     }
 
-    
+    /// <summary>
+    /// clears out slot 
+    /// </summary>
+    void ClearOutSlot()
+    {
+        if (CharacterScript.energyBar == 1)
+            LevelScript.firstSlot = false;
+        else if (CharacterScript.energyBar == 2)
+            LevelScript.secondSlot = false;
+        else if (CharacterScript.energyBar == 3)
+            LevelScript.thirdSlot = false;
+    }
 }
