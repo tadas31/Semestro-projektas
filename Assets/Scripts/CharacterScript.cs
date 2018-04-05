@@ -88,6 +88,23 @@ public class CharacterScript : MonoBehaviour
             }
         }
 
+        //shield pick up
+        else if (collision.gameObject.tag == "Shield")
+        {
+            collision.gameObject.SetActive(false);
+            if (!LevelScript.shieldButton.IsActive())
+            {
+                Vector2 pos;
+                LevelScript.Position(out pos, out shield);
+                if (shield != 0)
+                {
+                    LevelScript.shieldButton.transform.position = pos;
+                    LevelScript.shieldButton.gameObject.SetActive(true);
+                }
+
+            }
+        }
+
         if (collision.gameObject.tag == "Enemy_top")
         {
             EnemyMovement.stunned = true;

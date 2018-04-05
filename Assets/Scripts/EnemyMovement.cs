@@ -10,7 +10,6 @@ public class EnemyMovement : MonoBehaviour {
     float time;
 
     Transform LeftWayPoint, RightWayPoint;
-    Transform EnemyTop;
 
     bool facingRight = true;
     public static bool stunned = false;
@@ -22,7 +21,6 @@ public class EnemyMovement : MonoBehaviour {
         rdbd = GetComponent<Rigidbody2D>();
         LeftWayPoint = GameObject.Find("LeftWayPoint").GetComponent<Transform>();
         RightWayPoint = GameObject.Find("RightWayPoint").GetComponent<Transform>();
-        EnemyTop = GameObject.Find("Enemy_top").GetComponent<Transform>();
         time = 5.0f;
     }
 

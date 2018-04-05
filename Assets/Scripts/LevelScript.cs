@@ -43,6 +43,10 @@ public class LevelScript : MonoBehaviour {
     public static Button gumButton;
     public static Slider gumTimer;
 
+    //shield
+    public static Button shieldButton;
+    public static Slider shieldTimer;
+
     //inventory
     public static bool firstSlot;
     public static bool secondSlot;
@@ -92,6 +96,12 @@ public class LevelScript : MonoBehaviour {
         gumTimer = GameObject.Find("GumTime").GetComponent<Slider>();
         gumButton.gameObject.SetActive(false);
         gumTimer.gameObject.SetActive(false);
+
+        //shield
+        shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
+        shieldTimer = GameObject.Find("ShieldTime").GetComponent<Slider>();
+        shieldButton.gameObject.SetActive(false);
+        shieldTimer.gameObject.SetActive(false);
 
         //inventory
         firstSlot = false;
