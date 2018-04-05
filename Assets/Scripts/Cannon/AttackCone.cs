@@ -13,9 +13,7 @@ public class AttackCone : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        Debug.Log("Yra");
         if (col.CompareTag("Player") && LevelScript.canMove)       
             cannonAI.Attack();
-
     }
 }

@@ -20,6 +20,10 @@ TagManager:
   - Background
   - EnergyBar
   - Gum
+  - LeftWayPoint
+  - RightWayPoint
+  - Enemy_top
+  - Damage_enemy
   layers:
   - Default
   - TransparentFX
@@ -33,7 +37,7 @@ TagManager:
   - trampoline
   - ladder
   - cannon
-  - 
+  - Ignore
   - 
   - 
   - 

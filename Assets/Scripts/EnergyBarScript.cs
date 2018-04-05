@@ -29,7 +29,7 @@ public class EnergyBarScript : MonoBehaviour {
         {
             LevelScript.energyBarTimer.gameObject.SetActive(false);
             PlayerMovement.moveSpeedJ = 1.5f;
-            PlayerMovement.jumpHeight = 300.0f;
+            PlayerMovement.jumpHeight = 350.0f;
             time = 5.0f;
         }
 

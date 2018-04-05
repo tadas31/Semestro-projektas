@@ -36,19 +36,11 @@ public class CharacterScript : MonoBehaviour
 
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == "Damage1")
-        {
-            lives--;
-            if (lives == 0) //When lives = 0, die (restart level for now)
-                LevelScript.OnDeath();
-            StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
-            Debug.Log("--------------- " + lives);
-        }
+            doDamage();
         if (collision.gameObject.tag == "Damage_fatal")
             LevelScript.OnDeath();
     }
@@ -95,6 +87,12 @@ public class CharacterScript : MonoBehaviour
                 
             }
         }
+
+        if (collision.gameObject.tag == "Enemy_top")
+        {
+            EnemyMovement.stunned = true;
+            StartCoroutine(Knockback(0.001f, 50, rdbd.transform.position));
+        }
     }
 
     /// <summary>
@@ -120,5 +118,7 @@ public class CharacterScript : MonoBehaviour
     {
         lives--;
         StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
+        if (lives == 0) //When lives = 0, die (restart level for now)
+            LevelScript.OnDeath();
     }
 }

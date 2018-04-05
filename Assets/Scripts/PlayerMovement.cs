@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         moveSpeedJ = 1.5f;
-        jumpHeight = 300.0f;
+        jumpHeight = 350.0f;
 
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);
@@ -179,8 +179,9 @@ public class PlayerMovement : MonoBehaviour {
             canClimb = true;
             rdbd.gravityScale = 0;
             collision.gameObject.GetComponent<LadderScript>().CanGoThrow();
-
         }
+
+  
     }
 
     private void OnTriggerExit2D(Collider2D collision)
