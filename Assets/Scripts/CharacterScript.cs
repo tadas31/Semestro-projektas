@@ -28,6 +28,7 @@ public class CharacterScript : MonoBehaviour
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
         lives = 3;
+
     }
 
     // Update is called once per frame
@@ -39,9 +40,9 @@ public class CharacterScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Damage1")
+        if (collision.gameObject.tag == "Damage1" || collision.gameObject.tag == "EnemyDamage")
             doDamage();
-        if (collision.gameObject.tag == "Damage_fatal")
+        if (collision.gameObject.tag == "Damage_fatal" && !ShieldScript.shieldActive)
             LevelScript.OnDeath();
     }
 
@@ -133,9 +134,11 @@ public class CharacterScript : MonoBehaviour
 
     public void doDamage()
     {
-        lives--;
+        if (!ShieldScript.shieldActive)
+            lives--;
         StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
         if (lives == 0) //When lives = 0, die (restart level for now)
             LevelScript.OnDeath();
+
     }
 }

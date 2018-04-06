@@ -24,6 +24,9 @@ TagManager:
   - RightWayPoint
   - Enemy_top
   - Damage_enemy
+  - Shield
+  - CandyCane
+  - EnemyDamage
   layers:
   - Default
   - TransparentFX
