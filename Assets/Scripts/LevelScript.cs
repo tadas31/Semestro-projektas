@@ -276,4 +276,14 @@ public class LevelScript : MonoBehaviour {
         }
     }
 
+
+    /// <summary>
+    /// Set the position of the respawn to the position of the vector
+    /// </summary>
+    /// <param name="set">Position</param>
+    public static void SetRespawnPosition(Vector2 set)
+    {
+        startPos = set;
+    }
+
 }
