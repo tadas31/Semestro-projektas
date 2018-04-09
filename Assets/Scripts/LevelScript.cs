@@ -216,6 +216,8 @@ public class LevelScript : MonoBehaviour {
         pause.interactable = true;
         jumButton.interactable = true;
         canMove = true;
+        BubblePlatform.active = true;
+        BubblePlatform.isPoped = false;
     }
 
     /// <summary>

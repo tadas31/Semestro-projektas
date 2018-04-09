@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
     public Animator Animator;
     bool facingRight = true;
 
-    
+    bool isPoped = false;
 
     // Use this for initialization
     void Start () {
@@ -170,6 +170,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             TrampolineBounce(collision.gameObject.GetComponent<TrampolineScript>().height);
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

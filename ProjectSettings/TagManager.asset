@@ -27,6 +27,7 @@ TagManager:
   - Shield
   - CandyCane
   - EnemyDamage
+  - BubblePlatform
   layers:
   - Default
   - TransparentFX
