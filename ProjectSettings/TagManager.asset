@@ -29,6 +29,8 @@ TagManager:
   - EnemyDamage
   - BubblePlatform
   - Falling_zone
+  - SpinningPlatform
+  - FallingSpikes
   layers:
   - Default
   - TransparentFX

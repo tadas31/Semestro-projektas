@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
 {
-
     public float speed;
     public float lenghtX;
     public float lenghtY;
@@ -13,6 +12,7 @@ public class PlatformScript : MonoBehaviour
     bool byX;
     bool byY;
     bool stop = false;
+
     float x;
     float y;
     public static int stoppedCount;
@@ -20,6 +20,7 @@ public class PlatformScript : MonoBehaviour
 
     GameObject[] fadingPlatform;
     GameObject[] stoppablePlat;
+    GameObject[] stoppablePlatSpin;
     float disapear;
     // Use this for initialization
     void Start()
@@ -30,7 +31,9 @@ public class PlatformScript : MonoBehaviour
         y = transform.position.y;
         stoppedCount = 0;
         stoppablePlat = GameObject.FindGameObjectsWithTag("MovingPlatform");
-        stoppableCount = stoppablePlat.Length;
+        stoppablePlatSpin = GameObject.FindGameObjectsWithTag("SpinningPlatform");
+        stoppableCount = stoppablePlat.Length + stoppablePlatSpin.Length;
+        Debug.Log(stoppableCount);
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class PlatformScript : MonoBehaviour
         {
             StopPlatform();
         }
-
+        Debug.Log(stoppedCount);
     }
 
 
