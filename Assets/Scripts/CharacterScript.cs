@@ -44,6 +44,8 @@ public class CharacterScript : MonoBehaviour
             doDamage();
         if (collision.gameObject.tag == "Damage_fatal" && !ShieldScript.shieldActive)
             LevelScript.OnDeath();
+        if(collision.gameObject.tag == "FallingSpikes")
+            LevelScript.OnDeath();
     }
 
 
