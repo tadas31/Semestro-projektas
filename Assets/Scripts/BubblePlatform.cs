@@ -23,7 +23,6 @@ public class BubblePlatform : MonoBehaviour {
 	void Update () {
         animator.SetBool("Pop", isPoped);
         GetComponent<Collider2D>().enabled = active;
-        Debug.Log(isPoped);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,7 +32,6 @@ public class BubblePlatform : MonoBehaviour {
             rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
             rdbd.AddForce(new Vector2(0, height));
             isPoped = true;
-            Debug.Log(isPoped);
             active = false;           
         }
     }

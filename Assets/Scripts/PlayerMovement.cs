@@ -181,8 +181,12 @@ public class PlayerMovement : MonoBehaviour {
             rdbd.gravityScale = 0;
             collision.gameObject.GetComponent<LadderScript>().CanGoThrow();
         }
+        if (collision.gameObject.tag == "Falling_zone")
+        {
+            FallingPlatform.inZone = true;
+            Debug.Log("yra");
+        }
 
-  
     }
 
     private void OnTriggerExit2D(Collider2D collision)

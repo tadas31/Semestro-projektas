@@ -28,6 +28,7 @@ TagManager:
   - CandyCane
   - EnemyDamage
   - BubblePlatform
+  - Falling_zone
   layers:
   - Default
   - TransparentFX
