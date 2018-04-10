@@ -42,7 +42,7 @@ public class CharacterScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Damage1" || collision.gameObject.tag == "EnemyDamage")
             doDamage();
-        if (collision.gameObject.tag == "Damage_fatal" && !ShieldScript.shieldActive)
+        if (collision.gameObject.tag == "Damage_fatal")
             LevelScript.OnDeath();
         if(collision.gameObject.tag == "FallingSpikes")
             LevelScript.OnDeath();

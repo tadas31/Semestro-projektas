@@ -34,6 +34,7 @@ public class LevelScript : MonoBehaviour {
 
     //finish
     private static GameObject finishPopup;
+    private static Button nextLevel;
 
     //energy bar
     public static Button energyBarButton;
@@ -226,7 +227,7 @@ public class LevelScript : MonoBehaviour {
     static void TaskOnBackToMenuWithTextClick()
     {
         finishPopup.gameObject.SetActive(false);
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     /// <summary>
@@ -238,12 +239,22 @@ public class LevelScript : MonoBehaviour {
     }
 
     /// <summary>
+    /// takes user to next level
+    /// </summary>
+    static void TaskOnNextLevelClick()
+    {
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+            SceneManager.LoadScene("Level1");
+    }
+
+    /// <summary>
     /// Tasks if player finishes
     /// </summary>
     public static void OnFinish()
     {
         finishPopup.gameObject.SetActive(true);
         backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+        nextLevel = GameObject.Find("NextLevel").GetComponent<Button>();
         restart.interactable = false;
         pause.interactable = false;
         jumButton.interactable = false;
@@ -252,6 +263,9 @@ public class LevelScript : MonoBehaviour {
         //back to menu
         backToMenuWithText.onClick.RemoveAllListeners();
         backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+
+        nextLevel.onClick.RemoveAllListeners();
+        nextLevel.onClick.AddListener(TaskOnNextLevelClick);
     }
 
     public static void Position(out Vector2 pos, out int slot)

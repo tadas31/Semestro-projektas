@@ -36,7 +36,7 @@ public class ShieldScript : MonoBehaviour {
             LevelScript.shieldTimer.gameObject.SetActive(false);
             shield.SetActive(false);
             shieldActive = false;
-            time = 4.0f;
+            time = 10.0f;
         }
 
     }
@@ -51,12 +51,14 @@ public class ShieldScript : MonoBehaviour {
                 EnemyMovement.stunned = true;
                 shieldActive = false;
                 shield.SetActive(false);
+                time = 10.0f;
             }
             else if (collision.gameObject.tag == "Damage1" || collision.gameObject.tag == "Damage_fatal")
             {
                 LevelScript.shieldTimer.gameObject.SetActive(false);
                 shieldActive = false;
                 shield.SetActive(false);
+                time = 10.0f;
             }
             else
                 Physics2D.IgnoreCollision(collision.collider, shield.GetComponent<Collider2D>());
