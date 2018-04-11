@@ -26,12 +26,14 @@ public class PlayerMovement : MonoBehaviour {
     public LayerMask whatIsGround;
 
     private bool isFalling;
-    public float trampolineJumpHeight;
 
     public Animator Animator;
     bool facingRight = true;
 
     bool isPoped = false;
+
+    static int ropeNodes;
+    //FixedJoint2D fixedJoint;
 
     // Use this for initialization
     void Start () {
@@ -40,6 +42,9 @@ public class PlayerMovement : MonoBehaviour {
 
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);
+        //fixedJoint = GetComponent<FixedJoint2D>();
+        //fixedJoint.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -49,12 +54,16 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Space");
             Jump();
         }
+        if (isClimbing && Input.GetKeyDown(KeyCode.Space))
+        {
+            RopeJump();
+        }
         LevelScript.jumButton.onClick.RemoveAllListeners();
         if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
         {
             LevelScript.jumButton.onClick.AddListener(Jump);
         }
-
+        
         CheckIfFalling();                                    // Checking if player is falling
       
         if(rdbd.velocity.magnitude > maxSpeed)               // Limiting player movements speed
@@ -75,6 +84,8 @@ public class PlayerMovement : MonoBehaviour {
             Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
             Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
         }
+        
+        //transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0f);
     }
 
     /// <summary>
@@ -91,6 +102,12 @@ public class PlayerMovement : MonoBehaviour {
     void Jump()
     {
         rdbd.AddForce(new Vector2(0, jumpHeight));       
+    }
+
+    void RopeJump()
+    {
+        rdbd.isKinematic = false;
+        rdbd.AddForce(dir);
     }
 
     bool isGrounded()
@@ -186,7 +203,32 @@ public class PlayerMovement : MonoBehaviour {
             FallingPlatform.inZone = true;
             Debug.Log("yra");
         }
+        if (collision.gameObject.tag == "Rope")
+        {
+            if (ropeNodes == 0)
+            {
+                rdbd.velocity = Vector2.zero;
+                rdbd.isKinematic = true;
+                canClimb = true;
+                isClimbing = true;
+            }
+            //fixedJoint.enabled = true;
+            //fixedJoint.connectedBody = collision.gameObject.GetComponent<Rigidbody2D>();
+            ropeNodes++;
 
+
+        }
+
+
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Rope")
+        {
+            transform.parent = other.transform;
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0f);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -198,6 +240,20 @@ public class PlayerMovement : MonoBehaviour {
             collision.gameObject.GetComponent<LadderScript>().CannotGoThrow();
             rdbd.gravityScale = 1;
         }
+        if (collision.gameObject.tag == "Rope")
+        {
+            ropeNodes--;
+            if (ropeNodes == 0)
+            {
+                transform.parent = null;
+                //fixedJoint.enabled = false;
+                //fixedJoint.connectedBody = null;
+                canClimb = false;
+                isClimbing = false;
+                rdbd.isKinematic = false;
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0f);
+            }
+        }
     }
 
 
@@ -206,7 +262,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     public static void MovementOnTheLadder()
     {      
-        rdbd.velocity = Vector2.zero;
+        //rdbd.velocity = Vector2.zero;
         rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);
         //rdbd.velocity += new Vector2(dir.x / moveSpeedJ, dir.y / moveSpeedJ);
     }

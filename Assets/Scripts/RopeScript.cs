@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RopeScript : MonoBehaviour {
+public class RopeScript : MonoBehaviour
+{
 
     public GameObject Node;
     public int length;
@@ -13,6 +14,7 @@ public class RopeScript : MonoBehaviour {
     HingeJoint2D hinge;
     float force = 3;
     bool foward = true;
+    bool movingDown = true;
     // Use this for initialization
     void Start()
     {
@@ -37,26 +39,41 @@ public class RopeScript : MonoBehaviour {
         //InvokeRepeating("ChangeDirection", 4f, 5f);
         Debug.Log(hinge.limits.max);
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         //rdbd.AddForce(new Vector2(1,0.1f));
         Swinging();
     }
 
     private void Swinging()
     {
-        rdbd.AddForce(new Vector2(force, -0.5f));
+        if (movingDown)
+        {
+            rdbd.AddForce(new Vector2(force, -0.5f));
+        }
+
         if (hinge.limits.min >= hinge.jointAngle && foward)
         {
             foward = false;
             force = -force;
+            movingDown = true;
         }
         if (hinge.limits.max <= hinge.jointAngle && !foward)
         {
             foward = true;
             force = -force;
+            movingDown = true;
         }
 
+        //if (hinge.limits.max >= hinge.jointAngle && foward)
+        //{
+        //    movingDown = false;
+        //}
+        //if (hinge.limits.min <= hinge.jointAngle && !foward)
+        //{
+        //    movingDown = false;
+        //}
     }
 
 }
