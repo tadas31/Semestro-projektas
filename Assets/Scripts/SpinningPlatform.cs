@@ -43,6 +43,7 @@ public class SpinningPlatform : MonoBehaviour {
             hit.collider.GetComponent<SpinningPlatform>().Stop();
             hit.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             hit.collider.tag = "PressedPlatform";
+            hit.collider.GetComponent<Animator>().enabled = true;
         }
     }
 

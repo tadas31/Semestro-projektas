@@ -7,7 +7,7 @@ public class GumScript : MonoBehaviour
 {
 
     bool canFloat;
-    public float floatSpeed;
+    public float speed;
 
     private GameObject gum;
 
@@ -36,6 +36,7 @@ public class GumScript : MonoBehaviour
 
         if (time <= 0f)
         {
+            PlayerMovement.rdbd.gravityScale = 1;
             LevelScript.gumTimer.gameObject.SetActive(false);
             gum.SetActive(false);
             canFloat = false;
@@ -47,9 +48,9 @@ public class GumScript : MonoBehaviour
     {
         if (canFloat)
         {
-            PlayerMovement.rdbd.velocity = Vector2.zero;
-            PlayerMovement.rdbd.transform.Translate(PlayerMovement.dir * Time.deltaTime * floatSpeed);
-
+            PlayerMovement.rdbd.velocity += new Vector2(PlayerMovement.dir.x / speed, PlayerMovement.dir.y / speed);
+            PlayerMovement.rdbd.drag = 5;
+            PlayerMovement.rdbd.gravityScale = 0.2f;
         }
     }
 

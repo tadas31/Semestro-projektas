@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlatformScript : MonoBehaviour
 {
+
     public float speed;
     public float lenghtX;
     public float lenghtY;
@@ -25,20 +27,27 @@ public class PlatformScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         fadingPlatform = GameObject.FindGameObjectsWithTag("FadingGround");
         disapear = 2.9f;
         x = transform.position.x;
         y = transform.position.y;
         stoppedCount = 0;
+
         stoppablePlat = GameObject.FindGameObjectsWithTag("MovingPlatform");
+
+
         stoppablePlatSpin = GameObject.FindGameObjectsWithTag("SpinningPlatform");
         stoppableCount = stoppablePlat.Length + stoppablePlatSpin.Length;
+
+
         Debug.Log(stoppableCount);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         Movement();
 
         disapear -= Time.deltaTime;
@@ -119,6 +128,7 @@ public class PlatformScript : MonoBehaviour
         {
             hit.collider.GetComponent<PlatformScript>().Stop();
             hit.collider.tag = "PressedPlatform";
+            hit.collider.GetComponent<Animator>().enabled = true;
         }
     }
 

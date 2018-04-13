@@ -42,10 +42,12 @@ public class CharacterScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Damage1" || collision.gameObject.tag == "EnemyDamage")
             doDamage();
-        if (collision.gameObject.tag == "Damage_fatal")
+        if (collision.gameObject.tag == "Damage_fatal" || collision.gameObject.tag == "FallingSpikes")
+        {
+            lives = 0;
             LevelScript.OnDeath();
-        if(collision.gameObject.tag == "FallingSpikes")
-            LevelScript.OnDeath();
+
+        }
     }
 
 
