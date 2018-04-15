@@ -15,6 +15,7 @@ public class CharacterScript : MonoBehaviour
 
     // STATS
     public static int lives;
+    int maxLives = 3;
 
     //slots
     public static int energyBar;
@@ -107,6 +108,15 @@ public class CharacterScript : MonoBehaviour
                     LevelScript.shieldButton.gameObject.SetActive(true);
                 }
 
+            }
+        }
+
+        if (collision.gameObject.tag == "Heart")
+        {
+            collision.gameObject.SetActive(false);
+            if (lives < maxLives)
+            {
+                lives++;
             }
         }
 
