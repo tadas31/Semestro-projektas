@@ -122,10 +122,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         
-        //if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, 1 << LayerMask.NameToLayer("trampoline")) && isFalling)
-        //{
-        //    TrampolineBounce();
-        //}
     }
 
     /// <summary>
@@ -154,6 +150,11 @@ public class PlayerMovement : MonoBehaviour {
         rdbd.AddForce(new Vector2(0, height));
     }
 
+    private void Slide(float force)
+    {
+        rdbd.AddForce(new Vector2(force,-force/2));
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "LadderTop" && (dir.y < 0))
@@ -161,6 +162,11 @@ public class PlayerMovement : MonoBehaviour {
             collision.gameObject.GetComponentInParent<LadderScript>().CanGoThrow();
             canClimb = true;
             isClimbing = true;
+        }
+        if (collision.gameObject.tag == "Slide")
+        {
+            Debug.Log("Sliding");
+            Slide(collision.gameObject.GetComponent<SlideScript>().slideForce);
         }
     }
 
@@ -172,6 +178,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
