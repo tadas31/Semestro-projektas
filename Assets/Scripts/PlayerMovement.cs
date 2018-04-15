@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public static Rigidbody2D rdbd;
 
     public float maxSpeed;   // Max player movement speed, used to limit its velocity
+    float maxSpeedx; //Max player movement speed, used to reset speed limits
     public static float moveSpeedJ; // Player movement speed
     public static float jumpHeight; 
     public float drag;
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
     public LayerMask whatIsGround;
 
     private bool isFalling;
-    public float trampolineJumpHeight;
 
     public Animator Animator;
     bool facingRight = true;
@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour {
 
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);
+
+        maxSpeedx = maxSpeed;
     }
 
     // Update is called once per frame
@@ -60,7 +62,6 @@ public class PlayerMovement : MonoBehaviour {
         if(rdbd.velocity.magnitude > maxSpeed)               // Limiting player movements speed
         {
             rdbd.velocity = Vector2.ClampMagnitude(rdbd.velocity, maxSpeed);
-            
         }
 
         if (!cameraMovement.moveCamera)
@@ -165,7 +166,6 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Slide")
         {
-            Debug.Log("Sliding");
             Slide(collision.gameObject.GetComponent<SlideScript>().slideForce);
         }
     }
@@ -176,9 +176,18 @@ public class PlayerMovement : MonoBehaviour {
         {
             TrampolineBounce(collision.gameObject.GetComponent<TrampolineScript>().height);
         }
-        
+        if (collision.gameObject.tag == "Bridge")
+        {
+            maxSpeed *= 0.2f;
+        }
     }
-
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bridge")
+        {
+            maxSpeed = maxSpeedx;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
