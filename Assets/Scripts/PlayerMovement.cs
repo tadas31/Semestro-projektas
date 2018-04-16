@@ -63,7 +63,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             LevelScript.jumButton.onClick.AddListener(Jump);
         }
-        
+
+        if (isClimbing && Input.GetKeyDown(KeyCode.Space))
+        {
+            LevelScript.jumButton.onClick.AddListener(RopeJump);
+        }
+
         CheckIfFalling();                                    // Checking if player is falling
       
         if(rdbd.velocity.magnitude > maxSpeed)               // Limiting player movements speed
@@ -106,8 +111,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void RopeJump()
     {
+        isClimbing = false;
         rdbd.isKinematic = false;
-        rdbd.AddForce(dir);
+        canClimb = false;
+        rdbd.velocity = dir;
     }
 
     bool isGrounded()
