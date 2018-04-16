@@ -11,22 +11,26 @@ public class CharacterScript : MonoBehaviour
     public float forceMultiplier;
 
     private Text candyCount;
-    private int counter = 0;
 
     // STATS
     public static int lives;
+    private int counter;
 
     //slots
     public static int energyBar;
     public static int gum;
     public static int shield;
 
-    
+    //saves
+    public SaveState state;
+
+
     // Use this for initialization
     void Start()
     {
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
+        counter = 0;
         lives = 3;
 
     }
@@ -57,6 +61,7 @@ public class CharacterScript : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             counter++;
+            SaveManager.Instance.AddCandy();
             candyCount.text = counter.ToString();
         }
 

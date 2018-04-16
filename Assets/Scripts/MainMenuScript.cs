@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class MainMenuScript : MonoBehaviour {
 
+    public SaveState state;
+
+    private Text savesss;
 
     private Button levelSelection;
     private Button settings;
@@ -27,10 +30,17 @@ public class MainMenuScript : MonoBehaviour {
         Information = GameObject.Find("Information").GetComponent<Button>();
         informationPopUp = GameObject.Find("InformationPopUp");
         informationPopUp.SetActive(false);
+
+
+        savesss = GameObject.Find("Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update () {
+
+        savesss.text = SaveManager.Instance.ReturnCandy().ToString();
+
+
         levelSelection.onClick.RemoveAllListeners();
         levelSelection.onClick.AddListener(TaskOnLevelSelectionClick);
 
