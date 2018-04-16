@@ -252,6 +252,11 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnFinish()
     {
+
+
+        SaveManager.Instance.Save();
+
+
         finishPopup.gameObject.SetActive(true);
         backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
         nextLevel = GameObject.Find("NextLevel").GetComponent<Button>();

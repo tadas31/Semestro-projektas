@@ -22,12 +22,16 @@ public class CharacterScript : MonoBehaviour
     public static int gum;
     public static int shield;
 
-    
+    //saves
+    public SaveState state;
+
+
     // Use this for initialization
     void Start()
     {
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
+        counter = 0;
         lives = 3;
 
     }
@@ -58,6 +62,7 @@ public class CharacterScript : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             counter++;
+            SaveManager.Instance.AddCandy();
             candyCount.text = counter.ToString();
         }
 
