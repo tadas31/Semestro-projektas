@@ -11,6 +11,9 @@ public class SaveManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         Instance = this;
+
+        //ResetSave();
+
         Load();
 
         Debug.Log(SaveHelper.Serialize<SaveState>(state));
@@ -54,6 +57,16 @@ public class SaveManager : MonoBehaviour
     public int ReturnCandy()
     {
         return state.candy;
+    }
+
+    //Complete level
+    public void CompleteLevel(int index)
+    {
+        if(state.completedLevels == index)
+        {
+            state.completedLevels++;
+            Save();
+        }
     }
 
 }

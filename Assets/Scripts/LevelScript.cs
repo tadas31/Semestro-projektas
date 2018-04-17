@@ -189,7 +189,9 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     void TaskOnHomeClick()
     {
-        SceneManager.LoadScene("LevelSelectionMenu");
+        LevelManager.Instance.menuFocus = 0;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 
     /// <summary>
@@ -226,6 +228,8 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     static void TaskOnBackToMenuWithTextClick()
     {
+        LevelManager.Instance.menuFocus = 1;
+
         finishPopup.gameObject.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
@@ -243,8 +247,8 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     static void TaskOnNextLevelClick()
     {
-        if (SceneManager.GetActiveScene().name == "Tutorial")
-            SceneManager.LoadScene("Level1");
+        LevelManager.Instance.currentLevel++;
+        SceneManager.LoadScene(LevelManager.Instance.currentLevel.ToString());
     }
 
     /// <summary>
@@ -252,9 +256,10 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnFinish()
     {
-
-
+        //adds colected candy to owned candy
         SaveManager.Instance.Save();
+
+        SaveManager.Instance.CompleteLevel(LevelManager.Instance.currentLevel);
 
 
         finishPopup.gameObject.SetActive(true);
