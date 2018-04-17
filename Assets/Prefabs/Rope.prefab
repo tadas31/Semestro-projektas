@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1705933046317776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72, y: 3.9, z: 1}
+  m_LocalPosition: {x: -0.16832948, y: 6.47, z: 1}
   m_LocalScale: {x: 0.03949818, y: 0.03949818, z: 0.03949818}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,7 +92,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 20b2be7ecb966bb47bbce05cdb5b1e21, type: 2}
+  - {fileID: 2100000, guid: 24c94fb022913074ba332d95c57df1cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +132,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.029411793, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -224,7 +224,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 1.72, y: 3.9}
+  m_ConnectedAnchor: {x: -0.16832948, y: 6.47}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
