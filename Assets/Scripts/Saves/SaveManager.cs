@@ -11,9 +11,6 @@ public class SaveManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         Instance = this;
-
-        //ResetSave();
-
         Load();
 
         Debug.Log(SaveHelper.Serialize<SaveState>(state));

@@ -26,8 +26,6 @@ public class MainMenuManager : MonoBehaviour {
         fadeGroup = FindObjectOfType<CanvasGroup>();
         fadeGroup.alpha = 1;
 
-        Debug.Log("FADEEE " + fadeGroup.alpha);
-
         //Camera position on menu
         SetCameraTo(LevelManager.Instance.menuFocus);
 
