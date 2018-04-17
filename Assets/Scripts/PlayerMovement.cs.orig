@@ -43,9 +43,14 @@ public class PlayerMovement : MonoBehaviour {
 
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);
+<<<<<<< HEAD
 
         maxSpeedx = maxSpeed;
+=======
+        //fixedJoint = GetComponent<FixedJoint2D>();
+        //fixedJoint.enabled = false;
 
+>>>>>>> Rope
     }
 
     // Update is called once per frame
