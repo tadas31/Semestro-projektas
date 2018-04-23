@@ -14,7 +14,6 @@ public class CannonAI : MonoBehaviour {
 
     public GameObject bullet;
     public Transform target;
-    public Animator anim;
     public Transform shootPoint;
 
     public GameObject trackTarget;

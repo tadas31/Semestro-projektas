@@ -16,7 +16,7 @@ public class cameraMovement : MonoBehaviour {
     void Start()
     {
         offset = transform.position - player.transform.position; // Gap between camera and player
-        startPos = transform.position;                           // Cameras starting position
+        startPos = transform.position - new Vector3(3,0,0);                           // Cameras starting position
         transform.position = transform.position + new Vector3(1, 0, 0);
         moveCamera = true;
     }

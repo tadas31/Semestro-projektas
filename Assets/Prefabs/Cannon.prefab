@@ -217,10 +217,10 @@ MonoBehaviour:
   bulletSpeed: 15
   bulletTimer: 0
   bullet: {fileID: 1181627566757532, guid: 9f95d131ac9ed01468e6c11c2a2e1762, type: 2}
-  target: {fileID: 0}
-  anim: {fileID: 0}
+  target: {fileID: 4372529450225238, guid: 795393c26923af141953f04c1ce3f3e7, type: 2}
   shootPoint: {fileID: 4224065746246920}
-  trackTarget: {fileID: 0}
+  trackTarget: {fileID: 1589888813374918, guid: 795393c26923af141953f04c1ce3f3e7,
+    type: 2}
 --- !u!212 &212920591951413110
 SpriteRenderer:
   m_ObjectHideFlags: 1

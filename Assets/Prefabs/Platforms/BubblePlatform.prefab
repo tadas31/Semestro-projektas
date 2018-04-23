@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95347221814091186}
-  rdbd: {fileID: 0}
+  rdbd: {fileID: 50376510333564382, guid: 24a2cc43e3d7c354ead42d57ce3e3dfc, type: 2}
   height: 350
 --- !u!212 &212589261454367866
 SpriteRenderer:
