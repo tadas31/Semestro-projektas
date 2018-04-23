@@ -64,9 +64,10 @@ public class CharacterScript : MonoBehaviour
             counter++;
             SaveManager.Instance.AddCandy();
             candyCount.text = counter.ToString();
+            FindObjectOfType<AudioManager>().Play("Candy_pickup");
         }
 
-        //energy bat pick up
+        //energy bar pick up
         else if (collision.gameObject.tag == "EnergyBar")
         {
             collision.gameObject.SetActive(false);
@@ -80,6 +81,7 @@ public class CharacterScript : MonoBehaviour
                     LevelScript.energyBarButton.gameObject.SetActive(true);
                 }
             }
+            FindObjectOfType<AudioManager>().Play("Boost_pickup");
         }
 
         //gum pick up
@@ -97,6 +99,7 @@ public class CharacterScript : MonoBehaviour
                 }
                 
             }
+            FindObjectOfType<AudioManager>().Play("Boost_pickup");
         }
 
         //shield pick up
@@ -114,6 +117,7 @@ public class CharacterScript : MonoBehaviour
                 }
 
             }
+            FindObjectOfType<AudioManager>().Play("Boost_pickup");
         }
 
         if (collision.gameObject.tag == "Heart")
@@ -123,6 +127,7 @@ public class CharacterScript : MonoBehaviour
             {
                 lives++;
             }
+            FindObjectOfType<AudioManager>().Play("Boost_pickup");
         }
 
         if (collision.gameObject.tag == "Enemy_top")
@@ -158,6 +163,6 @@ public class CharacterScript : MonoBehaviour
         StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
         if (lives == 0) //When lives = 0, die (restart level for now)
             LevelScript.OnDeath();
-
+        FindObjectOfType<AudioManager>().Play("Damage");
     }
 }

@@ -164,6 +164,7 @@ public class LevelScript : MonoBehaviour {
         //back to menu
         backToMenuWithText.onClick.RemoveAllListeners();
         backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+        FindObjectOfType<AudioManager>().Play("Death");
     }
 
     /// <summary>
@@ -182,6 +183,7 @@ public class LevelScript : MonoBehaviour {
             pausePopup.SetActive(false);
             Time.timeScale = 1;
         }
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -192,6 +194,7 @@ public class LevelScript : MonoBehaviour {
         LevelManager.Instance.menuFocus = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -205,6 +208,7 @@ public class LevelScript : MonoBehaviour {
             done.gameObject.SetActive(false);
             jumButton.gameObject.SetActive(true);
         }
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -221,6 +225,7 @@ public class LevelScript : MonoBehaviour {
         canMove = true;
         BubblePlatform.active = true;
         BubblePlatform.isPoped = false;
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -232,6 +237,7 @@ public class LevelScript : MonoBehaviour {
 
         finishPopup.gameObject.SetActive(false);
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -240,6 +246,7 @@ public class LevelScript : MonoBehaviour {
     static void TaskOnRestartClick()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -249,6 +256,7 @@ public class LevelScript : MonoBehaviour {
     {
         LevelManager.Instance.currentLevel++;
         SceneManager.LoadScene(LevelManager.Instance.currentLevel.ToString());
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>

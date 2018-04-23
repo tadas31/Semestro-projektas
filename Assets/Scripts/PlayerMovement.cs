@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public Animator Animator;
     bool facingRight = true;
+    bool dead;
 
     bool isPoped = false;
 
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
         jumpHeight = 350.0f;
 
         rdbd = GetComponent<Rigidbody2D>();
-        Animator.SetBool("IsGrounded", true);
+        Animator.SetBool("IsGrounded", true);      
 
         maxSpeedx = maxSpeed;
 
@@ -89,7 +90,12 @@ public class PlayerMovement : MonoBehaviour {
             Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
             Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
         }
-        
+
+        Animator.SetBool("Dead", dead);
+        if (CharacterScript.lives == 0)
+            dead = true;
+        else
+            dead = false;
         //transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0f);
     }
 
@@ -106,7 +112,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Jump()
     {
-        rdbd.AddForce(new Vector2(0, jumpHeight));       
+        rdbd.AddForce(new Vector2(0, jumpHeight));
+        FindObjectOfType<AudioManager>().Play("Jump_sound");
     }
 
     void RopeJump()

@@ -23,6 +23,7 @@ public class FinishScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             LevelScript.OnFinish();
+            FindObjectOfType<AudioManager>().Play("Win");
         }
     }
 }

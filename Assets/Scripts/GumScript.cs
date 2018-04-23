@@ -64,6 +64,7 @@ public class GumScript : MonoBehaviour
         LevelScript.gumButton.gameObject.SetActive(false);
         LevelScript.gumTimer.gameObject.SetActive(true);
         ClearOutSlot();
+        FindObjectOfType<AudioManager>().Play("Use_boost");
     }
 
     /// <summary>

@@ -76,6 +76,7 @@ public class ShieldScript : MonoBehaviour {
         LevelScript.shieldButton.gameObject.SetActive(false);
         LevelScript.shieldTimer.gameObject.SetActive(true);
         ClearOutSlot();
+        FindObjectOfType<AudioManager>().Play("Use_boost");
     }
 
     /// <summary>

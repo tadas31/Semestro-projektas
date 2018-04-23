@@ -46,7 +46,7 @@ public class LevelSelectionMenuScript : MonoBehaviour {
     void TaskOnBackClick()
     {
         SceneManager.LoadScene("MainMenu");
-        
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -55,6 +55,7 @@ public class LevelSelectionMenuScript : MonoBehaviour {
     void TaskOnTutorialClick()
     {
         SceneManager.LoadScene("Tutorial");
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -63,5 +64,6 @@ public class LevelSelectionMenuScript : MonoBehaviour {
     void TaskOnLevel1Click()
     {
         SceneManager.LoadScene("Level1");
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 }

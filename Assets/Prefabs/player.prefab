@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMultiplier: 0
+  Animator: {fileID: 95415617294420050}
 --- !u!114 &114300820522099802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +299,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294960895
-  trampolineJumpHeight: 8
   Animator: {fileID: 95415617294420050}
 --- !u!212 &212020991548769588
 SpriteRenderer:

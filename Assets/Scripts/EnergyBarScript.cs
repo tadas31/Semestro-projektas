@@ -45,6 +45,7 @@ public class EnergyBarScript : MonoBehaviour {
         LevelScript.energyBarButton.gameObject.SetActive(false);
         LevelScript.energyBarTimer.gameObject.SetActive(true);
         ClearOutSlot();
+        FindObjectOfType<AudioManager>().Play("Use_boost");
     }
 
     /// <summary>

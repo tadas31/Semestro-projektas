@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System;
 
 public class MainMenu : MonoBehaviour {
 
@@ -24,7 +25,12 @@ public class MainMenu : MonoBehaviour {
     private GameObject confirmation;
     private Button yes;
     private Button no;
+    public static Toggle mute;
+    public static bool settingsActive;
+    private string muteString;
 
+    //saves
+    public SaveState state;
 
     void Start()
     {
@@ -55,21 +61,27 @@ public class MainMenu : MonoBehaviour {
     {
         candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
 
-        //onepn settings
+       // muteString = SaveManager.Instance.ReturnMute().ToString();
+
+        settingsActive = settingsPopUp.active;
+        //open settings
         settings.onClick.AddListener(TaskOnSettingsClick);
 
         //close settings
         if (settingsPopUp.active == true)
         {
             int id = Input.GetTouch(0).fingerId;
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id)) 
                 TaskOnSettingsExitClick();
+
+            SaveManager.Instance.SetMute(mute.isOn);
 
             resetGame.onClick.RemoveAllListeners();
             resetGame.onClick.AddListener(TaskOnResetProgressClick);
 
             settingsExit.onClick.RemoveAllListeners();
             settingsExit.onClick.AddListener(TaskOnSettingsExitClick);
+            
         }
 
         if (confirmation.active == true)
@@ -94,6 +106,7 @@ public class MainMenu : MonoBehaviour {
             Information.onClick.AddListener(TaskOnInfromationExitClick);
         }
 
+        
     }
 
     /// <summary>
@@ -109,7 +122,12 @@ public class MainMenu : MonoBehaviour {
         settingsPopUp.active = true;
         settingsExit = GameObject.Find("settingsExit").GetComponent<Button>();
         resetGame = GameObject.Find("ResetGame").GetComponent<Button>();
-        
+        mute = GameObject.Find("Mute").GetComponent<Toggle>();
+        mute.isOn = SaveManager.Instance.ReturnMute();
+
+        // muteString = mute.ToString();
+
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -135,6 +153,8 @@ public class MainMenu : MonoBehaviour {
         shop.interactable = false;
 
         informationPopUp.SetActive(true);
+
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -158,6 +178,8 @@ public class MainMenu : MonoBehaviour {
         yes = GameObject.Find("Yes").GetComponent<Button>();
         no = GameObject.Find("No").GetComponent<Button>();
         settingsPopUp.SetActive(false);
+
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -168,6 +190,8 @@ public class MainMenu : MonoBehaviour {
         SaveManager.Instance.ResetSave();
         SaveManager.Instance.Load();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 
     /// <summary>
@@ -181,5 +205,7 @@ public class MainMenu : MonoBehaviour {
         shop.interactable = true;
 
         confirmation.SetActive(false);
+
+        FindObjectOfType<AudioManager>().Play("Button_press");
     }
 }

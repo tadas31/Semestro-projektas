@@ -34,6 +34,7 @@ public class CheckPointScript : MonoBehaviour {
         // recent triggering
         //GetComponent<Animator>().SetTrigger("Triggered");
         LevelScript.SetRespawnPosition(transform.position);
+        FindObjectOfType<AudioManager>().Play("Checkpoint");
         triggered = true;
     }
 }

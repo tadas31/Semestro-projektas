@@ -66,4 +66,18 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    // Set mute state
+    public void SetMute(bool mute)
+    {    
+        Debug.Log(mute);
+        state.mute = mute;
+        Save();
+    }
+
+    // Return mute state
+    public bool ReturnMute()
+    {
+        return state.mute;
+    }
+
 }
