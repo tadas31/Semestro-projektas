@@ -137,12 +137,20 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!GumScript.canFloat)
         {
-            if (isGrounded() && !cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
+            if (!cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
             {
-                rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-                rdbd.drag = drag;                    // To reduce sliding
+                if (isGrounded())
+                {
+                    rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
+                    rdbd.drag = drag;                    // To reduce sliding
+                }
+                else
+                {
+                    rdbd.velocity += new Vector2(dir.x / moveSpeedJ * 0.2f, 0);
+                    rdbd.drag = 0;
+                }
+
             }
-            else rdbd.drag = 0;
 
             if (canClimb && dir.y > 0.3f)
             {
