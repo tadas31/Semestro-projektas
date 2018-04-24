@@ -265,7 +265,9 @@ public class LevelScript : MonoBehaviour {
     public static void OnFinish()
     {
         //adds colected candy to owned candy
-        SaveManager.Instance.Save();
+        
+
+        SaveManager.Instance.AddCandy(CharacterScript.getCandyCount());
 
         SaveManager.Instance.CompleteLevel(LevelManager.Instance.currentLevel);
 

@@ -45,9 +45,10 @@ public class SaveManager : MonoBehaviour
     }
 
     // Add candy
-    public void AddCandy()
+    public void AddCandy(int candy)
     {
-        state.candy++;
+        state.candy += candy;
+        Save();
     }
 
     // Return candy
