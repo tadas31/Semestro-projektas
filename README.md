@@ -3,7 +3,6 @@
 # Buggai
 
 Pakeitimai
-Pasokes minimalus judejimas
 Nuo ladderio sono kad galima butu nusokti
 Platformu kampuose kad neuzkiptum
 Kad spiku sonuose neuzkiptum
