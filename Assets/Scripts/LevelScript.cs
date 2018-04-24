@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour {
-    //restart
-    private static Button restart;
+    //respawn in game button
+    private static Button respawnInGame;
 
     //pause
     private static Button pause;
@@ -59,7 +59,7 @@ public class LevelScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //restart
-        restart = GameObject.Find("Restart").GetComponent<Button>();
+        respawnInGame = GameObject.Find("RespawnInGame").GetComponent<Button>();
 
         //done
         done = GameObject.Find("Done").GetComponent<Button>();
@@ -119,8 +119,8 @@ public class LevelScript : MonoBehaviour {
     // Update is called once per frame
         void Update () {
 
-        restart.onClick.RemoveAllListeners();
-        restart.onClick.AddListener(TaskOnRestartClick);
+        respawnInGame.onClick.RemoveAllListeners();
+        respawnInGame.onClick.AddListener(TaskOnRespawnClick);
 
         pause.onClick.RemoveAllListeners();
         pause.onClick.AddListener(TaskOnPauseClick);
@@ -144,7 +144,7 @@ public class LevelScript : MonoBehaviour {
     public static void OnDeath()
     {
         //sets game over popup active and gets buttons
-        restart.interactable = false;
+        respawnInGame.interactable = false;
         pause.interactable = false;
         jumButton.interactable = false;
         canMove = false;
@@ -219,7 +219,7 @@ public class LevelScript : MonoBehaviour {
         CharacterScript.rdbd.transform.position = startPos;
         CharacterScript.lives = 3;
         gameOverPopup.SetActive(false);
-        restart.interactable = true;
+        respawnInGame.interactable = true;
         pause.interactable = true;
         jumButton.interactable = true;
         canMove = true;
@@ -275,7 +275,7 @@ public class LevelScript : MonoBehaviour {
         finishPopup.gameObject.SetActive(true);
         backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
         nextLevel = GameObject.Find("NextLevel").GetComponent<Button>();
-        restart.interactable = false;
+        respawnInGame.interactable = false;
         pause.interactable = false;
         jumButton.interactable = false;
         canMove = false;
