@@ -11,7 +11,7 @@ public class CharacterScript : MonoBehaviour
     public float forceMultiplier;
 
     private Text candyCount;
-    private int counter = 0;
+    private static int counter = 0;
 
     // STATS
     public static int lives;
@@ -62,7 +62,11 @@ public class CharacterScript : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             counter++;
-            SaveManager.Instance.AddCandy();
+
+
+            //SaveManager.Instance.AddCandy();
+
+
             candyCount.text = counter.ToString();
             FindObjectOfType<AudioManager>().Play("Candy_pickup");
         }
@@ -135,6 +139,15 @@ public class CharacterScript : MonoBehaviour
             EnemyMovement.stunned = true;
             StartCoroutine(Knockback(0.001f, 50, rdbd.transform.position));
         }
+    }
+
+    /// <summary>
+    /// get's candy count
+    /// </summary>s
+    /// <returns></returns>
+    public static int getCandyCount()
+    {
+        return counter;
     }
 
     /// <summary>
