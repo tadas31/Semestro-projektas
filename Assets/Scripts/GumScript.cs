@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GumScript : MonoBehaviour
 {
 
-    bool canFloat;
+    public static bool canFloat;
     public float speed;
 
     private GameObject gum;

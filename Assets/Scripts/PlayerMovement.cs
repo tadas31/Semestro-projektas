@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
         rdbd.velocity = dir;
     }
 
-    bool isGrounded()
+    public bool isGrounded()
     {
         return grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
@@ -132,27 +132,29 @@ public class PlayerMovement : MonoBehaviour {
     private void FixedUpdate()
     {
         
-        dir = jsMovement.InputDirection;
-        dirAir = dir;
-        
-        if (isGrounded() && !cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
-        {
-            rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-            rdbd.drag = drag;                    // To reduce sliding
-        }
-        else rdbd.drag = 0;
+            dir = jsMovement.InputDirection;
+            dirAir = dir;
 
-        if (canClimb && dir.y > 0.3f)
+        if (!GumScript.canFloat)
         {
-            isClimbing = true;
+            if (isGrounded() && !cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
+            {
+                rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
+                rdbd.drag = drag;                    // To reduce sliding
+            }
+            else rdbd.drag = 0;
+
+            if (canClimb && dir.y > 0.3f)
+            {
+                isClimbing = true;
+            }
+
+            if (isClimbing)
+            {
+                MovementOnTheLadder();
+            }
         }
 
-        if (isClimbing)
-        {
-            MovementOnTheLadder();
-        }
-
-        
     }
 
     /// <summary>
