@@ -10,7 +10,7 @@ public class EnergyBarScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        time = 5.0f;
+        time = SaveManager.Instance.ReturnBoostsDuration()[1];
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,7 @@ public class EnergyBarScript : MonoBehaviour {
             LevelScript.energyBarTimer.gameObject.SetActive(false);
             PlayerMovement.moveSpeedJ = 1.5f;
             PlayerMovement.jumpHeight = 350.0f;
-            time = 5.0f;
+            time = SaveManager.Instance.ReturnBoostsDuration()[1];
         }
 
     }

@@ -16,7 +16,7 @@ public class GumScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        time = 4.0f;
+        time = SaveManager.Instance.ReturnBoostsDuration()[0];
         canFloat = false;
         gum = GameObject.Find("GumBouble");
         gum.SetActive(false);
@@ -40,7 +40,7 @@ public class GumScript : MonoBehaviour
             LevelScript.gumTimer.gameObject.SetActive(false);
             gum.SetActive(false);
             canFloat = false;
-            time = 4.0f;
+            time = SaveManager.Instance.ReturnBoostsDuration()[0];
         }
     }
 

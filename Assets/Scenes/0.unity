@@ -2032,6 +2032,34 @@ Prefab:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 224038329360552202, guid: 2ac171b81bfadc44c833f003c8c4e561,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224937226923715932, guid: 2ac171b81bfadc44c833f003c8c4e561,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088955890959242, guid: 2ac171b81bfadc44c833f003c8c4e561,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.24000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088955890959242, guid: 2ac171b81bfadc44c833f003c8c4e561,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756248487506920, guid: 2ac171b81bfadc44c833f003c8c4e561, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028647152617402, guid: 2ac171b81bfadc44c833f003c8c4e561, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ac171b81bfadc44c833f003c8c4e561, type: 2}
   m_IsPrefabParent: 0
@@ -2726,7 +2754,7 @@ Transform:
   m_Children:
   - {fileID: 988966649}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1299690351
 Prefab:
