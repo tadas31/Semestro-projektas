@@ -29,9 +29,6 @@ public class MainMenu : MonoBehaviour {
     public static bool settingsActive;
     private string muteString;
 
-    //saves
-    public SaveState state;
-
     void Start()
     {
 
@@ -59,19 +56,17 @@ public class MainMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-            candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
+        candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
 
-       // muteString = SaveManager.Instance.ReturnMute().ToString();
-
-        settingsActive = settingsPopUp.active;
         //open settings
+        settings.onClick.RemoveAllListeners();
         settings.onClick.AddListener(TaskOnSettingsClick);
 
         //close settings
         if (settingsPopUp.active == true)
         {
-            int id = Input.GetTouch(0).fingerId;
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id)) 
+            //int id = Input.GetTouch(0).fingerId;
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(/*id*/)) 
                 TaskOnSettingsExitClick();
 
             SaveManager.Instance.SetMute(mute.isOn);
@@ -93,6 +88,7 @@ public class MainMenu : MonoBehaviour {
         }
 
         //open information
+        Information.onClick.RemoveAllListeners();
         Information.onClick.AddListener(TaskOnInformationClick);
 
         //close information

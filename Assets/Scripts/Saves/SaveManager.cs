@@ -81,4 +81,31 @@ public class SaveManager : MonoBehaviour
         return state.mute;
     }
 
+    /// <summary>
+    /// upgrades boost or character
+    /// </summary>
+    /// <param name="upgradeID">0 - gum, 1 - energy barr, 2 - shield, 3 - jump, 4 - speed, 5 - lives</param>
+    /// <param name="upgrade">to what upgrade</param>
+    public void AddUpgrade(int upgradeID, int upgrade, float upgradedValue)
+    {
+        state.upgrades[upgradeID] = upgrade;
+        if (upgradeID < 3)
+            state.boostsTime[upgradeID] = upgradedValue;
+        Save();
+    }
+
+    /// <summary>
+    /// returns sprites for updates
+    /// </summary>
+    /// <returns></returns>
+    public int[] ReturnUpgrade()
+    {
+        return state.upgrades;
+    }
+
+    public float[] ReturnBoostsDuration()
+    {
+        return state.boostsTime;
+    }
+
 }

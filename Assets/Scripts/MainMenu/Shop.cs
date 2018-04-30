@@ -17,12 +17,21 @@ public class Shop : MonoBehaviour {
     private Image shieldUpgradePopup;
 
     //boosts buttons
-    private Button jumpUpgrade;
-    private Button speedUpgrade;
-    private Button livesUpgrade;
     private Button gumUpgrade;
     private Button energyBarUpgrade;
     private Button shieldUpgrade;
+    private Button jumpUpgrade;
+    private Button speedUpgrade;
+    private Button livesUpgrade;
+
+    //buttons in popups
+    public static Button gumButton;
+    public static Button energyBarButton;
+    public static Button shieldButton;
+
+    //public static Button speedUpgrade;
+    //public static Button livesUpgrade;
+    //public static Button gumUpgrade;
 
 
     // Use this for initialization
@@ -49,11 +58,17 @@ public class Shop : MonoBehaviour {
         gumUpgrade = GameObject.Find("GumBoost").GetComponent<Button>();
         energyBarUpgrade = GameObject.Find("EnergyBarBoost").GetComponent<Button>();
         shieldUpgrade = GameObject.Find("ShieldBoost").GetComponent<Button>();
-    }
+
+        //buttons in popups
+        gumButton = GameObject.Find("GumButton").GetComponent<Button>();
+        energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
+        shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
+}
 	
 	// Update is called once per frame
 	void Update () {
         candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
+
 
         //opens jump popup
         jumpUpgrade.onClick.RemoveAllListeners();

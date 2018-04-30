@@ -12,7 +12,7 @@ public class ShieldScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        time = 10.0f;
+        time = SaveManager.Instance.ReturnBoostsDuration()[2];
         shield = GameObject.Find("ShieldBouble");
         shield.SetActive(false);
        
@@ -36,7 +36,7 @@ public class ShieldScript : MonoBehaviour {
             LevelScript.shieldTimer.gameObject.SetActive(false);
             shield.SetActive(false);
             shieldActive = false;
-            time = 10.0f;
+            time = SaveManager.Instance.ReturnBoostsDuration()[2];
         }
 
     }
