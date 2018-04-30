@@ -67,6 +67,10 @@ public class MainMenuManager : MonoBehaviour {
             case 1:
                 desiredMenuPosition = Vector2.right * -1920;
                 break;
+           // 2 = shop menu
+            case 2:
+                desiredMenuPosition = Vector2.left * -1920;
+                break;
         }
     }
 
@@ -131,5 +135,13 @@ public class MainMenuManager : MonoBehaviour {
     public void TaskOnLevelSelectionClick()
     {
         NavigateTo(1);
+    }
+
+    /// <summary>
+    /// takes user to level selection menu
+    /// </summary>
+    public void TaskOnShopClick()
+    {
+        NavigateTo(2);
     }
 }

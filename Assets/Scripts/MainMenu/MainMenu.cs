@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour {
         informationPopUp = GameObject.Find("InformationPopUp");
         informationPopUp.SetActive(false);
 
-        candyCount = GameObject.Find("Candy").GetComponentInChildren<Text>();
+        candyCount = GameObject.Find("ManiMenuCandy").GetComponentInChildren<Text>();
 
         confirmation = GameObject.Find("Confirmation");
         confirmation.SetActive(false);
@@ -59,7 +59,7 @@ public class MainMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
+            candyCount.text = SaveManager.Instance.ReturnCandy().ToString();
 
        // muteString = SaveManager.Instance.ReturnMute().ToString();
 
