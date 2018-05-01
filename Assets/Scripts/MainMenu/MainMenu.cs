@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour {
         //close settings
         if (settingsPopUp.active == true)
         {
-            //int id = Input.GetTouch(0).fingerId;
+           // int id = Input.GetTouch(0).fingerId;
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(/*id*/)) 
                 TaskOnSettingsExitClick();
 

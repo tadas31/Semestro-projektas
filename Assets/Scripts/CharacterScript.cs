@@ -14,7 +14,7 @@ public class CharacterScript : MonoBehaviour
     private static int counter = 0;
 
     // STATS
-    public static int lives;
+    public static float lives;
     int maxLives = 3;
 
     //slots
@@ -32,7 +32,7 @@ public class CharacterScript : MonoBehaviour
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
         counter = 0;
-        lives = 3;
+        lives = SaveManager.Instance.ReturnCharacterStats()[2];
 
     }
 

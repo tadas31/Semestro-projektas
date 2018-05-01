@@ -60,7 +60,7 @@ public class SaveManager : MonoBehaviour
     //Complete level
     public void CompleteLevel(int index)
     {
-        if(state.completedLevels == index)
+        if (state.completedLevels == index)
         {
             state.completedLevels++;
             Save();
@@ -69,7 +69,7 @@ public class SaveManager : MonoBehaviour
 
     // Set mute state
     public void SetMute(bool mute)
-    {    
+    {
         Debug.Log(mute);
         state.mute = mute;
         Save();
@@ -91,11 +91,13 @@ public class SaveManager : MonoBehaviour
         state.upgrades[upgradeID] = upgrade;
         if (upgradeID < 3)
             state.boostsTime[upgradeID] = upgradedValue;
+        else
+            state.characterStats[upgradeID-3] = upgradedValue;
         Save();
     }
 
     /// <summary>
-    /// returns sprites for updates
+    /// returns sprites for updates 0 - gum, 1 - energy barr, 2 - shield, 3 - jump, 4 - speed, 5 - lives
     /// </summary>
     /// <returns></returns>
     public int[] ReturnUpgrade()
@@ -103,9 +105,21 @@ public class SaveManager : MonoBehaviour
         return state.upgrades;
     }
 
+    /// <summary>
+    /// returns boosts duration 0 - gum, 1 - energy barr, 2 - shield
+    /// </summary>
+    /// <returns></returns>
     public float[] ReturnBoostsDuration()
     {
         return state.boostsTime;
     }
 
+    /// <summary>
+    /// returns characters stats 0 - jump, 1 - speed, 2 - lives
+    /// </summary>
+    /// <returns></returns>
+    public float[] ReturnCharacterStats()
+    {
+        return state.characterStats;
+    }
 }

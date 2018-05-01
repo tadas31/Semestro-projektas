@@ -7,4 +7,5 @@ public class SaveState
     public bool mute = false;
     public int[] upgrades = { 0, 0, 0, 0, 0, 0 };
     public float[] boostsTime = { 4, 5, 10 };
+    public float[] characterStats = { 350, 1.5f, 3 };
 }

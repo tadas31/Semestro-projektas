@@ -14,9 +14,6 @@ public class UpgradesScript : MonoBehaviour
     public Sprite[] purchasedUpgradesSprites;
     private Image UpgradesUI;
 
-    //0 - gum, 1 - energy barr, 2 - shield, 3 - jump, 4 - speed, 5 - lives
-    private int[] upgradesCount = new int[6];
-
     // Use this for initialization
     void Start()
     {
@@ -31,25 +28,31 @@ public class UpgradesScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //upgrade gum
-        Shop.gumButton.onClick.RemoveAllListeners();
-        Shop.gumButton.onClick.AddListener(TaskOnGumButtonPress);
+        if (Shop.jumpActive)
+        {
+            UpgradesUI = GameObject.Find("JumpUpgrade").GetComponent<Image>();
+            UpgradesUI.sprite = purchasedUpgradesSprites[SaveManager.Instance.ReturnUpgrade()[3]];
+        }
 
-        //upgrade energy bar
-        Shop.energyBarButton.onClick.RemoveAllListeners();
-        Shop.energyBarButton.onClick.AddListener(TaskOnEnergyBarButtonPress);
+        if (Shop.speedActive)
+        {
+            UpgradesUI = GameObject.Find("SpeedUpgrade").GetComponent<Image>();
+            UpgradesUI.sprite = purchasedUpgradesSprites[SaveManager.Instance.ReturnUpgrade()[4]];
+        }
 
-        //upgrade shield
-        Shop.shieldButton.onClick.RemoveAllListeners();
-        Shop.shieldButton.onClick.AddListener(TaskOnShieldButtonPress);
+        if (Shop.livesActive)
+        {
+            UpgradesUI = GameObject.Find("LivesUpgrade").GetComponent<Image>();
+            UpgradesUI.sprite = purchasedUpgradesSprites[SaveManager.Instance.ReturnUpgrade()[5]];
+        }
     }
 
     /// <summary>
     /// upgrade gum
     /// </summary>
-    void TaskOnGumButtonPress()
+    public void TaskOnGumButtonPress()
     {
-        if (upgradesCount[0] < fullyUpgraded)
+        if (SaveManager.Instance.ReturnUpgrade()[0] < fullyUpgraded)
         {
             UpgradesUI = GameObject.Find("GumUpgrade").GetComponent<Image>();
             float time = SaveManager.Instance.ReturnBoostsDuration()[0] + 2;
@@ -61,9 +64,9 @@ public class UpgradesScript : MonoBehaviour
     /// <summary>
     /// upgrade energy bar
     /// </summary>
-    void TaskOnEnergyBarButtonPress()
+    public void TaskOnEnergyBarButtonPress()
     {
-        if (upgradesCount[1] < fullyUpgraded)
+        if (SaveManager.Instance.ReturnUpgrade()[1] < fullyUpgraded)
         {
             UpgradesUI = GameObject.Find("EnergyBarUpgrade").GetComponent<Image>();
             float time = SaveManager.Instance.ReturnBoostsDuration()[1] + 2;
@@ -75,14 +78,54 @@ public class UpgradesScript : MonoBehaviour
     /// <summary>
     /// upgrade shield
     /// </summary>
-    void TaskOnShieldButtonPress()
+    public void TaskOnShieldButtonPress()
     {
-        if (upgradesCount[2] < fullyUpgraded)
+        if (SaveManager.Instance.ReturnUpgrade()[2] < fullyUpgraded)
         {
             UpgradesUI = GameObject.Find("ShieldUpgrade").GetComponent<Image>();
             float time = SaveManager.Instance.ReturnBoostsDuration()[2] + 2;
             SaveManager.Instance.AddUpgrade(2, ++SaveManager.Instance.ReturnUpgrade()[2], time);
             UpgradesUI.sprite = purchasedUpgradesSprites[SaveManager.Instance.ReturnUpgrade()[2]];
+        }
+    }
+
+    /// <summary>
+    /// upgrade jump
+    /// </summary>
+    public void TaskOnJumpButtonPress()
+    {
+        if (SaveManager.Instance.ReturnUpgrade()[3] < fullyUpgraded)
+        {
+            UpgradesUI = GameObject.Find("JumpUpgrade").GetComponent<Image>();
+            float jump = SaveManager.Instance.ReturnCharacterStats()[0] + 10;
+            SaveManager.Instance.AddUpgrade(3, ++SaveManager.Instance.ReturnUpgrade()[3], jump);
+        }
+    }
+
+    /// <summary>
+    /// upgrade speed
+    /// </summary>
+    public void TaskOnSpeedButtonPress()
+    {
+
+        if (SaveManager.Instance.ReturnUpgrade()[4] < fullyUpgraded)
+        {
+            UpgradesUI = GameObject.Find("SpeedUpgrade").GetComponent<Image>();
+            float jump = SaveManager.Instance.ReturnCharacterStats()[1] - 0.1f;
+            SaveManager.Instance.AddUpgrade(4, ++SaveManager.Instance.ReturnUpgrade()[4], jump);
+        }
+    }
+
+    /// <summary>
+    /// upgrades lives
+    /// </summary>
+    public void TaskOnLivesButtonPress()
+    {
+        if (SaveManager.Instance.ReturnUpgrade()[5] < fullyUpgraded)
+        {
+            UpgradesUI = GameObject.Find("LivesUpgrade").GetComponent<Image>();
+            float lives = SaveManager.Instance.ReturnCharacterStats()[2] + 1;
+            SaveManager.Instance.AddUpgrade(5, ++SaveManager.Instance.ReturnUpgrade()[5], lives);
         }
     }
 }

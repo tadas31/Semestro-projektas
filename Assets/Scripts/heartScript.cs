@@ -16,7 +16,7 @@ public class heartScript : MonoBehaviour {
 	
 	// Update is called once per frame
      void Update () {
-        HeartUI.sprite = HeartSprites[CharacterScript.lives];
+        HeartUI.sprite = HeartSprites[(int)CharacterScript.lives];
 
     }
 }

@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        moveSpeedJ = 1.5f;
-        jumpHeight = 350.0f;
+        moveSpeedJ = SaveManager.Instance.ReturnCharacterStats()[1];
+        jumpHeight = SaveManager.Instance.ReturnCharacterStats()[0];
 
         rdbd = GetComponent<Rigidbody2D>();
         Animator.SetBool("IsGrounded", true);      

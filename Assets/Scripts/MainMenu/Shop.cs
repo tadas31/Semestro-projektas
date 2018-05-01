@@ -24,18 +24,17 @@ public class Shop : MonoBehaviour {
     private Button speedUpgrade;
     private Button livesUpgrade;
 
-    //buttons in popups
-    public static Button gumButton;
-    public static Button energyBarButton;
-    public static Button shieldButton;
-
-    //public static Button speedUpgrade;
-    //public static Button livesUpgrade;
-    //public static Button gumUpgrade;
+    public static bool jumpActive;
+    public static bool speedActive;
+    public static bool livesActive;
 
 
     // Use this for initialization
     void Start () {
+
+        jumpActive = false;
+        speedActive = false;
+        livesActive = false;
 
         candyCount = GameObject.Find("ShopCandy").GetComponentInChildren<Text>();
 
@@ -60,9 +59,9 @@ public class Shop : MonoBehaviour {
         shieldUpgrade = GameObject.Find("ShieldBoost").GetComponent<Button>();
 
         //buttons in popups
-        gumButton = GameObject.Find("GumButton").GetComponent<Button>();
-        energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
-        shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
+        //gumButton = GameObject.Find("GumButton").GetComponent<Button>();
+        //energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
+        //shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
 }
 	
 	// Update is called once per frame
@@ -98,6 +97,7 @@ public class Shop : MonoBehaviour {
     {
         gumUpgradePopup.gameObject.SetActive(true);
         jumpUpgradePopup.gameObject.SetActive(false);
+        jumpActive = false;
     }
 
     /// <summary>
@@ -107,6 +107,7 @@ public class Shop : MonoBehaviour {
     {
         energyBarUpgradePopup.gameObject.SetActive(true);
         speedUpgradePopup.gameObject.SetActive(false);
+        speedActive = false;
     }
 
     /// <summary>
@@ -116,6 +117,7 @@ public class Shop : MonoBehaviour {
     {
         shieldUpgradePopup.gameObject.SetActive(true);
         livesUpgradePopup.gameObject.SetActive(false);
+        livesActive = false;
     }
 
     /// <summary>
@@ -125,6 +127,7 @@ public class Shop : MonoBehaviour {
     {
         jumpUpgradePopup.gameObject.SetActive(true);
         gumUpgradePopup.gameObject.SetActive(false);
+        jumpActive = true;
     }
 
     /// <summary>
@@ -134,6 +137,7 @@ public class Shop : MonoBehaviour {
     {
         speedUpgradePopup.gameObject.SetActive(true);
         energyBarUpgradePopup.gameObject.SetActive(false);
+        speedActive = true;
     }
 
     /// <summary>
@@ -143,5 +147,6 @@ public class Shop : MonoBehaviour {
     {
         livesUpgradePopup.gameObject.SetActive(true);
         shieldUpgradePopup.gameObject.SetActive(false);
+        livesActive = true;
     }
 }
