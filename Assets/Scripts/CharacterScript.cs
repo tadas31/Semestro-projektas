@@ -63,10 +63,6 @@ public class CharacterScript : MonoBehaviour
             collision.gameObject.SetActive(false);
             counter++;
 
-
-            //SaveManager.Instance.AddCandy();
-
-
             candyCount.text = counter.ToString();
             FindObjectOfType<AudioManager>().Play("Candy_pickup");
         }
@@ -174,7 +170,7 @@ public class CharacterScript : MonoBehaviour
         if (!ShieldScript.shieldActive)
             lives--;
         StartCoroutine(Knockback(0.02f, 50, rdbd.transform.position));
-        if (lives == 0) //When lives = 0, die (restart level for now)
+        if (lives == 0)
             LevelScript.OnDeath();
         FindObjectOfType<AudioManager>().Play("Damage");
     }

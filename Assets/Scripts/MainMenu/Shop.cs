@@ -57,11 +57,6 @@ public class Shop : MonoBehaviour {
         gumUpgrade = GameObject.Find("GumBoost").GetComponent<Button>();
         energyBarUpgrade = GameObject.Find("EnergyBarBoost").GetComponent<Button>();
         shieldUpgrade = GameObject.Find("ShieldBoost").GetComponent<Button>();
-
-        //buttons in popups
-        //gumButton = GameObject.Find("GumButton").GetComponent<Button>();
-        //energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
-        //shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
 }
 	
 	// Update is called once per frame
