@@ -1,13 +1,13 @@
-# Semestro-projektas
+﻿# Semestro-projektas
 
 # Buggai
 
 Pakeitimai
-Nuo ladderio sono kad galima butu nusokti
-Platformu kampuose kad neuzkiptum
-Kad spiku sonuose neuzkiptum
+Nuo ladderio sono kad galima butu nusokti ir ant jo judejimas bullshit kazkoks
+Platformu kampuose kad neuzkiptum+
+Kad spiku sonuose neuzkiptum+
 Knockbacka patvarkyti
-Kad cannon balllai nedaytu damago(Su grounded)
+Kad cannon balllai nedaytu damago(Su grounded)+
 Kai žaidejas yra pirmoje žaidimo dalyje kamera gali iseiti is lygio ribu
 Nusokimas nuo virves
 Galima mirti pabaigus zaidima

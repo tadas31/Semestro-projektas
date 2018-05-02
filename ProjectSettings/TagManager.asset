@@ -33,6 +33,7 @@ TagManager:
   - FallingSpikes
   - Slide
   - Bridge
+  - Bullet_harmless
   layers:
   - Default
   - TransparentFX

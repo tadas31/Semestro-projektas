@@ -5,6 +5,9 @@ using UnityEngine;
 public class cameraMovement : MonoBehaviour {
 
     public GameObject player;
+    public Transform startBoundary;
+    public Transform endBoundary;
+
     private Vector3 offset;
     private Vector3 startPos;
     private float x;
@@ -12,6 +15,8 @@ public class cameraMovement : MonoBehaviour {
 
     public JoystickMovement JsMovement;
     private Vector3 dir;
+    private float start;
+    private float end;
 
     void Start()
     {
@@ -19,6 +24,9 @@ public class cameraMovement : MonoBehaviour {
         startPos = transform.position - new Vector3(3,0,0);                           // Cameras starting position
         transform.position = transform.position + new Vector3(1, 0, 0);
         moveCamera = true;
+
+        start = startBoundary.transform.position.x + 2f;
+        end = endBoundary.transform.position.x - 2f;
     }
 
     // Update is called once per frame
@@ -26,9 +34,20 @@ public class cameraMovement : MonoBehaviour {
         dir = JsMovement.InputDirection;  // Joystick input
 
         if (moveCamera)
-            transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
-        else
-            transform.position = new Vector3(player.transform.position.x + offset.x, startPos.y, startPos.z);  // Resets camera position
+        {
+            if (transform.position.x > start)
+                transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
+            else
+                transform.position = new Vector3(startBoundary.transform.position.x + 2f, startPos.y, -10);
 
+            if (transform.position.x < end)               
+                transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
+            else
+                transform.position = new Vector3(endBoundary.transform.position.x - 2f, startPos.y, -10);
+
+        }
+        else 
+            transform.position = new Vector3(player.transform.position.x + offset.x, startPos.y, startPos.z);  // Resets camera position
     }
+
 }

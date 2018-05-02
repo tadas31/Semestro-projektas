@@ -84,7 +84,7 @@ public class SaveManager : MonoBehaviour
     /// <summary>
     /// upgrades boost or character
     /// </summary>
-    /// <param name="upgradeID">0 - gum, 1 - energy barr, 2 - shield, 3 - jump, 4 - speed, 5 - lives</param>
+    /// <param name="upgradeID">0 - gum, 1 - energy bar, 2 - shield, 3 - jump, 4 - speed, 5 - lives</param>
     /// <param name="upgrade">to what upgrade</param>
     public void AddUpgrade(int upgradeID, int upgrade, float upgradedValue)
     {
@@ -97,7 +97,7 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// returns sprites for updates 0 - gum, 1 - energy barr, 2 - shield, 3 - jump, 4 - speed, 5 - lives
+    /// returns sprites for upgrades 0 - gum, 1 - energy bar, 2 - shield, 3 - jump, 4 - speed, 5 - lives
     /// </summary>
     /// <returns></returns>
     public int[] ReturnUpgrade()
@@ -106,7 +106,7 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// returns boosts duration 0 - gum, 1 - energy barr, 2 - shield
+    /// returns boosts duration 0 - gum, 1 - energy bar, 2 - shield
     /// </summary>
     /// <returns></returns>
     public float[] ReturnBoostsDuration()

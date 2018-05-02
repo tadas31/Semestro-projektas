@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public static float TEST = 30;
+
     public static Rigidbody2D rdbd;
 
     public float maxSpeed;   // Max player movement speed, used to limit its velocity
@@ -51,11 +53,11 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
-        {
-            Debug.Log("Space");
-            Jump();
-        }
+        //if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
+        //{
+        //    Debug.Log("Space");
+        //    Jump();
+        //}
         if (isClimbing && Input.GetKeyDown(KeyCode.Space))
         {
             RopeJump();
@@ -76,7 +78,7 @@ public class PlayerMovement : MonoBehaviour {
         if(rdbd.velocity.magnitude > maxSpeed)               // Limiting player movements speed
         {
             rdbd.velocity = Vector2.ClampMagnitude(rdbd.velocity, maxSpeed);
-        }
+        }            
 
         if (!cameraMovement.moveCamera)
         {
@@ -96,7 +98,9 @@ public class PlayerMovement : MonoBehaviour {
             dead = true;
         else
             dead = false;
-        //transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0f);
+
+        if (isGrounded())
+            rdbd.drag = drag;
     }
 
     /// <summary>
@@ -125,28 +129,57 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public bool isGrounded()
-    {
+    {       
         return grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
     private void FixedUpdate()
     {
-        
-            dir = jsMovement.InputDirection;
-            dirAir = dir;
+
+        if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
+        {
+            Debug.Log("Space");
+            Jump();
+        }
+
+
+
+        dir = jsMovement.InputDirection;
+        dirAir = dir;
 
         if (!GumScript.canFloat)
         {
             if (!cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
             {
+                //if (isGrounded())
+                //{
+                //    rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
+                //    rdbd.drag = drag;                    // To reduce sliding
+                //}
+                //else
+                //{
+                //    rdbd.velocity += new Vector2(dir.x / moveSpeedJ * 0.2f, 0);
+                //    rdbd.drag = 0;
+                //}
+
                 if (isGrounded())
                 {
-                    rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-                    rdbd.drag = drag;                    // To reduce sliding
+                    if (dir.x > 0)
+                    {
+                        dir.x = 1;
+                        rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
+                        rdbd.drag = drag;        // To reduce sliding
+                    }
+                    else if(dir.x < 0)
+                    {
+                        dir.x = -1;
+                        rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
+                        rdbd.drag = drag;        // To reduce sliding
+                    }
                 }
                 else
                 {
-                    rdbd.velocity += new Vector2(dir.x / moveSpeedJ * 0.2f, 0);
+                    rdbd.velocity += new Vector2(dir.x * 0.2f, 0);
                     rdbd.drag = 0;
                 }
 
@@ -300,9 +333,10 @@ public class PlayerMovement : MonoBehaviour {
     /// Player moves on a ladder
     /// </summary>
     public static void MovementOnTheLadder()
-    {      
+    {
         //rdbd.velocity = Vector2.zero;
-        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ);
+        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ * 0.5f);
+        //rdbd.velocity += new Vector2(dir.x , dir.y );
         //rdbd.velocity += new Vector2(dir.x / moveSpeedJ, dir.y / moveSpeedJ);
     }
 
