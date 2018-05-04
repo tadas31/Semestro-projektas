@@ -24,6 +24,9 @@ public class Shop : MonoBehaviour {
     private Button speedUpgrade;
     private Button livesUpgrade;
 
+    public static bool gumActive;
+    public static bool energyBarActive;
+    public static bool shieldActive;
     public static bool jumpActive;
     public static bool speedActive;
     public static bool livesActive;
@@ -32,6 +35,9 @@ public class Shop : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        gumActive = true;
+        energyBarActive = true;
+        shieldActive = true;
         jumpActive = false;
         speedActive = false;
         livesActive = false;
@@ -93,6 +99,7 @@ public class Shop : MonoBehaviour {
         gumUpgradePopup.gameObject.SetActive(true);
         jumpUpgradePopup.gameObject.SetActive(false);
         jumpActive = false;
+        gumActive = true;
     }
 
     /// <summary>
@@ -103,6 +110,7 @@ public class Shop : MonoBehaviour {
         energyBarUpgradePopup.gameObject.SetActive(true);
         speedUpgradePopup.gameObject.SetActive(false);
         speedActive = false;
+        energyBarActive = true;
     }
 
     /// <summary>
@@ -113,6 +121,7 @@ public class Shop : MonoBehaviour {
         shieldUpgradePopup.gameObject.SetActive(true);
         livesUpgradePopup.gameObject.SetActive(false);
         livesActive = false;
+        shieldActive = true;
     }
 
     /// <summary>
@@ -123,6 +132,7 @@ public class Shop : MonoBehaviour {
         jumpUpgradePopup.gameObject.SetActive(true);
         gumUpgradePopup.gameObject.SetActive(false);
         jumpActive = true;
+        gumActive = false;
     }
 
     /// <summary>
@@ -133,6 +143,7 @@ public class Shop : MonoBehaviour {
         speedUpgradePopup.gameObject.SetActive(true);
         energyBarUpgradePopup.gameObject.SetActive(false);
         speedActive = true;
+        energyBarActive = false;
     }
 
     /// <summary>
@@ -143,5 +154,6 @@ public class Shop : MonoBehaviour {
         livesUpgradePopup.gameObject.SetActive(true);
         shieldUpgradePopup.gameObject.SetActive(false);
         livesActive = true;
+        shieldActive = false;
     }
 }

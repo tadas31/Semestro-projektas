@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour {
         informationPopUp = GameObject.Find("InformationPopUp");
         informationPopUp.SetActive(false);
 
-        candyCount = GameObject.Find("ManiMenuCandy").GetComponentInChildren<Text>();
+        candyCount = GameObject.Find("MainMenuCandy").GetComponentInChildren<Text>();
 
         confirmation = GameObject.Find("Confirmation");
         confirmation.SetActive(false);
@@ -65,8 +65,8 @@ public class MainMenu : MonoBehaviour {
         //close settings
         if (settingsPopUp.active == true)
         {
-            //int id = Input.GetTouch(0).fingerId;
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) 
+            int id = Input.GetTouch(0).fingerId;
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id)) 
                 TaskOnSettingsExitClick();
 
             SaveManager.Instance.SetMute(mute.isOn);
