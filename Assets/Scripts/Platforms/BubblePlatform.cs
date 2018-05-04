@@ -5,9 +5,10 @@ using UnityEngine;
 public class BubblePlatform : MonoBehaviour {
 
     public Animator animator;
+    public bool end;
 
     public static bool isPoped;
-    public static bool active = true;
+    public static bool active = false;
 
     public Rigidbody2D rdbd;
 
@@ -21,8 +22,10 @@ public class BubblePlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        animator.SetBool("Pop", isPoped);
-        GetComponent<Collider2D>().enabled = active;
+        //animator.SetBool("Pop", isPoped);
+        //GetComponent<Collider2D>().enabled = active;
+        //animator.SetBool("Pop", isPoped);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,10 +34,19 @@ public class BubblePlatform : MonoBehaviour {
         {
             rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
             rdbd.AddForce(new Vector2(0, height));
-            isPoped = true;
-            active = false;           
+            gameObject.GetComponent<BubblePlatform>().Pop();
+                      
         }
     }
 
+    private void Pop()
+    {
+        Debug.Log("sdAdsadasdas");
+        gameObject.GetComponent<Animator>().Play("BubblePlatform_Pop");
+        
+        isPoped = true;
+        active = false;
+        GetComponent<Collider2D>().enabled = false;
+    }
 
 }
