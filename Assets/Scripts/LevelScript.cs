@@ -59,7 +59,7 @@ public class LevelScript : MonoBehaviour {
     public static GameObject pos3;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         //restart
         respawnInGame = GameObject.Find("RespawnInGame").GetComponent<Button>();
 
@@ -125,7 +125,7 @@ public class LevelScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-        void Update () {
+    void Update() {
 
         respawnInGame.onClick.RemoveAllListeners();
         respawnInGame.onClick.AddListener(TaskOnRespawnClick);
@@ -151,28 +151,31 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnDeath()
     {
-        //sets game over popup active and gets buttons
-        respawnInGame.interactable = false;
-        pause.interactable = false;
-        jumButton.interactable = false;
-        canMove = false;
+        if (finishPopup.active = false)
+        {
+            //sets game over popup active and gets buttons
+            respawnInGame.interactable = false;
+            pause.interactable = false;
+            jumButton.interactable = false;
+            canMove = false;
 
-        gameOverPopup.SetActive(true);
-        respawn = GameObject.Find("Respawn").GetComponent<Button>();
-        restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
-        backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+            gameOverPopup.SetActive(true);
+            respawn = GameObject.Find("Respawn").GetComponent<Button>();
+            restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
+            backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
 
-        //restart
-        respawn.onClick.RemoveAllListeners();
-        respawn.onClick.AddListener(TaskOnRespawnClick);
+            //restart
+            respawn.onClick.RemoveAllListeners();
+            respawn.onClick.AddListener(TaskOnRespawnClick);
 
-        restartWithText.onClick.RemoveAllListeners();
-        restartWithText.onClick.AddListener(TaskOnRestartClick);
+            restartWithText.onClick.RemoveAllListeners();
+            restartWithText.onClick.AddListener(TaskOnRestartClick);
 
-        //back to menu
-        backToMenuWithText.onClick.RemoveAllListeners();
-        backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
-        FindObjectOfType<AudioManager>().Play("Death");
+            //back to menu
+            backToMenuWithText.onClick.RemoveAllListeners();
+            backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+            FindObjectOfType<AudioManager>().Play("Death");
+        }
     }
 
     /// <summary>
@@ -273,7 +276,7 @@ public class LevelScript : MonoBehaviour {
     public static void OnFinish()
     {
         //adds colected candy to owned candy
-        
+
 
         SaveManager.Instance.AddCandy(CharacterScript.getCandyCount());
 
@@ -329,5 +332,9 @@ public class LevelScript : MonoBehaviour {
     {
         startPos = set;
     }
-
+    public void RemoveButton()
+    {
+        Debug.Log("Paspaudei");
+        GameObject.Find("Introduction").SetActive(false);
+    }
 }
