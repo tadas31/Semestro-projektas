@@ -24,7 +24,7 @@ public class BubblePlatform : MonoBehaviour {
 	void Update () {
         //animator.SetBool("Pop", isPoped);
         //GetComponent<Collider2D>().enabled = active;
-        //animator.SetBool("Pop", isPoped);
+        animator.SetBool("Pop", isPoped);
         
     }
 
@@ -33,7 +33,7 @@ public class BubblePlatform : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
-            rdbd.AddForce(new Vector2(0, height));
+            //rdbd.AddForce(new Vector2(0, height));
             gameObject.GetComponent<BubblePlatform>().Pop();
                       
         }
@@ -42,7 +42,7 @@ public class BubblePlatform : MonoBehaviour {
     private void Pop()
     {
         Debug.Log("sdAdsadasdas");
-        gameObject.GetComponent<Animator>().Play("BubblePlatform_Pop");
+        //gameObject.GetComponent<Animator>().Play("BubblePlatform_Pop");
         
         isPoped = true;
         active = false;
