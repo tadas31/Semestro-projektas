@@ -59,7 +59,7 @@ public class LevelScript : MonoBehaviour {
     public static GameObject pos3;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         //restart
         respawnInGame = GameObject.Find("RespawnInGame").GetComponent<Button>();
 
@@ -125,7 +125,7 @@ public class LevelScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-        void Update () {
+    void Update() {
 
         respawnInGame.onClick.RemoveAllListeners();
         respawnInGame.onClick.AddListener(TaskOnRespawnClick);
@@ -276,7 +276,7 @@ public class LevelScript : MonoBehaviour {
     public static void OnFinish()
     {
         //adds colected candy to owned candy
-        
+
 
         SaveManager.Instance.AddCandy(CharacterScript.getCandyCount());
 
@@ -332,5 +332,9 @@ public class LevelScript : MonoBehaviour {
     {
         startPos = set;
     }
-
+    public void RemoveButton()
+    {
+        Debug.Log("Paspaudei");
+        GameObject.Find("Introduction").SetActive(false);
+    }
 }
