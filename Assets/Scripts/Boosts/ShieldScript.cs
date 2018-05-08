@@ -13,7 +13,6 @@ public class ShieldScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         time = SaveManager.Instance.ReturnBoostsDuration()[2];
-        LevelScript.shieldTimer.maxValue = time;
         shield = GameObject.Find("ShieldBouble");
         shield.SetActive(false);
        

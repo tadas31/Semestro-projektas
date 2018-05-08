@@ -17,7 +17,6 @@ public class GumScript : MonoBehaviour
     void Start()
     {
         time = SaveManager.Instance.ReturnBoostsDuration()[0];
-        LevelScript.gumTimer.maxValue = time;
         canFloat = false;
         gum = GameObject.Find("GumBouble");
         gum.SetActive(false);
