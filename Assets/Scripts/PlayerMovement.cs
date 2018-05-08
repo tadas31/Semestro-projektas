@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour {
         rdbd.transform.localScale = theScale;
     }
 
+    
     void Jump()
     {
         rdbd.AddForce(new Vector2(0, jumpHeight));

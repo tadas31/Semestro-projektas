@@ -11,7 +11,10 @@ public class CharacterScript : MonoBehaviour
     public float forceMultiplier;
 
     private Text candyCount;
+    private Text platformCount;
+    private Text platformCountText;
     private static int counter = 0;
+    private int countPlat;
 
     // STATS
     public static float lives;
@@ -31,6 +34,9 @@ public class CharacterScript : MonoBehaviour
     {
         rdbd = GetComponent<Rigidbody2D>();
         candyCount = GameObject.Find("CandyCount").GetComponent<Text>();
+        platformCount = GameObject.Find("PlatformCount").GetComponent<Text>();
+        platformCountText = GameObject.Find("PlatLeft").GetComponent<Text>();
+        platformCount.text = PlatformScript.stoppableCount.ToString();
         counter = 0;
         lives = SaveManager.Instance.ReturnCharacterStats()[2];
 
@@ -39,7 +45,13 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        countPlat = PlatformScript.stoppableCount - PlatformScript.stoppedCount;
+        platformCount.text = countPlat.ToString();
+        if (!cameraMovement.moveCamera)
+        {
+            platformCount.enabled = false;
+            platformCountText.enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

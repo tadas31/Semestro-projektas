@@ -43,6 +43,5 @@ public class AudioManager : MonoBehaviour {
     public void Update()
     {
         AudioListener.pause = SaveManager.Instance.ReturnMute();
-            AudioListener.pause = SaveManager.Instance.ReturnMute();
     }
 }
