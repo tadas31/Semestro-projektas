@@ -44,7 +44,13 @@ public class cameraMovement : MonoBehaviour {
                 transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
             else
                 transform.position = new Vector3(endBoundary.transform.position.x - 2f, startPos.y, -10);
-
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                // Get movement of the finger since last frame
+                Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+                // Move object across X plane
+                transform.Translate(new Vector2(-touchDeltaPosition.x/(Screen.width /8), 0));
+            }
         }
         else 
             transform.position = new Vector3(player.transform.position.x + offset.x, startPos.y, startPos.z);  // Resets camera position
