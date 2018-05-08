@@ -14,7 +14,6 @@ public class EnergyBarScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         time = SaveManager.Instance.ReturnBoostsDuration()[1];
-        LevelScript.energyBarTimer.maxValue = time;
 
     }
 	

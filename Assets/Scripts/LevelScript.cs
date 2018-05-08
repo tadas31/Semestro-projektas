@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour {
+    private float time;
+
     //respawn in game button
     private static Button respawnInGame;
 
@@ -90,18 +92,24 @@ public class LevelScript : MonoBehaviour {
         energyBarButton = GameObject.Find("EnergyBarButton").GetComponent<Button>();
         energyBarTimer = GameObject.Find("EnergyBarTime").GetComponent<Slider>();
         energyBarButton.gameObject.SetActive(false);
+        time = SaveManager.Instance.ReturnBoostsDuration()[1];
+        energyBarTimer.maxValue = time;
         energyBarTimer.gameObject.SetActive(false);
 
         //gum
         gumButton = GameObject.Find("GumButton").GetComponent<Button>();
         gumTimer = GameObject.Find("GumTime").GetComponent<Slider>();
         gumButton.gameObject.SetActive(false);
+        time = SaveManager.Instance.ReturnBoostsDuration()[0];
+        gumTimer.maxValue = time;
         gumTimer.gameObject.SetActive(false);
 
         //shield
         shieldButton = GameObject.Find("ShieldButton").GetComponent<Button>();
         shieldTimer = GameObject.Find("ShieldTime").GetComponent<Slider>();
         shieldButton.gameObject.SetActive(false);
+        time = SaveManager.Instance.ReturnBoostsDuration()[2];
+        shieldTimer.maxValue = time;
         shieldTimer.gameObject.SetActive(false);
 
         //inventory
@@ -217,7 +225,7 @@ public class LevelScript : MonoBehaviour {
     static void TaskOnRespawnClick()
     {
         CharacterScript.rdbd.transform.position = startPos;
-        CharacterScript.lives = 3;
+        CharacterScript.lives = SaveManager.Instance.ReturnCharacterStats()[2];
         gameOverPopup.SetActive(false);
         respawnInGame.interactable = true;
         pause.interactable = true;
