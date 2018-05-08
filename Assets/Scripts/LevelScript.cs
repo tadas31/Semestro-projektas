@@ -151,28 +151,31 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnDeath()
     {
-        //sets game over popup active and gets buttons
-        respawnInGame.interactable = false;
-        pause.interactable = false;
-        jumButton.interactable = false;
-        canMove = false;
+        if (finishPopup.active = false)
+        {
+            //sets game over popup active and gets buttons
+            respawnInGame.interactable = false;
+            pause.interactable = false;
+            jumButton.interactable = false;
+            canMove = false;
 
-        gameOverPopup.SetActive(true);
-        respawn = GameObject.Find("Respawn").GetComponent<Button>();
-        restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
-        backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+            gameOverPopup.SetActive(true);
+            respawn = GameObject.Find("Respawn").GetComponent<Button>();
+            restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
+            backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
 
-        //restart
-        respawn.onClick.RemoveAllListeners();
-        respawn.onClick.AddListener(TaskOnRespawnClick);
+            //restart
+            respawn.onClick.RemoveAllListeners();
+            respawn.onClick.AddListener(TaskOnRespawnClick);
 
-        restartWithText.onClick.RemoveAllListeners();
-        restartWithText.onClick.AddListener(TaskOnRestartClick);
+            restartWithText.onClick.RemoveAllListeners();
+            restartWithText.onClick.AddListener(TaskOnRestartClick);
 
-        //back to menu
-        backToMenuWithText.onClick.RemoveAllListeners();
-        backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
-        FindObjectOfType<AudioManager>().Play("Death");
+            //back to menu
+            backToMenuWithText.onClick.RemoveAllListeners();
+            backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
+            FindObjectOfType<AudioManager>().Play("Death");
+        }
     }
 
     /// <summary>
