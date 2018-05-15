@@ -12,7 +12,8 @@ public class LevelScript : MonoBehaviour {
 
     //pause
     private static Button pause;
-    private GameObject pausePopup;
+    private static Button unpause;
+    private static GameObject pausePopup;
 
     //home
     private Button home;
@@ -127,18 +128,15 @@ public class LevelScript : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        //respawn
         respawnInGame.onClick.RemoveAllListeners();
         respawnInGame.onClick.AddListener(TaskOnRespawnClick);
 
+        //pause
         pause.onClick.RemoveAllListeners();
-        pause.onClick.AddListener(TaskOnPauseClick);
+        pause.onClick.AddListener(OnPause);
 
-        if (pausePopup.active == true)
-        {
-            home.onClick.RemoveAllListeners();
-            home.onClick.AddListener(TaskOnHomeClick);
-        }
-
+        //done stoping platforms
         done.onClick.RemoveAllListeners();
         done.onClick.AddListener(TaskOnDoneClick);
 
@@ -164,10 +162,11 @@ public class LevelScript : MonoBehaviour {
             restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
             backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
 
-            //restart
+            //respawn
             respawn.onClick.RemoveAllListeners();
             respawn.onClick.AddListener(TaskOnRespawnClick);
-
+            
+            //restart
             restartWithText.onClick.RemoveAllListeners();
             restartWithText.onClick.AddListener(TaskOnRestartClick);
 
@@ -179,30 +178,73 @@ public class LevelScript : MonoBehaviour {
     }
 
     /// <summary>
-    /// pause game
+    /// pause menu
     /// </summary>
-    void TaskOnPauseClick()
+    void OnPause()
     {
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
             pausePopup.SetActive(true);
-            home = GameObject.Find("Home").GetComponent<Button>();
+            respawnInGame.interactable = false;
+            canMove = false;
+
+            respawn = GameObject.Find("Respawn").GetComponent<Button>();
+            restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
+            backToMenuWithText = GameObject.Find("BackToMenuWithText").GetComponent<Button>();
+            unpause = GameObject.Find("Unpause").GetComponent<Button>();
+
+            //back to menu
+            backToMenuWithText.onClick.RemoveAllListeners();
+            backToMenuWithText.onClick.AddListener(TaskOnHomeClick);
+
+            //restart level
+            restartWithText.onClick.RemoveAllListeners();
+            restartWithText.onClick.AddListener(TaskOnRestartClick);
+
+            //respawn
+            respawn.onClick.RemoveAllListeners();
+            respawn.onClick.AddListener(TaskOnRespawnClick);
+
+            //unpause
+            unpause.onClick.RemoveAllListeners();
+            unpause.onClick.AddListener(TaskOnUnpauseClick);
         }
+
         else
         {
+            respawnInGame.interactable = true;
+            canMove = true;
             pausePopup.SetActive(false);
             Time.timeScale = 1;
         }
-        FindObjectOfType<AudioManager>().Play("Button_press");
     }
+
+    /// <summary>
+    /// unpauses game
+    /// </summary>
+    void TaskOnUnpauseClick()
+    {
+        respawnInGame.interactable = true;
+        canMove = true;
+        pausePopup.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    
+
+
+
+
+
+
 
     /// <summary>
     /// takes user to level selection menu
     /// </summary>
     void TaskOnHomeClick()
     {
-        LevelManager.Instance.menuFocus = 0;
+        LevelManager.Instance.menuFocus = 1;
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
         FindObjectOfType<AudioManager>().Play("Button_press");
@@ -229,7 +271,7 @@ public class LevelScript : MonoBehaviour {
     {
         CharacterScript.rdbd.transform.position = startPos;
         CharacterScript.lives = SaveManager.Instance.ReturnCharacterStats()[2];
-        gameOverPopup.SetActive(false);
+        
         respawnInGame.interactable = true;
         pause.interactable = true;
         jumButton.interactable = true;
@@ -237,6 +279,15 @@ public class LevelScript : MonoBehaviour {
         BubblePlatform.active = true;
         BubblePlatform.isPoped = false;
         FindObjectOfType<AudioManager>().Play("Button_press");
+
+        if (pausePopup.active == true)
+        {
+            Time.timeScale = 1;
+            pausePopup.SetActive(false);
+        }
+
+        if (gameOverPopup.active == true)
+            gameOverPopup.SetActive(false);
     }
 
     /// <summary>
