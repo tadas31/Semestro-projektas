@@ -13,5 +13,4 @@ Nusokimas nuo virves
 Galima mirti pabaigus zaidima
 Sutvarkyti ciuozyne taip kad kolaideri uzdeti ant galo ir spjautu pagal ta jega
 single toneri naudoti vietoj tagu
-Kad jei stovi sale spigliu ir ijungi shielda apsauga padaro damago
 Kai bubble sproksta tai visos kartu sproksta(Karolis durnas)

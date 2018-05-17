@@ -13,39 +13,30 @@ public class BubblePlatform : MonoBehaviour {
     public Rigidbody2D rdbd;
 
     public float height;
-    GameObject[] BubblePlatforms;
 
     // Use this for initialization
     void Start () {
-        BubblePlatforms = GameObject.FindGameObjectsWithTag("BubblePlatform");
+        isPoped = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //animator.SetBool("Pop", isPoped);
-        //GetComponent<Collider2D>().enabled = active;
-        animator.SetBool("Pop", isPoped);
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
-        {
-            rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
-            //rdbd.AddForce(new Vector2(0, height));
-            gameObject.GetComponent<BubblePlatform>().Pop();
-                      
+        {            
+            gameObject.GetComponent<BubblePlatform>().StartCoroutine(ShowAndHide());
         }
     }
 
-    private void Pop()
+    IEnumerator ShowAndHide()
     {
-        Debug.Log("sdAdsadasdas");
-        //gameObject.GetComponent<Animator>().Play("BubblePlatform_Pop");
-        
         isPoped = true;
-        active = false;
+        yield return new WaitForSeconds(0.3f);
+        gameObject.GetComponent<Animator>().Play("BubblePlatform_Pop");
         GetComponent<Collider2D>().enabled = false;
     }
 

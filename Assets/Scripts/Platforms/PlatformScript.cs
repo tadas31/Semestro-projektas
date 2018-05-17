@@ -20,16 +20,13 @@ public class PlatformScript : MonoBehaviour
     public static int stoppedCount;
     public static int stoppableCount;
 
-    GameObject[] fadingPlatform;
+    
     GameObject[] stoppablePlat;
     GameObject[] stoppablePlatSpin;
-    float disapear;
+    
     // Use this for initialization
     void Start()
     {
-
-        fadingPlatform = GameObject.FindGameObjectsWithTag("FadingGround");
-        disapear = 2.9f;
         x = transform.position.x;
         y = transform.position.y;
         stoppedCount = 0;
@@ -49,31 +46,12 @@ public class PlatformScript : MonoBehaviour
     {
 
         Movement();
-
-        disapear -= Time.deltaTime;
-
-        if (disapear <= 0.0f)
-        {
-            StartCoroutine(ShowAndHide());
-            disapear = 2.9f;
-        }
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             StopPlatform();
         }
         Debug.Log(stoppedCount);
-    }
-
-
-    IEnumerator ShowAndHide()
-    {
-        foreach (var platform in fadingPlatform)
-            platform.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(2.05f);
-        foreach (var platform in fadingPlatform)
-            platform.GetComponent<Collider2D>().enabled = true;
-        disapear = 2.9f;
     }
 
     private void Movement()

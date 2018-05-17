@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class LevelScript : MonoBehaviour {
     private float time;
 
+    //bubble platforms
+    static GameObject[] BubblePlatforms;
+
     //respawn in game button
     private static Button respawnInGame;
 
@@ -231,13 +234,6 @@ public class LevelScript : MonoBehaviour {
         Time.timeScale = 1;
     }
 
-    
-
-
-
-
-
-
 
     /// <summary>
     /// takes user to level selection menu
@@ -276,8 +272,6 @@ public class LevelScript : MonoBehaviour {
         pause.interactable = true;
         jumButton.interactable = true;
         canMove = true;
-        BubblePlatform.active = true;
-        BubblePlatform.isPoped = false;
         FindObjectOfType<AudioManager>().Play("Button_press");
 
         if (pausePopup.active == true)
@@ -288,7 +282,35 @@ public class LevelScript : MonoBehaviour {
 
         if (gameOverPopup.active == true)
             gameOverPopup.SetActive(false);
+
+        Debug.Log("wtfffff   " + BubblePlatform.isPoped);
+        if (BubblePlatform.isPoped)
+        {
+            
+            BubblePlatforms = GameObject.FindGameObjectsWithTag("BubblePlatform");
+            Debug.Log("wtfffff  " + BubblePlatforms.Length);
+            for (int i = 0; i < BubblePlatforms.Length; i++)
+            {
+                BubblePlatforms[i].GetComponent<Animator>().Play("BubblePlatform_Idle");
+                BubblePlatforms[i].GetComponent<Collider2D>().enabled = true;
+            }
+                
+                
+
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// <summary>
     /// takes user to main menu
