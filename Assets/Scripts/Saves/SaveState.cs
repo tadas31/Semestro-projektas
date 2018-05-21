@@ -2,7 +2,7 @@
 
 public class SaveState
 {
-    public int candy = 0;
+    public int candy = 49;
     public int completedLevels = 1;
     public bool mute = false;
     public int[] upgrades = { 0, 0, 0, 0, 0, 0 };

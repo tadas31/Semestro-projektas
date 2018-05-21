@@ -62,6 +62,7 @@ public class LevelScript : MonoBehaviour {
     public static GameObject pos2;
     public static GameObject pos3;
 
+
     // Use this for initialization
     void Start() {
         //restart
@@ -152,8 +153,8 @@ public class LevelScript : MonoBehaviour {
     /// </summary>
     public static void OnDeath()
     {
-        if (finishPopup.active = false)
-        {
+        //if (finishPopup.active = false)
+        //{
             //sets game over popup active and gets buttons
             respawnInGame.interactable = false;
             pause.interactable = false;
@@ -177,7 +178,7 @@ public class LevelScript : MonoBehaviour {
             backToMenuWithText.onClick.RemoveAllListeners();
             backToMenuWithText.onClick.AddListener(TaskOnBackToMenuWithTextClick);
             FindObjectOfType<AudioManager>().Play("Death");
-        }
+        //}
     }
 
     /// <summary>
@@ -191,6 +192,7 @@ public class LevelScript : MonoBehaviour {
             pausePopup.SetActive(true);
             respawnInGame.interactable = false;
             canMove = false;
+            
 
             respawn = GameObject.Find("Respawn").GetComponent<Button>();
             restartWithText = GameObject.Find("RestartWithText").GetComponent<Button>();
