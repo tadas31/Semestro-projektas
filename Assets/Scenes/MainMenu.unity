@@ -5672,6 +5672,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114819767504500126, guid: ff2cf63a51430e0429524d3f25833d2a,
+        type: 2}
+      propertyPath: m_Text
+      value: "Developers:\nTadas Kalvaitis\nGabrielius Ulejevas\nKarolis Ston\u010Dius\n\nContacts:\ntadkal1@ktu.lt\ngabule@ktu.lt\nkarsto@ktu.lt"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff2cf63a51430e0429524d3f25833d2a, type: 2}
   m_IsPrefabParent: 0
