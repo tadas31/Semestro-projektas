@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!GumScript.canFloat)
         {
-            if (!cameraMovement.moveCamera)  // Player can be moved when it's on the ground and when camera movement is false
+            if (!cameraMovement.moveCamera && !isClimbing)  // Player can be moved when it's on the ground and when camera movement is false
             {
                 //if (isGrounded())
                 //{
@@ -178,10 +178,11 @@ public class PlayerMovement : MonoBehaviour {
                         rdbd.drag = drag;        // To reduce sliding
                     }
                 }
-                else
+                else                             // How to act in the air
                 {
-                    rdbd.velocity += new Vector2(dir.x * 0.2f, 0);
-                    rdbd.drag = 0;
+                rdbd.velocity += new Vector2(dir.x * 0.2f, 0);
+                rdbd.drag = 0;
+
                 }
 
             }
@@ -336,7 +337,7 @@ public class PlayerMovement : MonoBehaviour {
     public static void MovementOnTheLadder()
     {
         //rdbd.velocity = Vector2.zero;
-        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ * 0.5f);
+        rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ *  0.5f);
         //rdbd.velocity += new Vector2(dir.x , dir.y );
         //rdbd.velocity += new Vector2(dir.x / moveSpeedJ, dir.y / moveSpeedJ);
     }
