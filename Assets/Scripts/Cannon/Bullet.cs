@@ -8,7 +8,16 @@ public class Bullet : MonoBehaviour {
     {
         if ((collision.gameObject.tag == "Player" || collision.gameObject.tag == "Damage_fatal") && gameObject.tag != "Bullet_harmless")
             Destroy(gameObject);
-        else        
-            gameObject.tag = "Bullet_harmless";       
+        else
+        {
+            gameObject.tag = "Bullet_harmless";
+            gameObject.GetComponent<Bullet>().StartCoroutine(BulletDisapear());
+        }
+    }
+
+    IEnumerator BulletDisapear()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

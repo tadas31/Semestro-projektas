@@ -158,7 +158,7 @@ public class UpgradesScript : MonoBehaviour
         if (SaveManager.Instance.ReturnUpgrade()[3] < fullyUpgraded && SaveManager.Instance.ReturnCandy() >= price)
         {
             UpgradesUI = GameObject.Find("JumpUpgrade").GetComponent<Image>();
-            float jump = SaveManager.Instance.ReturnCharacterStats()[0] + 10;
+            float jump = SaveManager.Instance.ReturnCharacterStats()[0] + 50;
             SaveManager.Instance.AddUpgrade(3, ++SaveManager.Instance.ReturnUpgrade()[3], jump);
             SaveManager.Instance.AddCandy(-price);
         }
@@ -174,8 +174,10 @@ public class UpgradesScript : MonoBehaviour
         if (SaveManager.Instance.ReturnUpgrade()[4] < fullyUpgraded && SaveManager.Instance.ReturnCandy() >= price)
         {
             UpgradesUI = GameObject.Find("SpeedUpgrade").GetComponent<Image>();
-            float jump = SaveManager.Instance.ReturnCharacterStats()[1] - 0.1f;
-            SaveManager.Instance.AddUpgrade(4, ++SaveManager.Instance.ReturnUpgrade()[4], jump);
+            float speed = SaveManager.Instance.ReturnCharacterStats()[1] - 0.2f;
+            float maxSpeed = SaveManager.Instance.ReturnCharacterStats()[3] + 0.5f;
+            SaveManager.Instance.AddUpgrade(4, ++SaveManager.Instance.ReturnUpgrade()[4], speed);
+            SaveManager.Instance.ChangeMaxSpeed(maxSpeed);
             SaveManager.Instance.AddCandy(-price);
         }
     }

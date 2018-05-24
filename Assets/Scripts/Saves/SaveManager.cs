@@ -84,7 +84,7 @@ public class SaveManager : MonoBehaviour
     /// <summary>
     /// upgrades boost or character
     /// </summary>
-    /// <param name="upgradeID">0 - gum, 1 - energy bar, 2 - shield, 3 - jump, 4 - speed, 5 - lives</param>
+    /// <param name="upgradeID">0 - gum, 1 - energy bar, 2 - shield, 3 - jump, 4 - speed, 5 - lives, 6 - speedlimit</param>
     /// <param name="upgrade">to what upgrade</param>
     public void AddUpgrade(int upgradeID, int upgrade, float upgradedValue)
     {
@@ -115,11 +115,16 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// returns characters stats 0 - jump, 1 - speed, 2 - lives
+    /// returns characters stats 0 - jump, 1 - speed, 2 - lives, 3 - speedlimit
     /// </summary>
     /// <returns></returns>
     public float[] ReturnCharacterStats()
     {
         return state.characterStats;
+    }
+
+    public void ChangeMaxSpeed(float maxSpeed)
+    {
+        state.characterStats[3] = maxSpeed;
     }
 }

@@ -324,7 +324,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4348583670620474}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4294960895
+    m_Bits: 4294959871
   Animator: {fileID: 95754508529402560}
 --- !u!114 &114062367061343390
 MonoBehaviour:

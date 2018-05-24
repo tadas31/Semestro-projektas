@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public static Rigidbody2D rdbd;
 
-    public float maxSpeed;   // Max player movement speed, used to limit its velocity
+    public static float maxSpeed;   // Max player movement speed, used to limit its velocity
     float maxSpeedx; //Max player movement speed, used to reset speed limits
     public static float moveSpeedJ; // Player movement speed
     public static float jumpHeight; 
@@ -43,9 +43,10 @@ public class PlayerMovement : MonoBehaviour {
     void Start () {
         moveSpeedJ = SaveManager.Instance.ReturnCharacterStats()[1];
         jumpHeight = SaveManager.Instance.ReturnCharacterStats()[0];
+        maxSpeed = SaveManager.Instance.ReturnCharacterStats()[3];
 
         rdbd = GetComponent<Rigidbody2D>();
-        Animator.SetBool("IsGrounded", true);      
+        Animator.SetBool("IsGrounded", true);
 
         maxSpeedx = maxSpeed;
 
@@ -58,15 +59,18 @@ public class PlayerMovement : MonoBehaviour {
         //    Debug.Log("Space");
         //    Jump();
         //}
+        Debug.Log("maxspeed " + maxSpeed);
+        Debug.Log("jump " + jumpHeight);
+        Debug.Log("move " + moveSpeedJ);
         if (isClimbing && Input.GetKeyDown(KeyCode.Space))
         {
             RopeJump();
         }
         LevelScript.jumButton.onClick.RemoveAllListeners();
-        if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
-        {
-            LevelScript.jumButton.onClick.AddListener(Jump);
-        }
+        //if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
+        //{
+        //    LevelScript.jumButton.onClick.AddListener(Jump);
+        //}
 
         if (isClimbing && Input.GetKeyDown(KeyCode.Space))
         {
@@ -115,7 +119,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     
-    void Jump()
+    public static void Jump()
     {
         rdbd.AddForce(new Vector2(0, jumpHeight));
         FindObjectOfType<AudioManager>().Play("Jump_sound");

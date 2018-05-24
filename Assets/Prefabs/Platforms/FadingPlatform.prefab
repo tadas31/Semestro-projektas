@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212347327486629442}
   - component: {fileID: 95180239655713280}
   - component: {fileID: 61891532762577620}
-  - component: {fileID: 114266766098438624}
   - component: {fileID: 114880190898634424}
   m_Layer: 0
   m_Name: FadingPlatform
@@ -87,22 +86,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114266766098438624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1471564089986030}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 472bc7074b40e3d4391ac61e61bf99dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  lenghtX: 0
-  lenghtY: 0
-  moveByX: 0
-  moveByY: 0
 --- !u!114 &114880190898634424
 MonoBehaviour:
   m_ObjectHideFlags: 1

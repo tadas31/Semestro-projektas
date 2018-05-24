@@ -10,7 +10,8 @@ public class EnergyBarScript : MonoBehaviour {
 
     private float boostedJump = 420.0f;
     private float boostedSpeed = 0.8f;
-
+    private float maxSpeed = 10f;
+    
 	// Use this for initialization
 	void Start () {
         time = SaveManager.Instance.ReturnBoostsDuration()[1];
@@ -34,6 +35,7 @@ public class EnergyBarScript : MonoBehaviour {
             LevelScript.energyBarTimer.gameObject.SetActive(false);
             PlayerMovement.moveSpeedJ = SaveManager.Instance.ReturnCharacterStats()[1];
             PlayerMovement.jumpHeight = SaveManager.Instance.ReturnCharacterStats()[0];
+            PlayerMovement.maxSpeed = SaveManager.Instance.ReturnCharacterStats()[3];
             time = SaveManager.Instance.ReturnBoostsDuration()[1];
         }
 
@@ -46,6 +48,7 @@ public class EnergyBarScript : MonoBehaviour {
     {
         PlayerMovement.moveSpeedJ = boostedSpeed;
         PlayerMovement.jumpHeight = boostedJump;
+        PlayerMovement.maxSpeed = maxSpeed;
         LevelScript.energyBarButton.gameObject.SetActive(false);
         LevelScript.energyBarTimer.gameObject.SetActive(true);
         ClearOutSlot();

@@ -21,6 +21,8 @@ public class CannonAI : MonoBehaviour {
     Quaternion lookAtRotation;
     float rotationSpeed = 10f;
 
+    public bool isBasic = false;
+
     // Use this for initialization
     void Start () {
         currHealth = maxHealth;
@@ -31,6 +33,9 @@ public class CannonAI : MonoBehaviour {
         RangeCheck();
 
         Tracking();
+
+        if (isBasic)
+            Attack();
     }
 
     void RangeCheck()
@@ -56,6 +61,8 @@ public class CannonAI : MonoBehaviour {
 
         }
     }
+
+    
 
     void Tracking()
     {
