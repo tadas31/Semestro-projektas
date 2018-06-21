@@ -95,6 +95,8 @@ public class PlayerMovement : MonoBehaviour {
 
             Animator.SetBool("IsGrounded", isGrounded());       // For jumping animation
             Animator.SetFloat("Speed", Mathf.Abs(dirAir.x));    // For running animation
+
+           
         }
 
         Animator.SetBool("Dead", dead);

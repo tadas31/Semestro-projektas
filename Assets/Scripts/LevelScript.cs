@@ -284,13 +284,11 @@ public class LevelScript : MonoBehaviour {
 
         if (gameOverPopup.active == true)
             gameOverPopup.SetActive(false);
-
-        Debug.Log("wtfffff   " + BubblePlatform.isPoped);
+        
         if (BubblePlatform.isPoped)
         {
             
             BubblePlatforms = GameObject.FindGameObjectsWithTag("BubblePlatform");
-            Debug.Log("wtfffff  " + BubblePlatforms.Length);
             for (int i = 0; i < BubblePlatforms.Length; i++)
             {
                 BubblePlatforms[i].GetComponent<Animator>().Play("BubblePlatform_Idle");
