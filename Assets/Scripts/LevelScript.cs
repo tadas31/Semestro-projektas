@@ -155,6 +155,9 @@ public class LevelScript : MonoBehaviour {
     {
         //if (finishPopup.active = false)
         //{
+
+            // play ads 
+            PlayAdScript.ShowAd();
             //sets game over popup active and gets buttons
             respawnInGame.interactable = false;
             pause.interactable = false;
