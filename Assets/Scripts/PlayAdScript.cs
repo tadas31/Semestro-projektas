@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class PlayAdScript : MonoBehaviour {
 
+    private static float lastTime = 0f;
 
     public static void ShowAd()
     {
-        if (Advertisement.IsReady())
+        if (Advertisement.IsReady() && ( Time.time - lastTime) >= 30)
         {
             Advertisement.Show("video", new ShowOptions() {resultCallback = HandleAdResult });
+            lastTime = Time.time;
         }
     }
 
