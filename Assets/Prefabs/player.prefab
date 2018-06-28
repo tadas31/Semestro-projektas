@@ -182,7 +182,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1589888813374918}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e3df92aa9d8fbca42a63149f358679cc, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -317,7 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6303103ef39e11246bba2c0e5301b85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 7
   drag: 5
   jsMovement: {fileID: 0}
   grounded: 0
