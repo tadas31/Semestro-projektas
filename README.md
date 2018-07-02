@@ -12,3 +12,5 @@ Nusokimas nuo virves
 Galima mirti pabaigus zaidima
 Sutvarkyti ciuozyne taip kad kolaideri uzdeti ant galo ir spjautu pagal ta jega
 single toneri naudoti vietoj tagu
+
+Canvas kazkas neveikia: jump mygtukas, back to menu mygtukas kai mirsti
