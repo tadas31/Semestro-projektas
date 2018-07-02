@@ -5675,7 +5675,11 @@ Prefab:
     - target: {fileID: 114819767504500126, guid: ff2cf63a51430e0429524d3f25833d2a,
         type: 2}
       propertyPath: m_Text
-      value: "Developers:\nTadas Kalvaitis\nGabrielius Ulejevas\nKarolis Ston\u010Dius\n\nContacts:\ntadkal1@ktu.lt\ngabule@ktu.lt\nkarsto@ktu.lt"
+      value: "Developers:\nTadas Kalvaitis\nGabrielius Ulejevas\nKarolis Ston\u010Dius\n\nContacts:\ngabkartad@gmail.com"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167832840950098, guid: ff2cf63a51430e0429524d3f25833d2a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff2cf63a51430e0429524d3f25833d2a, type: 2}
@@ -7102,7 +7106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -31.6}
+  m_AnchoredPosition: {x: 0, y: -31.599976}
   m_SizeDelta: {x: 1454.6, y: 220}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1973357112
