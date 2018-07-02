@@ -9,7 +9,6 @@ public class FallingZone : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             FallingPlatform.inZone = true;
-            //Debug.Log("yra");
         }
     }
 }

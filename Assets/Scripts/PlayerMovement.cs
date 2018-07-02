@@ -34,8 +34,6 @@ public class PlayerMovement : MonoBehaviour {
     bool facingRight = true;
     bool dead;
 
-    bool isPoped = false;
-
     static int ropeNodes;
     //FixedJoint2D fixedJoint;
 
@@ -54,23 +52,11 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
-        //{
-        //    Debug.Log("Space");
-        //    Jump();
-        //}
-        Debug.Log("maxspeed " + maxSpeed);
-        Debug.Log("jump " + jumpHeight);
-        Debug.Log("move " + moveSpeedJ);
         if (isClimbing && Input.GetKeyDown(KeyCode.Space))
         {
             RopeJump();
         }
         LevelScript.jumButton.onClick.RemoveAllListeners();
-        //if (isGrounded() && !cameraMovement.moveCamera)              // Player jumps when screen button is pressed
-        //{
-        //    LevelScript.jumButton.onClick.AddListener(Jump);
-        //}
 
         if (isClimbing && Input.GetKeyDown(KeyCode.Space))
         {
@@ -145,7 +131,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space)) // Player jumps when SPACE keyboard button is pressed
         {
-            Debug.Log("Space");
             Jump();
         }
 
@@ -158,17 +143,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (!cameraMovement.moveCamera && !isClimbing)  // Player can be moved when it's on the ground and when camera movement is false
             {
-                //if (isGrounded())
-                //{
-                //    rdbd.velocity += new Vector2(dir.x / moveSpeedJ, 0);
-                //    rdbd.drag = drag;                    // To reduce sliding
-                //}
-                //else
-                //{
-                //    rdbd.velocity += new Vector2(dir.x / moveSpeedJ * 0.2f, 0);
-                //    rdbd.drag = 0;
-                //}
-
                 if (isGrounded())
                 {
                     if (dir.x > 0)
@@ -226,8 +200,6 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     private void TrampolineBounce(float height)
     {
-        Debug.Log("Heigth " + height);
-        Debug.Log(rdbd.velocity.y);
         rdbd.velocity += new Vector2(0, -rdbd.velocity.y);
         rdbd.AddForce(new Vector2(0, height));
     }
@@ -281,7 +253,6 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.gameObject.tag == "Falling_zone")
         {
             FallingPlatform.inZone = true;
-            Debug.Log("yra");
         }
         if (collision.gameObject.tag == "Rope")
         {

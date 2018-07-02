@@ -17,7 +17,6 @@ public class CannonAI : MonoBehaviour {
     public Transform shootPoint;
 
     public GameObject trackTarget;
-    Vector2 lastKnownPosition = Vector2.zero;
     Quaternion lookAtRotation;
     float rotationSpeed = 10f;
 

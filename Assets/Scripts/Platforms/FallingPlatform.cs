@@ -21,7 +21,6 @@ public class FallingPlatform : MonoBehaviour {
         {
             spikes.constraints = RigidbodyConstraints2D.None;
         }
-        Debug.Log(LevelScript.canMove);
         if (Input.GetMouseButtonDown(0) && cameraMovement.moveCamera)
             RemoveSpike();   
     }

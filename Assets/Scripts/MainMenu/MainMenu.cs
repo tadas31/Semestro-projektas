@@ -63,7 +63,7 @@ public class MainMenu : MonoBehaviour {
         settings.onClick.AddListener(TaskOnSettingsClick);
 
         //close settings
-        if (settingsPopUp.active == true)
+        if (settingsPopUp.activeSelf)
         {
             int id = Input.GetTouch(0).fingerId;
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id)) 
@@ -79,7 +79,7 @@ public class MainMenu : MonoBehaviour {
             
         }
 
-        if (confirmation.active == true)
+        if (confirmation.activeSelf)
         {
             yes.onClick.RemoveAllListeners();
             yes.onClick.AddListener(TaskOnYesClick);
@@ -92,7 +92,7 @@ public class MainMenu : MonoBehaviour {
         Information.onClick.AddListener(TaskOnInformationClick);
 
         //close information
-        if (informationPopUp.active == true)
+        if (informationPopUp.activeSelf)
         {
             int id = Input.GetTouch(0).fingerId;
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject(id))
@@ -115,13 +115,11 @@ public class MainMenu : MonoBehaviour {
         Information.interactable = false;
         shop.interactable = false;
 
-        settingsPopUp.active = true;
+        settingsPopUp.SetActive(true);
         settingsExit = GameObject.Find("settingsExit").GetComponent<Button>();
         resetGame = GameObject.Find("ResetGame").GetComponent<Button>();
         mute = GameObject.Find("Mute").GetComponent<Toggle>();
         mute.isOn = SaveManager.Instance.ReturnMute();
-
-        // muteString = mute.ToString();
 
         FindObjectOfType<AudioManager>().Play("Button_press");
     }
@@ -131,7 +129,7 @@ public class MainMenu : MonoBehaviour {
     /// </summary>
     public void TaskOnSettingsExitClick()
     {
-        settingsPopUp.active = false;
+        settingsPopUp.SetActive(false);
 
         levelSelection.interactable = true;
         settings.interactable = true;

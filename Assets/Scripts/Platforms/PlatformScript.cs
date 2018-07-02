@@ -36,9 +36,6 @@ public class PlatformScript : MonoBehaviour
 
         stoppablePlatSpin = GameObject.FindGameObjectsWithTag("SpinningPlatform");
         stoppableCount = stoppablePlat.Length + stoppablePlatSpin.Length;
-
-
-        Debug.Log(stoppableCount);
     }
 
     // Update is called once per frame
@@ -51,7 +48,6 @@ public class PlatformScript : MonoBehaviour
         {
             StopPlatform();
         }
-        Debug.Log(stoppedCount);
     }
 
     private void Movement()

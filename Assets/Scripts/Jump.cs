@@ -15,8 +15,8 @@ public class Jump : MonoBehaviour, IPointerDownHandler
     {
         return grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
+    
 
-    bool _pressed = false;
     public void OnPointerDown(PointerEventData eventData)
     {
         if (isGrounded() && !cameraMovement.moveCamera && LevelScript.canMove)              // Player jumps when screen button is pressed

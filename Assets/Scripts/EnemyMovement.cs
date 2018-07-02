@@ -9,8 +9,6 @@ public class EnemyMovement : MonoBehaviour {
     public float maxSpeed;
     float time;
 
-    Transform LeftWayPoint, RightWayPoint;
-
     bool facingRight = true;
     public static bool stunned = false;
     public bool stunnedAnim = false;
@@ -19,8 +17,6 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rdbd = GetComponent<Rigidbody2D>();
-        LeftWayPoint = GameObject.Find("LeftWayPoint").GetComponent<Transform>();
-        RightWayPoint = GameObject.Find("RightWayPoint").GetComponent<Transform>();
         time = 5.0f;
     }
 
@@ -50,10 +46,8 @@ public class EnemyMovement : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "RightWayPoint" && facingRight)
         {
-            Debug.Log("RightWayPoint");
             Flip();
         }
         if (collision.gameObject.tag == "LeftWayPoint" && !facingRight)

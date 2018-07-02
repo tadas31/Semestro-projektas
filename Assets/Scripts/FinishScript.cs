@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class FinishScript : MonoBehaviour {
 
-
-    GameObject Finish;
 	// Use this for initialization
 	void Start () {
-        Finish = GameObject.Find("GameOverPopup");
 	}
 	
 	// Update is called once per frame

@@ -677,11 +677,13 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: df333848-bbba-4cf4-a739-28693f360181
-  projectName: game
+  projectName: Candy Overdose
   organizationId: griebia
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

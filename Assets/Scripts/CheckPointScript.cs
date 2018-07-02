@@ -32,7 +32,6 @@ public class CheckPointScript : MonoBehaviour {
     {
         // Tell the animation controller about our 
         // recent triggering
-        //GetComponent<Animator>().SetTrigger("Triggered");
         LevelScript.SetRespawnPosition(transform.position);
         FindObjectOfType<AudioManager>().Play("Checkpoint");
         triggered = true;
