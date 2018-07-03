@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour {
+
+    //prevents user from stopping platforms if ist tutorial
+    public static bool canStopPlatforms;           
+
     private float time;
 
     //bubble platforms
@@ -127,6 +131,13 @@ public class LevelScript : MonoBehaviour {
         pos1.SetActive(false);
         pos2.SetActive(false);
         pos3.SetActive(false);
+
+
+        if (SceneManager.GetActiveScene().name.Equals("0"))
+            canStopPlatforms = false;
+        else
+            canStopPlatforms = true;
+
     }
 
     // Update is called once per frame

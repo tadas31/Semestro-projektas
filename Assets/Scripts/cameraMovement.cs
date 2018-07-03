@@ -54,6 +54,10 @@ public class cameraMovement : MonoBehaviour {
         }
         else 
             transform.position = new Vector3(player.transform.position.x + offset.x, startPos.y, startPos.z);  // Resets camera position
+
+        //was camera moved used in tutorial
+        if (transform.position != new Vector3(1.2f, 0.85f, -10))
+            TutorialScript.wasCameraMoved = true;
     }
 
 }

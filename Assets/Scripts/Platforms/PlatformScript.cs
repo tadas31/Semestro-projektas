@@ -41,13 +41,13 @@ public class PlatformScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Movement();
-        
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0) && LevelScript.canStopPlatforms)
         {
             StopPlatform();
         }
+
     }
 
     private void Movement()
