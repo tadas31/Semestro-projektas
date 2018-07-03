@@ -740,6 +740,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114052248755829748, guid: cbae31ca251747744aecbb112300a5ac,
+        type: 2}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1016399010}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbae31ca251747744aecbb112300a5ac, type: 2}
   m_IsPrefabParent: 0
@@ -868,6 +873,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 795393c26923af141953f04c1ce3f3e7, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1016399010 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4348583670620474, guid: 795393c26923af141953f04c1ce3f3e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1016399009}
 --- !u!1 &1240240641
 GameObject:
   m_ObjectHideFlags: 0
