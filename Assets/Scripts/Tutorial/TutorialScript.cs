@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TutorialScript : MonoBehaviour
 {
 
-    private Vector3 characterStartingPosition = new Vector3(-3.891f, 1.03443f, 0);  //character starting position
     private float timer;
 
     public static bool wasCameraMoved;              //true if camera was moved else false

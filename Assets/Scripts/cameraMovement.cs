@@ -52,8 +52,8 @@ public class cameraMovement : MonoBehaviour {
                 transform.Translate(new Vector2(-touchDeltaPosition.x/(Screen.width /8), 0));
             }
         }
-        else 
-            transform.position = new Vector3(player.transform.position.x + offset.x, startPos.y, startPos.z);  // Resets camera position
+        else
+            gameObject.transform.position = new Vector3(player.transform.position.x + offset.x, player.transform.position.y, startPos.z);
 
         //was camera moved used in tutorial
         if (transform.position != new Vector3(1.2f, 0.85f, -10))

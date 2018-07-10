@@ -1164,7 +1164,7 @@ Prefab:
     - target: {fileID: 224683159705806750, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4516392801313644, guid: cbae31ca251747744aecbb112300a5ac, type: 2}
       propertyPath: m_RootOrder
@@ -1193,7 +1193,7 @@ Prefab:
     - target: {fileID: 224872116674810642, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 224684290631336448, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -1203,7 +1203,7 @@ Prefab:
     - target: {fileID: 224014642917465824, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224627508053902846, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -1218,7 +1218,7 @@ Prefab:
     - target: {fileID: 224907696755340578, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224756814828629030, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -1228,17 +1228,17 @@ Prefab:
     - target: {fileID: 224177623381365608, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224982525365275096, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 224660747558930544, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224692655767178670, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -2401,7 +2401,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.0832307, y: 10.32695}
+  m_Offset: {x: -4.1696186, y: 10.32695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2412,7 +2412,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.47203, y: 32.0084}
+  m_Size: {x: 18.299255, y: 32.0084}
   m_EdgeRadius: 0
 --- !u!1 &1704318626
 GameObject:
