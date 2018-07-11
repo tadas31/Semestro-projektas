@@ -10,7 +10,6 @@ public class TutorialScript : MonoBehaviour
 
     public static bool wasCameraMoved;              //true if camera was moved else false
     public static bool wasFallingSpikesRemoved;     //true if spikes was removed else false
-    private bool jump;                              //true if jumped else false
     public static bool enemyTrigger;                //enemy tutorial trigger
     public static bool checkPointTrigger;           //check point tutorial trigger
 
@@ -30,7 +29,6 @@ public class TutorialScript : MonoBehaviour
 
         wasCameraMoved = false;
         wasFallingSpikesRemoved = false;
-        jump = false;
 
         //gets all tutorial text fields
         cameraMovementText = GameObject.Find("CameraMovementText").GetComponent<Text>();

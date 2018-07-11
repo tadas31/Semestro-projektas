@@ -7,6 +7,8 @@ public class cameraMovement : MonoBehaviour {
     public GameObject player;
     public Transform startBoundary;
     public Transform endBoundary;
+    public Transform topBoundary;
+    public Transform bottomBoundary;
 
     private Vector3 offset;
     private Vector3 startPos;
@@ -17,6 +19,8 @@ public class cameraMovement : MonoBehaviour {
     private Vector3 dir;
     private float start;
     private float end;
+    private float top;
+    private float bottom;
 
     void Start()
     {
@@ -27,7 +31,10 @@ public class cameraMovement : MonoBehaviour {
 
         start = startBoundary.transform.position.x + 2f;
         end = endBoundary.transform.position.x - 2f;
-    }
+
+        top = topBoundary.transform.position.y - 2f;
+        bottom = bottomBoundary.transform.position.y + 7f;
+}
 
     // Update is called once per frame
     void Update () {
@@ -35,15 +42,34 @@ public class cameraMovement : MonoBehaviour {
 
         if (moveCamera)
         {
-            if (transform.position.x > start)
-                transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
-            else
-                transform.position = new Vector3(startBoundary.transform.position.x + 2f, startPos.y, -10);
+            //if (transform.position.x > start)
+            //    transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
+            //else
+            //    transform.position = new Vector3(startBoundary.transform.position.x + 2f, startPos.y, -10);
 
-            if (transform.position.x < end)               
-                transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
+            if (transform.position.x > start)
+                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
             else
-                transform.position = new Vector3(endBoundary.transform.position.x - 2f, startPos.y, -10);
+                transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+
+            if (transform.position.x < end)
+                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
+            else
+                transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+
+
+
+            if (transform.position.y < top)
+                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
+            else
+                transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, - 10);
+
+            if (transform.position.y > bottom)
+                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
+            else
+                transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
+
+
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
             {
                 // Get movement of the finger since last frame
