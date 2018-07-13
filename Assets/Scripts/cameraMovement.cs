@@ -46,29 +46,62 @@ public class cameraMovement : MonoBehaviour {
             //    transform.Translate(new Vector2(dir.x / 5, 0.0f));   // Moves camera
             //else
             //    transform.position = new Vector3(startBoundary.transform.position.x + 2f, startPos.y, -10);
+            if (dir.x < -0.3)
+            {
+                dir.x = -1;
+                if (transform.position.x > start)
+                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                else
+                    transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
 
-            if (transform.position.x > start)
-                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
-            else
-                transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+                if (transform.position.x < end)
+                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                else
+                    transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+            }
+            if (dir.x > 0.3)
+            {
+                dir.x = 1;
+                if (transform.position.x > start)
+                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                else
+                    transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
 
-            if (transform.position.x < end)
-                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
-            else
-                transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+                if (transform.position.x < end)
+                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                else
+                    transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+            }
 
+            if (dir.y > 0.3)
+            {
+                dir.y = 1;
+                if (transform.position.y < top)
+                    transform.Translate(new Vector2(0, dir.y / 30));   // Moves camera
+                else
+                    transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
 
+                if (transform.position.y > bottom)
+                    transform.Translate(new Vector2(0, dir.y / 30));   // Moves camera
+                else
+                    transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
+                Debug.Log("ZONA");
+            }
 
-            if (transform.position.y < top)
-                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
-            else
-                transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, - 10);
+            if (dir.y < -0.3)
+            {
+                dir.y = -1;
+                if (transform.position.y < top)
+                    transform.Translate(new Vector2(0, dir.y / 30));   // Moves camera
+                else
+                    transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
 
-            if (transform.position.y > bottom)
-                transform.Translate(new Vector2(dir.x / 5, dir.y / 5));   // Moves camera
-            else
-                transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
-
+                if (transform.position.y > bottom)
+                    transform.Translate(new Vector2(0, dir.y / 30));   // Moves camera
+                else
+                    transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
+                Debug.Log("ZONA");
+            }
 
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
             {
