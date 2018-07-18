@@ -228,7 +228,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use         to move camera and look around level
+  m_Text: Use         to move camera and look around level.
 --- !u!222 &132217432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1273,7 +1273,7 @@ Prefab:
     - target: {fileID: 224731537714859270, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224932720565181834, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -1328,7 +1328,7 @@ Prefab:
     - target: {fileID: 224177623381365608, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 224982525365275096, guid: cbae31ca251747744aecbb112300a5ac,
         type: 2}
@@ -1566,7 +1566,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Now click          to start moving character
+  m_Text: Now click          to start moving character.
 --- !u!222 &985755274
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2067,7 +2067,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemies deal one damage per hit you can stun them by jumping on their heads
+  m_Text: Enemies deal one damage per hit. You can stun them by jumping on their heads.
 --- !u!222 &1157999458
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2194,7 +2194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click on             to stpo them
+  m_Text: Click on             to stop them.
 --- !u!222 &1182905542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3363,7 +3363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use           to move character and           to jump
+  m_Text: Use           to move character and           to jump.
 --- !u!222 &1892473037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3576,7 +3576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click on          so the dont fall on you later
+  m_Text: Click on          so the dont fall on you later.
 --- !u!222 &1949288238
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3748,7 +3748,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '          is a check point after death you will respawn on this flag'
+  m_Text: '          is a checkpoint. If you die you will respawn on this flag.'
 --- !u!222 &2096451987
 CanvasRenderer:
   m_ObjectHideFlags: 0
