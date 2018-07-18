@@ -22,6 +22,8 @@ public class cameraMovement : MonoBehaviour {
     private float top;
     private float bottom;
 
+    private float cameraSpeed = 10; // The bigger the number the slower it is
+
     void Start()
     {
         offset = transform.position - player.transform.position; // Gap between camera and player
@@ -50,12 +52,12 @@ public class cameraMovement : MonoBehaviour {
             {
                 dir.x = -1;
                 if (transform.position.x > start)
-                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                    transform.Translate(new Vector2(dir.x / cameraSpeed, 0));   // Moves camera
                 else
                     transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
 
                 if (transform.position.x < end)
-                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                    transform.Translate(new Vector2(dir.x / cameraSpeed, 0));   // Moves camera
                 else
                     transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
             }
@@ -63,12 +65,12 @@ public class cameraMovement : MonoBehaviour {
             {
                 dir.x = 1;
                 if (transform.position.x > start)
-                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                    transform.Translate(new Vector2(dir.x / cameraSpeed, 0));   // Moves camera
                 else
                     transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
 
                 if (transform.position.x < end)
-                    transform.Translate(new Vector2(dir.x / 15, 0));   // Moves camera
+                    transform.Translate(new Vector2(dir.x / cameraSpeed, 0));   // Moves camera
                 else
                     transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
             }
@@ -103,12 +105,69 @@ public class cameraMovement : MonoBehaviour {
                 Debug.Log("ZONA");
             }
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && dir.magnitude == 0)
             {
+
                 // Get movement of the finger since last frame
                 Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
                 // Move object across X plane
-                transform.Translate(new Vector2(-touchDeltaPosition.x/(Screen.width /8), 0));
+                if (touchDeltaPosition.x < -0.3)
+                {
+                    touchDeltaPosition.x = 1;
+                    if (transform.position.x > start)
+                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+
+                    if (transform.position.x < end)
+                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+                }
+                if (touchDeltaPosition.x > 0.3)
+                {
+                    touchDeltaPosition.x = -1;
+                    if (transform.position.x > start)
+                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+
+                    if (transform.position.x < end)
+                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+                }
+
+                if (touchDeltaPosition.y > 0.3)
+                {
+                    touchDeltaPosition.y = -1;
+                    if (transform.position.y < top)
+                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
+                    else
+                        transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
+
+                    if (transform.position.y > bottom)
+                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
+                    else
+                        transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
+                    Debug.Log("ZONA");
+                }
+
+                if (touchDeltaPosition.y < -0.3)
+                {
+                    touchDeltaPosition.y = 1;
+                    if (transform.position.y < top)
+                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
+                    else
+                        transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
+
+                    if (transform.position.y > bottom)
+                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
+                    else
+                        transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
+                    Debug.Log("ZONA");
+                }
+                //transform.Translate(new Vector2(-touchDeltaPosition.x/(Screen.width /8), 0));
             }
         }
         else
