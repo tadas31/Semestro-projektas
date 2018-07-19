@@ -23,7 +23,7 @@ public class cameraMovement : MonoBehaviour {
     private float bottom;
 
     private float cameraSpeed = 10; // The bigger the number the slower it is
-
+    private float speed = 0.2f;
     void Start()
     {
         offset = transform.position - player.transform.position; // Gap between camera and player
@@ -36,7 +36,8 @@ public class cameraMovement : MonoBehaviour {
 
         top = topBoundary.transform.position.y - 2f;
         bottom = bottomBoundary.transform.position.y + 7f;
-}
+
+    }
 
     // Update is called once per frame
     void Update () {
@@ -111,63 +112,35 @@ public class cameraMovement : MonoBehaviour {
                 // Get movement of the finger since last frame
                 Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
                 // Move object across X plane
-                if (touchDeltaPosition.x < -0.3)
-                {
-                    touchDeltaPosition.x = 1;
-                    if (transform.position.x > start)
-                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
-                    else
-                        transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+                
 
-                    if (transform.position.x < end)
-                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
-                    else
-                        transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
-                }
-                if (touchDeltaPosition.x > 0.3)
+                if (touchDeltaPosition.x < -0.2)
                 {
                     touchDeltaPosition.x = -1;
                     if (transform.position.x > start)
-                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                        transform.Translate(new Vector2(-touchDeltaPosition.x * speed, 0));   // Moves camera
                     else
                         transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
 
                     if (transform.position.x < end)
-                        transform.Translate(new Vector2(touchDeltaPosition.x / cameraSpeed, 0));   // Moves camera
+                        transform.Translate(new Vector2(-touchDeltaPosition.x  * speed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
+                }
+                if (touchDeltaPosition.x > 0.2)
+                {
+                    touchDeltaPosition.x = 1;
+                    if (transform.position.x > start)
+                        transform.Translate(new Vector2(-touchDeltaPosition.x * speed, 0));   // Moves camera
+                    else
+                        transform.position = new Vector3(startBoundary.transform.position.x + 2f, gameObject.transform.position.y, -10);
+
+                    if (transform.position.x < end)
+                        transform.Translate(new Vector2(-touchDeltaPosition.x * speed, 0));   // Moves camera
                     else
                         transform.position = new Vector3(endBoundary.transform.position.x - 2f, gameObject.transform.position.y, -10);
                 }
 
-                if (touchDeltaPosition.y > 0.3)
-                {
-                    touchDeltaPosition.y = -1;
-                    if (transform.position.y < top)
-                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
-                    else
-                        transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
-
-                    if (transform.position.y > bottom)
-                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
-                    else
-                        transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
-                    Debug.Log("ZONA");
-                }
-
-                if (touchDeltaPosition.y < -0.3)
-                {
-                    touchDeltaPosition.y = 1;
-                    if (transform.position.y < top)
-                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
-                    else
-                        transform.position = new Vector3(gameObject.transform.position.x, topBoundary.transform.position.y - 2f, -10);
-
-                    if (transform.position.y > bottom)
-                        transform.Translate(new Vector2(0, touchDeltaPosition.y / 30));   // Moves camera
-                    else
-                        transform.position = new Vector3(gameObject.transform.position.x, bottomBoundary.transform.position.y + 7f, -10);
-                    Debug.Log("ZONA");
-                }
-                //transform.Translate(new Vector2(-touchDeltaPosition.x/(Screen.width /8), 0));
             }
         }
         else

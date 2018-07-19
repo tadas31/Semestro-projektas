@@ -69,6 +69,8 @@ public class LevelScript : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         //restart
         respawnInGame = GameObject.Find("RespawnInGame").GetComponent<Button>();
 
