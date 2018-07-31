@@ -9,7 +9,7 @@ public class PlayAdScript : MonoBehaviour {
 
     public static void ShowAd()
     {
-        if (Advertisement.IsReady() && ( Time.time - lastTime) >= 30)
+        if (Advertisement.IsReady() && ( Time.time - lastTime) >= 60)
         {
             Advertisement.Show("video", new ShowOptions() {resultCallback = HandleAdResult });
             lastTime = Time.time;
