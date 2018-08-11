@@ -147,7 +147,13 @@ public class LevelScript : MonoBehaviour {
 
         //respawn
         respawnInGame.onClick.RemoveAllListeners();
-        respawnInGame.onClick.AddListener(TaskOnRespawnClick);
+        if (cameraMovement.moveCamera)
+        {
+            respawnInGame.onClick.AddListener(TaskOnRestartClick);
+        }
+        else
+            respawnInGame.onClick.AddListener(TaskOnRespawnClick);
+        
 
         //pause
         pause.onClick.RemoveAllListeners();

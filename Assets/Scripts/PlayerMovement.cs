@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     static int ropeNodes;
     //FixedJoint2D fixedJoint;
 
+
     // Use this for initialization
     void Start () {
         moveSpeedJ = SaveManager.Instance.ReturnCharacterStats()[1];
@@ -229,6 +230,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             TrampolineBounce(collision.gameObject.GetComponent<TrampolineScript>().height);
         }
+        if (collision.gameObject.tag == "BubblePlatform" && isFalling)
+        {
+            StartCoroutine(TimerForTheBounce());
+            TrampolineBounce(collision.gameObject.GetComponent<BubblePlatform>().height);
+        }
         if (collision.gameObject.tag == "Bridge")
         {
             maxSpeed *= 0.2f;
@@ -317,6 +323,18 @@ public class PlayerMovement : MonoBehaviour {
         rdbd.transform.Translate(dir * Time.deltaTime * moveSpeedJ *  0.5f);
         //rdbd.velocity += new Vector2(dir.x , dir.y );
         //rdbd.velocity += new Vector2(dir.x / moveSpeedJ, dir.y / moveSpeedJ);
+    }
+
+    /// <summary>
+    /// Timer that makes that the maxspeed is set to a hight number, mainly it is used that the bouce could bouce the player hight enough
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator TimerForTheBounce()
+    {
+        float maxSpeedx = maxSpeed;
+        maxSpeed = 100;
+        yield return new WaitForSeconds(3);
+        maxSpeed = maxSpeedx;
     }
 
 }
