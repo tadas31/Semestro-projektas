@@ -228,6 +228,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Trampoline" && isFalling)
         {
+            StartCoroutine(TimerForTheBounce());
             TrampolineBounce(collision.gameObject.GetComponent<TrampolineScript>().height);
         }
         if (collision.gameObject.tag == "BubblePlatform" && isFalling)
@@ -333,7 +334,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         float maxSpeedx = maxSpeed;
         maxSpeed = 100;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         maxSpeed = maxSpeedx;
     }
 
